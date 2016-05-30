@@ -1,0 +1,34 @@
+create table voluntario(
+	id_voluntario int not null primary key auto_increment,
+    nome_completo varchar(250),
+    celular varchar(50),
+    idade int,
+    login varchar(50),
+    senha varchar(250),
+    email varchar(250), 
+	id_endereco_voluntario integer
+);
+
+create table endereco_ong(
+	id_endereco_ong int not null primary key auto_increment,
+	rua varchar(250), -- rua
+    bairro varchar(250), -- bairro
+    numero varchar(250),
+    cidade varchar(250),
+    estado varchar(250),
+    cep varchar(250)
+);
+
+create table ong(
+	id_ong int not null primary key,
+    nome_completo varchar(250),
+    celular varchar(250),
+    area_de_operacao varchar(250),
+    descricao varchar(250),
+    login varchar(50),
+    senha varchar(250),   
+    email varchar(250),
+    id_endereco_ong int,
+	foreign key (id_endereco_ong) references endereco_ong(id_endereco_ong)
+);
+
