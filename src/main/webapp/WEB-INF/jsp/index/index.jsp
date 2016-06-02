@@ -5,6 +5,7 @@
 <title>VRaptor Blank Project</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" >
 </head>
+
 <body>
 	It works!! ${variable} ${linkTo[IndexController].index}
 	
