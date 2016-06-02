@@ -11,8 +11,9 @@ import lombok.Setter;
 @Setter
 public class Voluntario {
 	
-	private Integer idOng;
+	private Integer idVoluntario;
 	private String nomeVoluntario;
+	private String telefoneCelular;
 	private String email;
 	private Integer idade;
 	private String login;

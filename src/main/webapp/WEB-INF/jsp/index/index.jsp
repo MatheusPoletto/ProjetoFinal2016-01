@@ -7,15 +7,16 @@
 </head>
 
 <body>
-	It works!! ${variable} ${linkTo[IndexController].index}
+	<!--  ${variable}-->
 	
 	
 		<div class="container col-md-12">
-		<h1>Vai na fé...</h1>
+		<h1>Página de INDEX....</h1>
 		
+		<form action="Logar">
+		<input type="submit" value="Voltar a tela de login"/>
+		</form>
 		
-		<div class="col-md-6">a</div>	
-		<div class="col-md-6">a</div>	
 </div>
 </body>
 </html>

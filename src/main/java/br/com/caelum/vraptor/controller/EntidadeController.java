@@ -3,6 +3,6 @@ package br.com.caelum.vraptor.controller;
 import br.com.caelum.vraptor.Controller;
 
 @Controller
-public class OngController {
+public class EntidadeController {
 
 }

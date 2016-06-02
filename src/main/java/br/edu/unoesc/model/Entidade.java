@@ -10,18 +10,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Ong {
+public class Entidade {
 	
-	private Integer idOng;
-	private String nomeOng;
+	private Integer idEntidade;
+	private String nomeEntidade;
 	private String areaAtuacao; //se ajuda crianças, pessoas que não tem o que comer, etc; 
 	private String Login;
 	private String email;
 	private String senha;
 	private String telefone; 
-	private String descricao;
-	
-	
-	
 
 }
