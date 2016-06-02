@@ -32,3 +32,15 @@ create table ong(
 	foreign key (id_endereco_ong) references endereco_ong(id_endereco_ong)
 );
 
+
+create table ong_registra_vaga (
+	id_vaga_ong int not null primary key auto_increment,
+	id_ong int,
+    descricao varchar(1000),
+    presencial varchar(50),
+	urgencia varchar(250),
+    quantidade varchar(250), 
+    localidade_cidade varchar(250),
+    localidade_estado varchar (250), 
+    foreign key (id_ong) references ong(id_ong)
+);
