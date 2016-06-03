@@ -1,11 +1,15 @@
 package br.edu.unoesc.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
+
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,24 +17,29 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
+
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Entity 
-public class Voluntario {
-	
+
+@Entity
+public class Atuacao {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idVoluntario;
+	private Long idAtuacao;
 	
-	private String nomeVoluntario;
-	private String telefoneCelular;
-	private String email;
-	private Integer idade;
-	private String login;
-	private String senha;
+	private Long idVoluntario; 
+	private Long idVaga;
+	private String status;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date data;
+	
 	
 	
 
+
+	
 
 }

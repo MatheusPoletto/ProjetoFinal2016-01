@@ -2,6 +2,13 @@ package br.edu.unoesc.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +19,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Vaga {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer idVaga;
 	public Integer idEntidade;
 	public String nomeVaga;
@@ -24,7 +34,13 @@ public class Vaga {
 	public String presencial;
 	public String estado;
 	public String cidade;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataValidade;
+	
+	
 
 }
