@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -41,6 +42,8 @@ public class Vaga {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataValidade;
 	
-	
+	//associar
+	@ManyToOne(optional = false, targetEntity = Entidade.class)
+	private Entidade entidade;
 
 }

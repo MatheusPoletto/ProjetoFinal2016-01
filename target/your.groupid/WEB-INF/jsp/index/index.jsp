@@ -11,11 +11,11 @@
 	
 	
 		<div class="container col-md-12">
-		<h1>Página de INDEX.</h1>
+		<h1>Página de INDEX....</h1>
 		
 		<form action="Logar">
 		<input type="submit" value="Voltar a tela de login"/>
-	</form>ss
+		</form>
 		
 </div>
 </body>
