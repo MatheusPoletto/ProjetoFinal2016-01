@@ -75,92 +75,72 @@
 
           <h2>Complete os campos abaixo:</h2>
 
-          <form >
-
-              <div class="form-group col-sm-10">
-                <label >Nome da Vaga</label>
-                <input type="text" class="form-control"  placeholder="Por Favor informe o nome da vaga..." name="nomevaga">
-              </div>
-
-              <div class="form-group col-sm-10">
-                <label >Quantidade de Vagas disponiveis</label>
-                <input type="number" name="quantidade" class="form-control"  placeholder="Por Favor informe a quantidade vagas disponiveis...">
-              </div>
-
-              <div class="form-group col-sm-10">
-                <label >Informe a Urgencia da Vaga</label>
-                <select class="col-sm-12" name="urgencia">
-
-                  <option value="option">Por favor selecione a urgencia da vaga</option>
-                  <option value="importante">Muito Importante - Precisamos de voluntários urgentemente</option>
-                  <option value="normal">Normal</option>
-                </select>
-              </div>
-
-              <div class="form-group col-sm-10">
-                <label>A Vaga é presencial?</label>
-
-                  <input type="radio"  name="vagapresencialsim">     Sim
-                  <input type="radio"  name="vagapresencialnao">     Não
-
-              </div>
-
-              <div class="form-group col-sm-10">
-    <label>Informe o estado e a cidade aonde a vaga será realizada </label><br />
-    <select class="col-sm-6" >
-
-      <option value="estado">Selecione o Estado</option>
-  <option value="ac">Acre</option>
-  <option value="al">Alagoas</option>
-  <option value="am">Amazonas</option>
-  <option value="ap">Amapá</option>
-  <option value="ba">Bahia</option>
-  <option value="ce">Ceará</option>
-  <option value="df">Distrito Federal</option>
-  <option value="es">Espírito Santo</option>
-  <option value="go">Goiás</option>
-  <option value="ma">Maranhão</option>
-  <option value="mt">Mato Grosso</option>
-  <option value="ms">Mato Grosso do Sul</option>
-  <option value="mg">Minas Gerais</option>
-  <option value="pa">Pará</option>
-  <option value="pb">Paraíba</option>
-  <option value="pr">Paraná</option>
-  <option value="pe">Pernambuco</option>
-  <option value="pi">Piauí</option>
-  <option value="rj">Rio de Janeiro</option>
-  <option value="rn">Rio Grande do Norte</option>
-  <option value="ro">Rondônia</option>
-  <option value="rs">Rio Grande do Sul</option>
-  <option value="rr">Roraima</option>
-  <option value="sc">Santa Catarina</option>
-  <option value="se">Sergipe</option>
-  <option value="sp">São Paulo</option>
-  <option value="to">Tocantins</option>
-    </select>
-
-    <div class="form-group col-sm-6">
-        <input type="text" class="form-control" placeholder="Informe a sua cidade" name="cidade"/>
+          <form class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Nome da Vaga</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="nomevaga" placeholder="Nome da Vaga">
     </div>
   </div>
 
-              <div class="form-group col-sm-10">
-                <label>Descreva o que o voluntário vai ter que fazer</label>
+    <div class="form-group">
+      <label  class="col-sm-2 control-label">Voluntários necessários</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" name="quantidadevagas" placeholder="Quantidade de vagas disponiveis">
+      </div>
+      </div>
 
-                <textarea name="descricao" placeholder="Descreva o que o voluntário vai ter que fazer, seja o mais detalhista possivel..." class="form-control"></textarea>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Urgencia da Vaga</label>
+        <div class="col-sm-10">
 
-              </div>
+        <select class="col-sm-12" name="urgencia">
 
-              <div class="form-group col-sm-10">
-                <label >Até que dia a vaga deve ficar cadastrada em nosso site?</label>
-                <input type="date" class="form-control" name="validade">
-              </div>
+          <option value="option">Por favor selectione a urgencia da vaga</option>
+          <option value="option">Muito Importante - Precisamos de voluntários urgentemente</option>
+          <option value="option">Normal</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label  class="col-sm-2 control-label">A vaga é presencial?</label>
+        <div class="col-sm-10">
+          <br>
+          <input type="radio"  name="vagapresencialsim">     Sim
+          <input type="radio"  name="vagapresencialnao">     Não
+        </div>
+        </div>
+
+        <div class="form-group">
+          <label  class="col-sm-2 control-label">UF/CIDADE</label>
+          <div class="col-sm-10">
+
+<input type="text" name="lugar" class="form-control"  placeholder="Informe o Estado e a cidade aonde vai ocorrer">
+          </div>
+          </div>
+
+        <div class="form-group">
+          <label  class="col-sm-2 control-label">Descrição da Vaga</label>
+          <div class="col-sm-10">
+          <textarea name="descricao" placeholder="Descreva o que o voluntário vai ter que fazer, seja o mais detalhista possivel..." class="form-control"></textarea>
+
+          </div>
+          </div>
+
+          <div class="form-group">
+            <label  class="col-sm-2 control-label">Até que dia a vaga deve ficar cadastrada no site?</label>
+            <div class="col-sm-10">
+              <br>
+              <input type="date"  name="vagapresencialsim" class="form-control">
+
+            </div>
+            </div>
 
 
+            <div class="form-group">
 
-            <div class="form-group col-sm-10">
-
-
+<label class="col-sm-2"></label>
               <button type="submit" class="btn btn-default">Cadastrar Vaga</button>
           </div>
 
