@@ -39,5 +39,8 @@ public @Data class Pessoa implements MinhaEntidade {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
+
+	
+	private Usuario usuario;
 	
 }
