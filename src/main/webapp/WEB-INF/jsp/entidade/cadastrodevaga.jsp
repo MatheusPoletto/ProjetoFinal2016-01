@@ -84,7 +84,7 @@
 
               <div class="form-group col-sm-10">
                 <label >Quantidade de Vagas disponiveis</label>
-                <input type="text" name="quantidade" class="form-control"  placeholder="Por Favor informe a quantidade vagas disponiveis...">
+                <input type="number" name="quantidade" class="form-control"  placeholder="Por Favor informe a quantidade vagas disponiveis...">
               </div>
 
               <div class="form-group col-sm-10">
