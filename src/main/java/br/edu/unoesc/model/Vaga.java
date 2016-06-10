@@ -1,40 +1,48 @@
 package br.edu.unoesc.model;
 
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
-
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(of = {"codigo", "nomeVaga", "descricao", "importancia", "presencial", "estado", "cidade"})
+@EqualsAndHashCode(of = {"codigo"})
 @Entity
-public class Vaga {
-	
+public @Data class Vaga implements MinhaEntidade{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer idVaga;
-	public Integer idEntidade;
-	public String nomeVaga;
-	public Integer pessoaNece;
-	public String descricao;
-	private Integer quantidade;
-	public String importancia;
-	public String presencial;
-	public String estado;
-	public String cidade;
+	private Long codigo;
+	//private Integer idEntidade;
+	private String nomeVaga;
+	private Integer quantidadePessoa;
+	private String descricao;
+	private Integer quantidadeVaga;
+	private String importancia;
+	private String presencial;
+	private String estado;
+	private String cidade;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
@@ -42,8 +50,13 @@ public class Vaga {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataValidade;
 	
-	//associar
 	@ManyToOne(optional = false, targetEntity = Entidade.class)
 	private Entidade entidade;
-
+	
+	@OneToMany(mappedBy = "vaga", targetEntity = Atuacao.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Atuacao> atuacoes = new ArrayList<>();
+	
+	public void adicionarAtuacao(Atuacao atuacao){
+		this.atuacoes.add(atuacao);
+	}
 }

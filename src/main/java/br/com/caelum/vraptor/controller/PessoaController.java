@@ -7,7 +7,7 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
-import br.edu.unoesc.dao.PessoaDAO;
+import br.edu.unoesc.dao.VoluntarioDAO;
 import br.edu.unoesc.exception.DAOException;
 import br.edu.unoesc.model.Pessoa;
 
@@ -15,7 +15,7 @@ import br.edu.unoesc.model.Pessoa;
 public class PessoaController {
 
 	@Inject
-	private PessoaDAO pessoaDao;
+	private VoluntarioDAO pessoaDao;
 
 	@Inject
 	private Result result;
