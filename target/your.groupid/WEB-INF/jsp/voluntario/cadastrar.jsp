@@ -124,14 +124,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label>Area Atuação</label>		
-				<select name="areaAtuacao">
-					<option>aqui vai as opções</option>
-				</select>
-			</div>
-			
-			<div class="form-group">
-				<label>Por favor descreva a  sua Ong: </label>
+				<label>Por favor descreva a area de atuação de sua Ong: </label>
 					<textarea class="form-control" rows="3" name="descricaoOng"></textarea>
 
 			</div>
