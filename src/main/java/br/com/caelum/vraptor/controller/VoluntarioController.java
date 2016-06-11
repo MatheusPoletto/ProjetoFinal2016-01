@@ -1,5 +1,7 @@
 package br.com.caelum.vraptor.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
@@ -8,14 +10,17 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
+import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.dao.VoluntarioDAO;
 import br.edu.unoesc.exception.DAOException;
+import br.edu.unoesc.model.Usuario;
+import br.edu.unoesc.model.Voluntario;
 
 @Controller
 public class VoluntarioController {
 
 	@Inject
-	private VoluntarioDAO pessoaDao;
+	private UsuarioDAO usuarioDAO;
 
 	@Inject
 	private Result result;
@@ -26,6 +31,20 @@ public class VoluntarioController {
 	@Path("/index")
 	public void index() {
 		result.include("variable", "");
+	}
+	
+	@Post("/cadastrarVoluntario")
+	public void cadastrarVoluntario(Usuario usuario, Voluntario voluntario) {
+		if (usuario != null) {
+			try {
+				voluntario.setUsuario(usuario);
+				usuario.adcionarVoluntario(voluntario);
+				usuarioDAO.salvar(usuario);
+			} catch (DAOException e) {
+				
+			}
+		}
+		result.redirectTo("/");
 	}
 /*
 	@Get("/home")

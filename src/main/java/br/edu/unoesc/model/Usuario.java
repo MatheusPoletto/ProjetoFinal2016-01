@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +28,9 @@ import lombok.ToString;
 @ToString(of = {"codigo", "login", "senha"})
 @EqualsAndHashCode(of = {"codigo"})
 @Entity
+@NamedQueries({@NamedQuery(name = Usuario.TODOS, query = "from Usuario a ")})
 public @Data class Usuario implements MinhaEntidade {
+	public static final String TODOS = "TODOS";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
