@@ -104,7 +104,7 @@ function tipoSelecionado() {
 
 							<div class="form-group">
 								<label>Area Atuação</label> <select>
-									<option value="teste" name="entidade.areaAtuacao" value="$entidade.areAtuacao">teste</option>
+									<option value="${entidade.areaAtuacao}" name="entidade.areaAtuacao">teste</option>
 								</select>
 							</div>
 

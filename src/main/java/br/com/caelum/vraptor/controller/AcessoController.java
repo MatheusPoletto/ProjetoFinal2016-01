@@ -43,17 +43,16 @@ public class AcessoController {
 				for(Usuario user : usuarios){
 					if((user.getLogin().equals(usuario.getLogin())) && (user.getSenha().equals(usuario.getSenha())) ){
 						encontrou = true;
-						result.include("usuario", user);
 						if(user.getVoluntarios().isEmpty()){
 							//SE N TIVER NENHUM VOLUNTARIO EH UMA ENTIDADE
-							//result.redirectTo("/homeEntidade");
-							System.out.println("Oi eu sou a microsoft!");
+							result.include("usuario", user);
+							result.redirectTo(EntidadeController.class).homeEntidade(user);
 						}else{
 							//SE TIVER ELE EH VOLUNTARIO
 							//result.redirectTo("/homeVoluntario");
 							System.out.println("Oi eu sou o goku!");
 						}
-						result.redirectTo("/");
+						//result.redirectTo("/");
 					}
 				}
 				if(!encontrou){

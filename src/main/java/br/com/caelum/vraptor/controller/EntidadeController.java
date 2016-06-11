@@ -29,6 +29,12 @@ public class EntidadeController {
 		result.include("variable", "");
 	}
 	
+	@Path("/homeEntidade")
+	public void homeEntidade(Usuario usuario) {
+		Entidade entidade = usuario.getEntidades().get(0);
+		result.include("entidade", entidade);		
+	}
+	
 	@Post("/cadastrarEntidade")
 	public void cadastrarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {
 		if (usuario != null) {
