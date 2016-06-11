@@ -95,7 +95,7 @@ public abstract class HibernateDAO<T extends MinhaEntidade> implements GenericDA
 			// TypedQuery<T> query = em.createNativeQuery("SELECT * FROM ALUNO",
 			// classe);
 			TypedQuery<T> query = em.createNamedQuery("FILTRA_POR_NOME", classe);
-			query.setParameter(1, "%" + descricao.toUpperCase() + "%");
+			query.setParameter(1, "%" + descricao + "%");
 			return query.getResultList();
 		} finally {
 			this.finalizar();

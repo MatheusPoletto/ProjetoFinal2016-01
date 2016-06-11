@@ -10,208 +10,165 @@
 <link rel="stylesheet" type="text/css" href="css/media.css" />
 <link rel="stylesheet" type="text/css" href="css/sprite.css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script language="javascript" type="text/javascript">
-	function tipoSelecionado() {
-		document.getElementById('formOng').style.display = 'none';
-		document.getElementById('formVoluntario').style.display = 'none';
-		if (document.getElementById('radioOng').checked) {
-			document.getElementById('formOng').style.display = 'block';
-		}
-		if (document.getElementById('radioVoluntario').checked) {
-			document.getElementById('formVoluntario').style.display = 'block';
-		}
+function tipoSelecionado() {
+	  document.getElementById('formOng').style.display = 'none';
+	  document.getElementById('formVoluntario').style.display = 'none';
+	  if (document.getElementById('radioOng').checked) {
+	    document.getElementById('formOng').style.display = 'block';
+	  }
+	  if (document.getElementById('radioVoluntario').checked) {
+	    document.getElementById('formVoluntario').style.display = 'block';
+	  }
+
 	}
 </script>
 </head>
 <body>
 	${variable}
 	<div class="container-fluid">
-
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-5 col-md-offset-1">
 					<h1>Cadastro de novo usuario</h1>
 					<p>Por favor, escolha como você deseja se cadastrar:</p>
-					Ong 
-					<input type="radio" name="optradio" onclick="tipoSelecionado()"	id="radioOng"> Voluntario <input type="radio" name="optradio" onclick="tipoSelecionado()" id="radioVoluntario">
-						
+					Ong <input type="radio" name="optradio" onclick="tipoSelecionado()" id="radioOng">
+					Voluntario <input type="radio" name="optradio" onclick="tipoSelecionado()" id="radioVoluntario">
+
 					<div id="formVoluntario">
 						<form action="<c:url value='/cadastrarVoluntario'/>" method="post">
 							<h2>Cadastro de novo Voluntario:</h2>
 							<br />
 							<div class="form-group">
 								<label>Nome Completo: </label>
-								<input type="text" name="voluntario.nome"  value="${voluntario.nome} class="form-control" />
+								<input type="text" name="voluntario.nome" value="${voluntario.nome}" class="form-control" />
 							</div>
 
 							<div class="form-group">
-								<label>Telefone Celular: </label>
-								<input type="tel" name="voluntario.celular"  value="${voluntario.celular} class="form-control" />
+								<label>Celular: </label> 
+								<input type="tel" name="voluntario.celular" value="${voluntario.celular}" class="form-control" />
 							</div>
 
 							<div class="form-group">
-								<label>Nascimento: </label> 
-								<input type="text"  name="voluntario.nascimento" value="${voluntario.nascimento} class="form-control" />
+								<label>Data de nascimento: </label>
+								<input type="text" name="voluntario.nascimento" value="${voluntario.nascimento}" class="form-control" />
 							</div>
 
 							<div class="form-group">
 								<label>Email</label> 
-								<input type="email" name="voluntario.email" value="${voluntario.email} class="form-control" />
+								<input type="email" name="voluntario.email" value="${voluntario.email}" class="form-control" />
 							</div>
 
 							<div class="form-group">
-								<label>Login</label> 
-								<input type="text" name="usuario.login" value="${usuario.login} class="form-control" />
+								<label>Login</label>
+								<input type="text" name="usuario.login" value="${usuario.login}" class="form-control" />
 							</div>
 
 							<div class="form-group">
-								<label>Senha</label> 
-								<input type="password"	name="usuario.senha" value="${usuario.senha} class="form-control" />
+								<label>Senha</label>
+								<input type="password" name="usuario.senha" value="${usuario.senha}" class="form-control" />
 							</div>
 
 							<button type="submit" class="btn btn-default">Cadastrar</button>
 						</form>
 					</div>
-
-
-
 
 					<div id="formOng">
 						<h2>Cadastro de Nova Organização:</h2>
-						<form>
-
+						</br>
+						<form action="<c:url value='/cadastrarEntidade'/>" method="post">
 							<div class="form-group">
-								<label>Nome da Ong:</label> <input type="text" name="nomeOng"
-									class="form-control" />
-
-							</div>
-
-
-							<div class="form-group">
-								<label>Telefone: </label> <input type="tel" name="telefoneOng"
-									class="form-control" />
-
-							</div>
-
-
-
-							<div class="form-group">
-
-								<label>Email</label> <input type="email" name="emailOng"
-									class="form-control" />
+								<label>Nome da Ong:</label>
+								<input type="text" name="entidade.nomeEntidade" value="${entidade.nomeEntidade}" class="form-control" />
 							</div>
 
 							<div class="form-group">
-
-								<label>Login</label> <input type="text" name="loginONg"
-									class="form-control" />
+								<label>Telefone: </label>
+								<input type="tel" name="entidade.telefone" value="${entidade.telefone}" class="form-control" />
 							</div>
 
 							<div class="form-group">
-								<label>Senha</label> <input type="password" name="senhaOng"
-									class="form-control" />
+								<label>Email</label>
+								<input type="email" name="entidade.email" value="${entidade.email}" class="form-control" />
 							</div>
 
 							<div class="form-group">
-								<label>Area Atuação</label> <select name="areaAtuacao">
-									<option>aqui vai as opções</option>
+								<label>Login</label>
+								<input type="text" name="usuario.login" value="${usuario.login}" class="form-control" />
+							</div>
+
+							<div class="form-group">
+								<label>Senha</label>
+								<input type="password" name="usuario.senha" value="${usuario.senha}" class="form-control" />
+							</div>
+
+							<div class="form-group">
+								<label>Area Atuação</label> <select>
+									<option value="teste" name="entidade.areaAtuacao" value="$entidade.areAtuacao">teste</option>
 								</select>
 							</div>
 
-							<div class="form-group">
-								<label>Por favor descreva a sua Ong: </label>
-								<textarea class="form-control" rows="3" name="descricaoOng"></textarea>
-
-							</div>
-
-
-
 							<h3>Agora por favor informe o endereço da sua instituição:</h3>
 							<div class="form-group">
-
-								<label>Rua</label> <input type="text" name="ruaOng"
-									class="form-control" />
+								<label>Rua</label>
+								<input type="text" name="endereco.rua" value="${endereco.rua}" class="form-control" />
 							</div>
 
 							<div class="form-group">
-								<label>Bairro</label> <input type="text" name="bairroOng"
-									class="form-control" />
-
+								<label>Bairro</label>
+								<input type="text" name="endereco.bairro" value="${endereco.bairro}" class="form-control" />
 							</div>
 
 							<div class="form-group">
-								<label>Numero</label> <input type="text" name="numeroOng"
-									class="form-control" />
+								<label>Numero</label>
+								<input type="text" name="endereco.numero" value="${endereco.numero}" class="form-control" />
 
 							</div>
 							<div class="form-group">
-								<label>cidade</label> <input type="text" name="cidadeOng"
-									class="form-control" />
+								<label>cidade</label>
+								<input type="text" name="endereco.cidade" value="${endereco.cidade}"class="form-control" />
 							</div>
-
-
-
-
+							
 							<div class="form-group">
-								<label>UF </label> <input type="text" name="ufOng"
-									class="form-control" />
-
+								<label>UF </label>
+								<input type="text" name="endereco.uf" value="${endereco.uf}"class="form-control" />
 							</div>
 
 							<div class="form-group">
-								<label>cep </label> <input type="text" name="cepOng"
-									class="form-control" />
+								<label>cep </label>
+								<input type="text" name="endereco.cep" value="${endereco.rua}" class="form-control" />
 							</div>
-
-
-
 
 							<button type="submit" class="btn btn-default">Cadastrar</button>
 						</form>
 					</div>
-
 				</div>
 
 				<div class="col-md-5 col-md-offset-1">
-
 					<div class="col-md-10">
 						<h1>Já é cadastrado?</h1>
 						<br />
 						<h1>Por favor realize o seu login:</h1>
-
 						<br />
-						<form>
+						<form action="<c:url value='/autenticar'/>" method="post">
 							<div class="form-horizontal">
-
 								<div class="form-group">
-									<label>Login </label> <input type="text" class="form-control" />
+									<label>Login </label>
+									<input type="text" name="usuario.login" value="${usuario.login}" class="form-control" required />
 								</div>
 								<div class="form-group">
-									<label>Senha </label> <input type="password"
-										class="form-control" />
+									<label>Senha </label>
+									<input type="password" name="usuario.senha" value="${usuario.senha}" class="form-control" required />
 								</div>
 								<div class="form-group">
-
-									<button type="submit" class="btn btn-default">Realizar
-										Login</button>
+									<button type="submit" class="btn btn-default">Realizar Login</button>
 								</div>
-
 							</div>
-
-
-
-
 						</form>
 					</div>
-
-
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-</body>
+<body>
 </html>

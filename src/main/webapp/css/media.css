@@ -1,0 +1,191 @@
+﻿/* Neste arquivo tem o css que eu fiz, as media começam na linha 87. */
+
+#formOng{
+	display: none;
+}
+#formVoluntario{
+	display: none;
+}
+
+
+.logo img {
+	width: 300px;
+	height: 135px;
+}
+
+.conheca {
+	text-align: justify;
+}
+
+.conheca h1 {
+	text-align: center;
+}
+
+.conheca img{
+	width: 580px;
+	height: 366px;
+}
+
+.menus ul li {
+	display: inline;
+	padding: 20px 55px;
+}
+.menus a {
+	text-decoration: none;
+	font-size: 20px;
+	color: #000000;
+}
+.menus a:hover {
+	color: #043475;
+}
+
+.frase {
+	text-align: center;
+	color: #043475;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.motivosparaestudar {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	text-align: center;
+}
+.motivosparaestudar img {
+
+	height: 300px;
+	width: 500px;
+	border: solid 2px;
+}
+
+.contato h2 {
+	text-align: center;
+}
+
+hr {
+	border: solid 1px #0c71c4;
+}
+
+.rodape {
+	color: #043475;
+	font-family: verdana;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.contatoimagem img {
+	height: 200px;
+	width: 600px;
+}
+
+.contato {
+	text-align: center;
+}
+
+.frasecontato p {
+	font-size: 15px;
+}
+
+.seraluno {
+	text-align: center;
+}
+
+.seraluno input {
+	width: 600px;
+	height: 35px;
+	border-radius: 4px;
+}
+
+.tabela table{
+	width: 100%;
+	text-align: center;
+}
+
+.tabela i{
+	margin-left: 50%;
+}
+
+@media (max-width: 767px) {
+
+	.logo img {
+		margin-left: 0px;
+		height: 150px;
+		width: 225px;
+	}
+	
+	.menus{
+		text-align: center;
+	}
+
+	.menus ul li {
+		display: inherit;
+		padding: 5px 0px;
+	}
+
+	.frase {
+		text-align: center;
+	}
+
+	.conheca img {
+		height: 150px;
+		width: 235px;
+	}
+
+	.motivosparaestudar p {
+		text-align: justify;
+	}
+	.motivosparaestudar img {
+		height: 200px;
+		width: 250px;
+	}
+
+	.seraluno input {
+		width: 250px;
+	}
+
+	.contatoimagem img {
+		height: 150px;
+		width: 235px;
+	}
+
+	.contatopara {
+		text-align: center;
+		font-size: 25px;
+	}
+
+	.rodape {
+		text-align: center;
+	}
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+
+	.menus ul li {
+
+		padding: 5px 70px;
+	}
+
+	.menus{
+		text-align: center;
+	}
+	.motivosparaestudar img {
+		height: 300px;
+		width: 550px;
+	}
+
+	.motivosparaestudar p {
+		text-align: center;
+	}
+
+	.seraluno input {
+		width: 700px;
+		height: 35px;
+		border-radius: 4px;
+	}
+
+	.rodape {
+		text-align: center;
+	}
+}
+

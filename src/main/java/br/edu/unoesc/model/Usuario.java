@@ -28,8 +28,10 @@ import lombok.ToString;
 @ToString(of = {"codigo", "login", "senha"})
 @EqualsAndHashCode(of = {"codigo"})
 @Entity
-@NamedQueries({@NamedQuery(name = Usuario.TODOS, query = "from Usuario a ")})
+@NamedQueries({@NamedQuery(name = Usuario.FILTRA_POR_NOME, query = "from Usuario a where upper(a.login) like ? "),
+	@NamedQuery(name = Usuario.TODOS, query = "from Usuario a ")})
 public @Data class Usuario implements MinhaEntidade {
+	public static final String FILTRA_POR_NOME = "FILTRA_POR_NOME";
 	public static final String TODOS = "TODOS";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

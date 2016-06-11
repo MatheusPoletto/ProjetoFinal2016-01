@@ -31,6 +31,6 @@ public class IndexController {
 	
 	@Get("/cadastrar")
 	public void cadastrar() {
-		result.include("variable", "aa");
+		result.include("variable", "");
 	}
 }

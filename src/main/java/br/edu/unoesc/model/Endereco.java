@@ -1,8 +1,10 @@
 package br.edu.unoesc.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +20,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "codigo")
 @ToString(of = {"codigo", "rua", "numero", "bairro", "cidade", "cep", "uf"})
+@Entity
 public @Data class Endereco implements MinhaEntidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,4 +31,7 @@ public @Data class Endereco implements MinhaEntidade {
 	private String cidade;
 	private String cep;
 	private String uf;
+	
+	@ManyToOne(optional = false, targetEntity = Entidade.class)
+	private Entidade entidade;
 }
