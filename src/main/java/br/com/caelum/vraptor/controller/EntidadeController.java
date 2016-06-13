@@ -3,6 +3,7 @@ package br.com.caelum.vraptor.controller;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -23,7 +24,7 @@ public class EntidadeController {
 	
 	@Inject
 	private Validator validator;
-	
+
 	@Path("/index")
 	public void index() {
 		result.include("variable", "");
@@ -34,6 +35,31 @@ public class EntidadeController {
 		Entidade entidade = usuario.getEntidades().get(0);
 		result.include("entidade", entidade);		
 	}
+	
+	@Get("/passaCodigo/{codigo},{tipo}")
+	public void passaCodigo(Long codigo, String tipo){
+		Usuario usuario = usuarioDAO.buscar(Usuario.class, codigo);
+		result.include("usuario", usuario);
+		System.out.println(tipo);
+		
+		switch (tipo) {
+		case "perfil":
+			result.redirectTo(this).perfilEntidade(usuario);
+			break;
+		case "inicio":
+			result.redirectTo(this).homeEntidade(usuario);
+		default:
+			break;
+		}
+	}
+	
+	@Path("/perfilEntidade")
+	public void perfilEntidade(Usuario usuario) {
+		result.include("usuario", usuario);
+		result.include("entidade", usuario.getEntidades().get(0));
+		result.include("endereco", usuario.getEntidades().get(0).getEnderecos().get(0));
+	}
+	
 	
 	@Post("/cadastrarEntidade")
 	public void cadastrarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {
@@ -50,4 +76,13 @@ public class EntidadeController {
 		}
 		result.redirectTo("/");
 	}
+	
+	@Get("/editarEntidade/{codigo}")
+	public void editarEntidade(Long codigo) {
+		Usuario usuario = usuarioDAO.buscar(Usuario.class, codigo);
+		System.out.println("tou aqui como" + codigo);
+
+		result.redirectTo(this).homeEntidade(usuario);
+	}
+	
 }

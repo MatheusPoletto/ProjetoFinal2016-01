@@ -6,7 +6,7 @@
 	<link rel="icon" type="image/png" href="img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-		<title>ONG - Bem-Vindo!!!</title>
+		<title>Eu Volunt·rio - Home</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -33,7 +33,6 @@
 
 </head>
 <body>
-${variable}
 <div class="wrapper">
     <div class="sidebar" data-color="gray" data-image="img/sidebar-3.jpg">
 
@@ -47,7 +46,7 @@ ${variable}
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="" class="simple-text">
-                    Eu Volunt√°rio
+                    Eu Volunt·rio
                 </a>
             </div>
 
@@ -55,11 +54,11 @@ ${variable}
                 <li class="active">
                     <a href="dashboard.html">
                         <i class="pe-7s-graph"></i>
-                        <p>dashboard</p>
+                        <p>Principal</p>
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="<c:url value='/passaCodigo/${entidade.usuario.codigo}'/>">
                         <i class="pe-7s-user"></i>
                         <p>Meu Perfil</p>
                     </a>
@@ -67,7 +66,7 @@ ${variable}
                 <li>
                     <a href="table.html">
                         <i class="pe-7s-note2"></i>
-                        <p>Minhas Atua√ß√µes</p>
+                        <p>Minhas AtuaÁoes</p>
                     </a>
                 </li>
 
@@ -105,7 +104,7 @@ ${variable}
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="#">Ol· ${entidade.nomeEntidade}!</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">

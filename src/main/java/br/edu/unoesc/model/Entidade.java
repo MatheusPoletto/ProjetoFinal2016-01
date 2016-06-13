@@ -43,6 +43,7 @@ public @Data class Entidade implements MinhaEntidade {
 	private String areaAtuacao; //se ajuda crianças, pessoas que não tem o que comer, etc; 
 	private String email;
 	private String telefone; 
+	private String descricao;
 	
 	@ManyToOne(optional = false, targetEntity = Usuario.class)
 	private Usuario usuario;

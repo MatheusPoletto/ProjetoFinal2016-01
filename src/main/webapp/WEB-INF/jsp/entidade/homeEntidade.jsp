@@ -54,11 +54,11 @@
                 <li class="active">
                     <a href="dashboard.html">
                         <i class="pe-7s-graph"></i>
-                        <p>dashboard</p>
+                        <p>Principal</p>
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="<c:url value='/passaCodigo/${entidade.usuario.codigo},${"perfil"}'/>">
                         <i class="pe-7s-user"></i>
                         <p>Meu Perfil</p>
                     </a>
