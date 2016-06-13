@@ -115,72 +115,95 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Edit Profile</h4>
+                                <h4 class="title">Editar perfil</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <!-- <form action="<c:url value='/editarEntidade/${usuario.codigo}'/>" method="get">-->
+                                <form action="<c:url value='/editarEntidade'/>" method="post">
+                                <input type="hidden" name="usuario.codigo" value="${usuario.codigo}" />
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Entidade</label>
-                                                <input type="text" class="form-control" disabled placeholder="Entidade" value="${entidade.nomeEntidade}">
+                                                <input type="text" class="form-control" name="entidade.nomeEntidade" disabled placeholder="Entidade" value="${entidade.nomeEntidade}">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Usuário</label>
-                                                <input type="text" class="form-control" placeholder="Usuário" value="${usuario.login}">
+                                                <input type="text" class="form-control" name="usuario.login" placeholder="Usuário" value="${usuario.login}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email</label>
-                                                <input type="email" class="form-control" placeholder="Email" value="${entidade.email}">
+                                                <input type="email" class="form-control" name="entidade.email" placeholder="Email" value="${entidade.email}">
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Rua</label>
-                                                <input type="text" class="form-control" placeholder="Rua" value="${endereco.rua}">
-                                            </div>
-                                        </div>
-                                    </div>
+                                   <div class="row">
+																			<div class="col-md-6">
+																					<div class="form-group">
+																							<label>Rua</label>
+																							<input type="text" class="form-control" name="endereco.rua" placeholder="Rua" value="${endereco.rua}">
+																					</div>
+																			</div>
+																			<div class="form-group col-md-4">
+																					<label>Bairro</label>
+																					<input type="text" class="form-control" name="endereco.bairro" placeholder="Bairro" value="${endereco.bairro}">
+																			</div>
+																			<div class="form-group col-md-2">
+																					<label>Nº</label>
+																					<input type="text" class="form-control" name="endereco.numero" placeholder="Nº" value="${endereco.numero}">
+																			</div>
+
+
+
+																	</div>
 
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Cidade</label>
-                                                <input type="text" class="form-control" placeholder="Cidade" value="${endereco.cidade}">
+                                                <input type="text" class="form-control" name="endereco.cidade" placeholder="Cidade" value="${endereco.cidade}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>UF</label>
-                                                <input type="text" class="form-control" placeholder="Unidade Federativa" value="${endereco.uf}">
+                                                <input type="text" class="form-control" name="endereco.uf" placeholder="Unidade Federativa" value="${endereco.uf}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>CEP</label>
-                                                <input type="number" class="form-control" placeholder="CEP" value="${endereco.cep}">
+                                                <input type="number" class="form-control" name="endereco.cep" placeholder="CEP" value="${endereco.cep}">
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <div class="row">
+
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label>Area de atuação</label>
+									<input type="text" name="entidade.areaAtuacao" value="${entidade.areaAtuacao}" class="form-control" placeholder="Aqui vai a area de atuação">
+																</div>
+													</div>
+													</div>
 
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Sobre</label>
-                                                <textarea rows="5" class="form-control" placeholder="Descricação da entidade" value="Descrição">${entidade.descricao}</textarea>
+                                                <textarea rows="5" class="form-control" placeholder="Descricação da entidade" name="entidade.descricao" value="Descrição">${entidade.descricao}</textarea>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-info btn-fill pull-right" onclick="<c:url value='/editarEntidade/${usuario.codigo}'/>">Salvar alterações</button>
-                                     <a href="<c:url value='/editarEntidade/${usuario.codigo}'/>">testa salvar</a>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Salvar alterações</button>
+                                    <!--  <a href="<c:url value='/editarEntidade/${usuario.codigo}'/>">testa salvar</a>-->
                                     <div class="clearfix"></div>
                                 </form>
                             </div>

@@ -32,6 +32,7 @@ public class EntidadeController {
 	
 	@Path("/homeEntidade")
 	public void homeEntidade(Usuario usuario) {
+		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
 		Entidade entidade = usuario.getEntidades().get(0);
 		result.include("entidade", entidade);		
 	}
@@ -76,13 +77,38 @@ public class EntidadeController {
 		}
 		result.redirectTo("/");
 	}
-	
+	/*
 	@Get("/editarEntidade/{codigo}")
 	public void editarEntidade(Long codigo) {
+		System.out.println("tou aqui como111 " + codigo);
 		Usuario usuario = usuarioDAO.buscar(Usuario.class, codigo);
-		System.out.println("tou aqui como" + codigo);
-
+		System.out.println("tou aqui como" + usuario.getCodigo());
 		result.redirectTo(this).homeEntidade(usuario);
+	}*/
+	
+	@Post("/editarEntidade")
+	public void editarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {
+		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
+		
+		//ALTERAR ENTIDADE = AREA DE ATUACAO, DESCRICAO, EMAIL
+		usuario.getEntidades().get(0).setAreaAtuacao(entidade.getAreaAtuacao());
+		usuario.getEntidades().get(0).setDescricao(entidade.getDescricao());
+		usuario.getEntidades().get(0).setEmail(entidade.getEmail());
+		
+		//ALTERAR ENDERECO = RUA, BAIRRO, NUMERO, CIDADE, UF, CEP
+		usuario.getEntidades().get(0).getEnderecos().get(0).setRua(endereco.getRua());
+		usuario.getEntidades().get(0).getEnderecos().get(0).setBairro(endereco.getBairro());
+		usuario.getEntidades().get(0).getEnderecos().get(0).setNumero(endereco.getNumero());
+		usuario.getEntidades().get(0).getEnderecos().get(0).setCidade(endereco.getCidade());
+		usuario.getEntidades().get(0).getEnderecos().get(0).setUf(endereco.getUf());
+		usuario.getEntidades().get(0).getEnderecos().get(0).setCep(endereco.getCep());
+		
+		try {
+			usuarioDAO.salvar(usuario);
+		} catch (DAOException e) {
+			System.out.println("A desgraça não alterou porque " + e.getMessage());
+		}
+		result.redirectTo(this).perfilEntidade(usuario);
 	}
 	
 }

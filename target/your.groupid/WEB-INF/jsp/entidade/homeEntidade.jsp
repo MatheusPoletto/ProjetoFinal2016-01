@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<c:url value='/passaCodigo/${entidade.usuario.codigo}'/>">
+                    <a href="<c:url value='/passaCodigo/${entidade.usuario.codigo},${"perfil"}'/>">
                         <i class="pe-7s-user"></i>
                         <p>Meu Perfil</p>
                     </a>

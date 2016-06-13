@@ -48,7 +48,7 @@
 				</div>
             <ul class="nav">
                 <li>
-                    <a href="<c:url value='/passaCodigo/${usuario},${"inicio"}'/>">
+                    <a href="<c:url value='/passaCodigo/${usuario.codigo},${"inicio"}'/>">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
@@ -118,40 +118,24 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form action="<c:url value='/editarEntidade'/>" method="post">
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label>Company (DESABILITADO)</label>
-                                                <input type="text" class="form-control" disabled placeholder="${codigo}" value="${codigo}">
-           										<p>testeeeeeee ${codigo}</p>
+                                                <label>Entidade</label>
+                                                <input type="text" class="form-control" name="entidade.nomeEntidade" disabled placeholder="Entidade" value="${entidade.nomeEntidade}">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Username</label>
-                                                <input type="text" class="form-control" placeholder="Username" value="michael23">
+                                                <label>Usuário</label>
+                                                <input type="text" class="form-control" name="usuario.login" placeholder="Usuário" value="${usuario.login}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" placeholder="Email">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input type="email" class="form-control" name="entidade.email" placeholder="Email" value="${entidade.email}">
                                             </div>
                                         </div>
                                     </div>
@@ -159,8 +143,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                                <label>Rua</label>
+                                                <input type="text" class="form-control" name="endereco.rua" placeholder="Rua" value="${endereco.rua}">
                                             </div>
                                         </div>
                                     </div>
@@ -168,20 +152,20 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control" placeholder="City" value="Mike">
+                                                <label>Cidade</label>
+                                                <input type="text" class="form-control" name="endereco.cidade" placeholder="Cidade" value="${endereco.cidade}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                                <label>UF</label>
+                                                <input type="text" class="form-control" name="endereco.uf" placeholder="Unidade Federativa" value="${endereco.uf}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Postal Code</label>
-                                                <input type="number" class="form-control" placeholder="ZIP Code">
+                                                <label>CEP</label>
+                                                <input type="number" class="form-control" name="endereco.cep" placeholder="CEP" value="${endereco.cep}">
                                             </div>
                                         </div>
                                     </div>
@@ -189,13 +173,14 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>About Me</label>
-                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                <label>Sobre</label>
+                                                <textarea rows="5" class="form-control" placeholder="Descricação da entidade" name="entidade.descricao" value="Descrição">${entidade.descricao}</textarea>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Salvar alterações</button>
+                                    <!--  <a href="<c:url value='/editarEntidade/${usuario.codigo}'/>">testa salvar</a>-->
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -211,15 +196,12 @@
                                      <a href="#">
                                     <img class="avatar border-gray" src="img/faces/face-3.jpg" alt="..."/>
 
-                                      <h4 class="title">Mike Andrew<br />
-                                         <small>michael24</small>
+                                      <h4 class="title">${entidade.nomeEntidade}<br />
+                                         <small>${usuario.login}</small>
                                       </h4>
                                     </a>
                                 </div>
-                                <p class="description text-center"> "Lamborghini Mercy <br>
-                                                    Your chick she so thirsty <br>
-                                                    I'm in that two seat Lambo"
-                                </p>
+                                <p class="description text-center">"${entidade.descricao}"</p>
                             </div>
 
                         </div>
@@ -234,7 +216,7 @@
             <div class="container-fluid">
 
                 <p class="copyright pull-right">
-                    &copy; 2016 EuVoluntÃ¡rio
+                    &copy; 2016 EuVoluntário
                 </p>
             </div>
         </footer>
