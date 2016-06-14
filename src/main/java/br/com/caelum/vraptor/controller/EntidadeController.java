@@ -54,6 +54,8 @@ public class EntidadeController {
 			break;
 		case "inicio":
 			result.redirectTo(this).homeEntidade(usuario);
+		case "cadastrarVaga":
+			result.redirectTo(this).cadastrarVaga(usuario);
 		default:
 			break;
 		}
@@ -61,6 +63,13 @@ public class EntidadeController {
 	
 	@Path("/perfilEntidade")
 	public void perfilEntidade(Usuario usuario) {
+		result.include("usuario", usuario);
+		result.include("entidade", usuario.getEntidades().get(0));
+		result.include("endereco", usuario.getEntidades().get(0).getEnderecos().get(0));
+	}
+	
+	@Path("/cadastrarVaga")
+	public void cadastrarVaga(Usuario usuario) {
 		result.include("usuario", usuario);
 		result.include("entidade", usuario.getEntidades().get(0));
 		result.include("endereco", usuario.getEntidades().get(0).getEnderecos().get(0));
