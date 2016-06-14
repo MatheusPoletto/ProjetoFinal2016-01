@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "codigo")
-@ToString(of = {"codigo", "nomeEntidade", "areaAtuacao", "email", "telefone"})
+@ToString(of = {"codigo", "nomeEntidade", "areaAtuacao", "email", "telefone", "fotoEntidade"})
 @Entity
 public @Data class Entidade implements MinhaEntidade {
 	@Id
@@ -44,6 +45,7 @@ public @Data class Entidade implements MinhaEntidade {
 	private String email;
 	private String telefone; 
 	private String descricao;
+	private String fotoEntidade;
 	
 	@ManyToOne(optional = false, targetEntity = Usuario.class)
 	private Usuario usuario;

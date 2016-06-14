@@ -1,5 +1,10 @@
 package br.com.caelum.vraptor.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
@@ -90,10 +95,10 @@ public class EntidadeController {
 	public void editarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {
 		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
 		
-		//ALTERAR ENTIDADE = AREA DE ATUACAO, DESCRICAO, EMAIL
+		//ALTERAR ENTIDADE = AREA DE ATUACAO, DESCRICAO, EMAIL, FOTO
 		usuario.getEntidades().get(0).setAreaAtuacao(entidade.getAreaAtuacao());
 		usuario.getEntidades().get(0).setDescricao(entidade.getDescricao());
-		usuario.getEntidades().get(0).setEmail(entidade.getEmail());
+		usuario.getEntidades().get(0).setEmail(entidade.getEmail());	
 		
 		//ALTERAR ENDERECO = RUA, BAIRRO, NUMERO, CIDADE, UF, CEP
 		usuario.getEntidades().get(0).getEnderecos().get(0).setRua(endereco.getRua());

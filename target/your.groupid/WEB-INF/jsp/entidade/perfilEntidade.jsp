@@ -115,10 +115,12 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Edit Profile</h4>
+                                <h4 class="title">Editar perfil</h4>
                             </div>
                             <div class="content">
+                                <!-- <form action="<c:url value='/editarEntidade/${usuario.codigo}'/>" method="get">-->
                                 <form action="<c:url value='/editarEntidade'/>" method="post">
+                                <input type="hidden" name="usuario.codigo" value="${usuario.codigo}" />
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
@@ -129,7 +131,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Usuário</label>
-                                                <input type="text" class="form-control" name="usuario.login" placeholder="Usuário" value="${usuario.login}">
+                                                <input type="text" class="form-control" name="usuario.login" placeholder="Usuário" value="${usuario.login}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -140,14 +142,25 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Rua</label>
-                                                <input type="text" class="form-control" name="endereco.rua" placeholder="Rua" value="${endereco.rua}">
-                                            </div>
-                                        </div>
-                                    </div>
+                                   <div class="row">
+																			<div class="col-md-6">
+																					<div class="form-group">
+																							<label>Rua</label>
+																							<input type="text" class="form-control" name="endereco.rua" placeholder="Rua" value="${endereco.rua}">
+																					</div>
+																			</div>
+																			<div class="form-group col-md-4">
+																					<label>Bairro</label>
+																					<input type="text" class="form-control" name="endereco.bairro" placeholder="Bairro" value="${endereco.bairro}">
+																			</div>
+																			<div class="form-group col-md-2">
+																					<label>Nº</label>
+																					<input type="text" class="form-control" name="endereco.numero" placeholder="Nº" value="${endereco.numero}">
+																			</div>
+
+
+
+																	</div>
 
                                     <div class="row">
                                         <div class="col-md-4">
@@ -169,6 +182,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <div class="row">
+
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label>Area de atuação</label>
+									<input type="text" name="entidade.areaAtuacao" value="${entidade.areaAtuacao}" class="form-control" placeholder="Aqui vai a area de atuação">
+																</div>
+													</div>
+													</div>
 
                                     <div class="row">
                                         <div class="col-md-12">
@@ -194,7 +217,8 @@
                             <div class="content">
                                 <div class="author">
                                      <a href="#">
-                                    <img class="avatar border-gray" src="img/faces/face-3.jpg" alt="..."/>
+                                     
+                                    <img class="avatar border-gray" src="${entidade.fotoEntidade}"  id="blah" alt="..."/>
 
                                       <h4 class="title">${entidade.nomeEntidade}<br />
                                          <small>${usuario.login}</small>
@@ -202,6 +226,10 @@
                                     </a>
                                 </div>
                                 <p class="description text-center">"${entidade.descricao}"</p>
+                                
+                                   <form id="form1" runat="server">
+    <input type='file' id="imgInp" />   
+	</form>
                             </div>
 
                         </div>
@@ -248,4 +276,23 @@
 
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="js/demo.js"></script>
+	
+	<script type="text/javascript">
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            $('#blah').attr('src', e.target.result);
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	$("#imgInp").change(function(){
+	    readURL(this);
+	});
+	</script>
+	
 </html>
