@@ -18,6 +18,7 @@ import br.edu.unoesc.exception.DAOException;
 import br.edu.unoesc.model.Endereco;
 import br.edu.unoesc.model.Entidade;
 import br.edu.unoesc.model.Usuario;
+import br.edu.unoesc.model.Vaga;
 
 @Controller
 public class EntidadeController {
@@ -54,6 +55,7 @@ public class EntidadeController {
 			break;
 		case "inicio":
 			result.redirectTo(this).homeEntidade(usuario);
+			break;
 		case "cadastrarVaga":
 			result.redirectTo(this).cadastrarVaga(usuario);
 		default:
@@ -123,6 +125,20 @@ public class EntidadeController {
 			System.out.println("A desgraça não alterou porque " + e.getMessage());
 		}
 		result.redirectTo(this).perfilEntidade(usuario);
+	}
+	
+	@Post("/salvarVaga")
+	public void salvarVaga(Usuario usuario, Vaga vaga){
+		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
+		
+		usuario.getEntidades().get(0).getVagas().add(vaga);
+		
+		try {
+			usuarioDAO.salvar(usuario);
+		} catch (DAOException e) {
+			System.out.println("A desgraça nao adicionou a vaga porque" + e.getMessage());
+		}
+		result.redirectTo(this).cadastrarVaga(usuario);
 	}
 	
 }
