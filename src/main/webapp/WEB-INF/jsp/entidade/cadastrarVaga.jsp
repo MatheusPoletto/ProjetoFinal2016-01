@@ -53,58 +53,11 @@
     </script>
 
 </head>
-
-
-
 <body>
 <div class="wrapper">
-    <div class="sidebar" data-color="gray" data-image="img/sidebar-3.jpg">
-
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-
-    	<div class="sidebar-wrapper">
-        <div class="logo">
-            <a href="" class="simple-text">
-                Eu Voluntário
-            </a>
-        </div>
-
-        <ul class="nav">
-            <li>
-                    <a href="<c:url value='/passaCodigo/${usuario.codigo},inicio'/>">
-                    <i class="pe-7s-graph"></i>
-                    <p>Principal</p>
-                </a>
-            </li>
-            <li>
-                    <a href="<c:url value='/passaCodigo/${usuario.codigo},perfil'/>">
-                    <i class="pe-7s-user"></i>
-                    <p>Meu Perfil</p>
-                </a>
-            </li>
-            <li>
-                <a href="table.html">
-                    <i class="pe-7s-note2"></i>
-                    <p>Minhas Vagas</p>
-                </a>
-            </li>
-
-
-            <li class="active">
-					<a href="<c:url value='/passaCodigo/${entidade.usuario.codigo},cadastrarVaga'/>">
-                    <i class="pe-7s-search"></i>
-                    <p>Cadastrar Nova Vaga</p>
-                </a>
-            </li>
-        </ul>
-    	</div>
-    </div>
-
+ 	<c:import url="menu.jsp">
+    	<c:param name="entidade" value="${entidade}"/>
+    </c:import>
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
