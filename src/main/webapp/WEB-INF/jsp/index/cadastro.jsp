@@ -46,7 +46,7 @@ ${variable}
     	</div>
      	<div id="navbar" class="navbar-collapse collapse">
        		<ul class="nav navbar-nav">
-        		<li><a href="index.php">Home</a></li>
+        		<li><a href="<c:url value='/'/>">Home</a></li>
         		<li><a href="#">Contato</a></li> 
        		</ul>
 			<ul class="nav navbar-nav navbar-right">

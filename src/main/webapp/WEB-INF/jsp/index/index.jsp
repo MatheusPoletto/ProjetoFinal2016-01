@@ -53,6 +53,10 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a data-toggle="modal" href="javascript:void(0)"
 							onclick="openLoginModal();">Log in</a></li>
+							
+						<li><a></a></li>
+						<li><a data-toggle="modal" href="<c:url value='/cadastro'/>">Cadastrar</a></li>
+							
 						<li><a></a></li>
 
 					</ul>

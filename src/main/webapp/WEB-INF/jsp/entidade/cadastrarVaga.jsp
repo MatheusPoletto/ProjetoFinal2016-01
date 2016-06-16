@@ -76,13 +76,13 @@
 
         <ul class="nav">
             <li>
-                    <a href="<c:url value='/passaCodigo/${usuario.codigo},${"inicio"}'/>">
+                    <a href="<c:url value='/passaCodigo/${usuario.codigo},inicio'/>">
                     <i class="pe-7s-graph"></i>
                     <p>Principal</p>
                 </a>
             </li>
             <li>
-                    <a href="<c:url value='/passaCodigo/${usuario.codigo},${"perfil"}'/>">
+                    <a href="<c:url value='/passaCodigo/${usuario.codigo},perfil'/>">
                     <i class="pe-7s-user"></i>
                     <p>Meu Perfil</p>
                 </a>
@@ -96,7 +96,7 @@
 
 
             <li class="active">
-					<a href="<c:url value='/passaCodigo/${entidade.usuario.codigo},${"cadastrarVaga"}'/>">
+					<a href="<c:url value='/passaCodigo/${entidade.usuario.codigo},cadastrarVaga'/>">
                     <i class="pe-7s-search"></i>
                     <p>Cadastrar Nova Vaga</p>
                 </a>
