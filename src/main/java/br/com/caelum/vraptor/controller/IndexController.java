@@ -29,6 +29,8 @@ public class IndexController {
 		result.include("variable", "aa");
 	}
 	
+	
+	
 	@Get("/cadastrar")
 	public void cadastrar() {
 		result.include("variable", "");
