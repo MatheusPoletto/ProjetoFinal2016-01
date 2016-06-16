@@ -97,7 +97,7 @@
 				</div>
 			</div>
 			<div class="item">
-				<img class="second-slide" src="img/banner2.jpg" alt="Second slide">
+				<img class="second-slide" src="IMAGEM 2" alt="Second slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>Eu Voluntário</h1>
@@ -189,7 +189,7 @@
 			</div>
 			<div class="col-md-5">
 				<img class="featurette-image img-responsive center-block"
-					src="img/imagens/imagem4.jpg" alt="Generic placeholder image">
+					src="img/imagem4.jpg" alt="Generic placeholder image">
 			</div>
 		</div>
 
@@ -206,7 +206,7 @@
 			</div>
 			<div class="col-md-5 col-md-pull-7">
 				<img class="featurette-image img-responsive center-block"
-					src="img/imagens/imagem6.jpg" alt="Generic placeholder image">
+					src="img/imagem6.jpg" alt="Generic placeholder image">
 			</div>
 		</div>
 
@@ -223,7 +223,7 @@
 			</div>
 			<div class="col-md-5">
 				<img class="featurette-image img-responsive center-block"
-					src="img/imagens/imagem 10.jpg" alt="Generic placeholder image">
+					src="img/imagem 10.jpg" alt="Generic placeholder image">
 			</div>
 		</div>
 
