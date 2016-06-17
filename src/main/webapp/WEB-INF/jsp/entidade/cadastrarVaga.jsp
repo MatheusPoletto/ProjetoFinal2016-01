@@ -1,8 +1,5 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <title>Cadastrar vaga</title>
-</head>
-
-<c:import url="cabecalho.jsp"/>
 
 	<script type="text/javascript">
      	function trocaUrgencia() {
@@ -26,26 +23,27 @@
 </head>
 
 <body>
+<c:import url="cabecalho.jsp"/>
 <div class="wrapper">
- 	<c:import url="menu.jsp"/>
-    <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-         	               <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Cadastrar nova vaga</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left"></ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                        	<a href="<c:url value='/cadastro'/>">Deslogar</a>
-                        </li>
+	<c:import url="menu.jsp"/>
+<div class="main-panel">
+	<nav class="navbar navbar-default navbar-fixed">
+ 	   <div class="container-fluid">
+       		<div class="navbar-header">
+            	<button type="button" class="navbar-toggle" data-toggle="collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+         	    <span class="icon-bar"></span>
+            	</button>
+            	<a class="navbar-brand" href="#">Cadastrar nova vaga</a>
+            </div>
+       <div class="collapse navbar-collapse">
+       		<ul class="nav navbar-nav navbar-left"></ul>
+            	<ul class="nav navbar-nav navbar-right">
+                 	<li>
+                    	<a href="<c:url value='/cadastro'/>">Deslogar</a>
+                   	</li>
                     </ul>
                 </div>
             </div>
@@ -55,6 +53,7 @@
             <div class="container-fluid">
             	<div class="row">
                 	<div class="col-sm-12 col-sm-offset-1 col-md-10 main">
+                    	
                     	<h1 class="page-header">Cadastro de Nova Vaga</h1>
                     	<h2>Complete os campos abaixo:</h2>
                     	<form class="form-horizontal" action="<c:url value='/salvarVaga'/>" method="post" >
@@ -101,6 +100,7 @@
                   <label  class="col-sm-2">Vaga presencial</label>
                  <div class="col-sm-10">
                   				<select class="col-sm-12" name="presencial" onchange="trocaPresencial()" id="presencial">
+                  					<option value="option">Por favor selecione a modalidade</option>
                    					<option value="option">Sim</option>
                     				<option value="option">Não</option>
                   				</select>
@@ -150,7 +150,7 @@
 												Data de Validade</label>
                       <div class="col-sm-10">
                         <br>
-                        <input type="date" name="vaga.dataCadastro" value="${vaga.dataCadastro}" class="form-control">
+                        <input type="text" name="vaga.dataValidade" value="${vaga.dataValidade}" class="form-control">
 
                       </div>
                       </div>

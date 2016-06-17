@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="table.html">
+                    <a href="<c:url value='/passaCodigo/${entidade.usuario.codigo},lista'/>">
                         <i class="pe-7s-note2"></i>
                         <p>Minhas vagas</p>
                     </a>

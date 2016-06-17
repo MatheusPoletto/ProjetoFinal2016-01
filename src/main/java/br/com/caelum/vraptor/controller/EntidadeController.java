@@ -3,6 +3,7 @@ package br.com.caelum.vraptor.controller;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
@@ -61,9 +62,19 @@ public class EntidadeController {
 			break;
 		case "cadastrarVaga":
 			result.redirectTo(this).cadastrarVaga(usuario);
+			break;
+		case "lista":
+			result.redirectTo(this).atuacaoEntidade(usuario);			
 		default:
 			break;
 		}
+	}
+	
+	@Path("/atuacaoEntidade")
+	public void atuacaoEntidade(Usuario usuario) {
+		result.include("usuario", usuario);
+		result.include("entidade", usuario.getEntidades().get(0));
+		result.include("vagaview", usuario.getEntidades().get(0).getVagas());
 	}
 	
 	@Path("/perfilEntidade")
@@ -135,27 +146,29 @@ public class EntidadeController {
 		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
 		
 		vaga.setEntidade(usuario.getEntidades().get(0));
+		vaga.setDataCadastro(new Date(LocalDate.now().getYear(), LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth()));
 		
-		/* TESTE DOS FIELD 
-		System.out.println(vaga.getNomeVaga());
-		System.out.println(vaga.getQuantidadePessoa());
-		System.out.println(vaga.getDescricao());
-		System.out.println(vaga.getQuantidadeVaga());
-		System.out.println(vaga.getImportancia());
-		System.out.println(vaga.getPresencial());
-		System.out.println(vaga.getEstado());
-		System.out.println(vaga.getCidade());
-		System.out.println(vaga.getDataCadastro());
-		System.out.println(vaga.getDataValidade());
-		System.out.println(vaga.getEntidade().getNomeEntidade());
+		// TESTE DOS FIELD 
+		System.out.println(">> CADASTRO DE VAGA - ENTIDADE CONTROLLER ");
+		System.out.println("Nome da vaga (vaga.nomeVaga): "+ vaga.getNomeVaga());
+		System.out.println("Quantidade de pessoas (vaga.quantidadePessoa): "+ vaga.getQuantidadePessoa());
+		System.out.println("Descrição da vaga (vaga.descricao): "+vaga.getDescricao());
+		System.out.println("Quantidade de vaga (vaga.quantidadeVaga): "+ vaga.getQuantidadeVaga());
+		System.out.println("Importância da vaga (vaga.importancia): "+ vaga.getImportancia());
+		System.out.println("Vaga presencial (vaga.presencial): "+ vaga.getPresencial());
+		System.out.println("UF da vaga (vaga.estado): "+ vaga.getEstado());
+		System.out.println("Cidade da vaga (vaga.cidade): "+ vaga.getCidade());
+		System.out.println("Data de cadastro da vaga (LocalDate.now): "+ vaga.getDataCadastro());
+		System.out.println("Data de validade de vaga (vaga.DataValidade): "+ vaga.getDataValidade());
+		System.out.println("Nome da entidade: (vaga.SetEntidade.usuario): "+ vaga.getEntidade().getNomeEntidade());
 		//entidade.adicionarVaga();
 		
-		Atuacao atuacao = new Atuacao();
+		/*Atuacao atuacao = new Atuacao();
 		atuacao.setStatus("Em andamento");
 		atuacao.setVaga(vaga);
 		atuacao.setVoluntario(null);
 		atuacao.setData(new Date(2016, 06, 11));
-		
+		*/
 		/* FIM DOS TESTES */
 		Voluntario voluntario = new Voluntario();
 		voluntario.setCodigo(1l);
