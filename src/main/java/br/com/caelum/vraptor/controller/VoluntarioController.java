@@ -13,6 +13,7 @@ import br.com.caelum.vraptor.validator.Validator;
 import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.dao.VoluntarioDAO;
 import br.edu.unoesc.exception.DAOException;
+import br.edu.unoesc.model.Entidade;
 import br.edu.unoesc.model.Usuario;
 import br.edu.unoesc.model.Voluntario;
 
@@ -46,6 +47,34 @@ public class VoluntarioController {
 		}
 		result.redirectTo("/");
 	}
+	
+	@Path("/homeVoluntario")
+	public void homeVoluntario(Usuario usuario) {
+		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
+		Voluntario voluntario = usuario.getVoluntarios().get(0);
+		result.include("voluntario", voluntario);		
+	}
+	
+	@Get("/passaCodigo/{codigo},{tipo}")
+	public void passaCodigo(Long codigo, String tipo){
+		Usuario usuario = usuarioDAO.buscar(Usuario.class, codigo);
+		result.include("usuario", usuario);
+		System.out.println(tipo);
+		
+		switch (tipo) {
+		case "perfil":
+			//result.redirectTo(this).perfilEntidade(usuario);
+			break;
+		case "inicio":
+			result.redirectTo(this).homeVoluntario(usuario);
+			break;
+		case "cadastrarVaga":
+			//result.redirectTo(this).cadastrarVaga(usuario);
+		default:
+			break;
+		}
+	}
+	
 /*
 	@Get("/home")
 	public void home() {

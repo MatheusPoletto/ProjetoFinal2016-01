@@ -49,8 +49,8 @@ public class AcessoController {
 							result.redirectTo(EntidadeController.class).homeEntidade(user);
 						}else{
 							//SE TIVER ELE EH VOLUNTARIO
-							//result.redirectTo("/homeVoluntario");
-							System.out.println("Oi eu sou o goku!");
+							result.include("usuario", user);
+							result.redirectTo(VoluntarioController.class).homeVoluntario(user);
 						}
 						//result.redirectTo("/");
 					}

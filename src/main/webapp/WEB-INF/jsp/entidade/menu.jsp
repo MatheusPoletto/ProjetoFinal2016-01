@@ -10,7 +10,7 @@
                 </a>
             </div>
             <ul class="nav">
-                <li>
+ 				<li>                
                     <a href="<c:url value='/passaCodigo/${entidade.usuario.codigo},inicio'/>">
                         <i class="pe-7s-graph"></i>
                         <p>Principal</p>
