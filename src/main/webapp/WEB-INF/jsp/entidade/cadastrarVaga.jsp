@@ -59,6 +59,7 @@
                     	<form class="form-horizontal" action="<c:url value='/salvarVaga'/>" method="post" >
                     	    <input type="hidden" name="usuario.codigo" value="${usuario.codigo}" />
             				<div class="form-group">
+            				
               					<label class="col-sm-2">Nome
 								<br>
 								 da Vaga</label>

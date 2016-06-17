@@ -19,9 +19,9 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="<c:url value='/passaCodigoVoluntario/${voluntario.usuario.codigo},inicio'/>">
                         <i class="pe-7s-graph"></i>
-                        <p>dashboard</p>
+                        <p>Principal</p>
                     </a>
                 </li>
                 <li>

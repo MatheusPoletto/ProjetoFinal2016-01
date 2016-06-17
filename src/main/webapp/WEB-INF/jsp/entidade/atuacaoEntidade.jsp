@@ -32,9 +32,7 @@
 
 
                         <li>
-                            <a href="#">
-                                Deslogar
-                            </a>
+                            <a href="<c:url value='/cadastro'/>">Deslogar</a>
                         </li>
                     </ul>
                 </div>
