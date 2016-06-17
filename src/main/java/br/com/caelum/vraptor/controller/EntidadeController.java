@@ -3,6 +3,7 @@ package br.com.caelum.vraptor.controller;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
@@ -15,10 +16,12 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.exception.DAOException;
+import br.edu.unoesc.model.Atuacao;
 import br.edu.unoesc.model.Endereco;
 import br.edu.unoesc.model.Entidade;
 import br.edu.unoesc.model.Usuario;
 import br.edu.unoesc.model.Vaga;
+import br.edu.unoesc.model.Voluntario;
 
 @Controller
 public class EntidadeController {
@@ -131,7 +134,41 @@ public class EntidadeController {
 	public void salvarVaga(Usuario usuario, Vaga vaga){
 		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
 		
-		usuario.getEntidades().get(0).getVagas().add(vaga);
+		vaga.setEntidade(usuario.getEntidades().get(0));
+		
+		/* TESTE DOS FIELD 
+		System.out.println(vaga.getNomeVaga());
+		System.out.println(vaga.getQuantidadePessoa());
+		System.out.println(vaga.getDescricao());
+		System.out.println(vaga.getQuantidadeVaga());
+		System.out.println(vaga.getImportancia());
+		System.out.println(vaga.getPresencial());
+		System.out.println(vaga.getEstado());
+		System.out.println(vaga.getCidade());
+		System.out.println(vaga.getDataCadastro());
+		System.out.println(vaga.getDataValidade());
+		System.out.println(vaga.getEntidade().getNomeEntidade());
+		//entidade.adicionarVaga();
+		
+		Atuacao atuacao = new Atuacao();
+		atuacao.setStatus("Em andamento");
+		atuacao.setVaga(vaga);
+		atuacao.setVoluntario(null);
+		atuacao.setData(new Date(2016, 06, 11));
+		
+		/* FIM DOS TESTES */
+		Voluntario voluntario = new Voluntario();
+		voluntario.setCodigo(1l);
+		
+		Atuacao atuacao = new Atuacao();
+		atuacao.setStatus("Aberta");
+		atuacao.setVaga(vaga);
+		atuacao.setVoluntario(voluntario);
+		atuacao.setData(vaga.getDataCadastro());
+		
+		vaga.adicionarAtuacao(atuacao);
+		
+		usuario.getEntidades().get(0).adicionarVaga(vaga);
 		
 		try {
 			usuarioDAO.salvar(usuario);

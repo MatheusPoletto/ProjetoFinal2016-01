@@ -55,8 +55,8 @@ public class VoluntarioController {
 		result.include("voluntario", voluntario);		
 	}
 	
-	@Get("/passaCodigo/{codigo},{tipo}")
-	public void passaCodigo(Long codigo, String tipo){
+	@Get("/passaCodigoVoluntario/{codigo},{tipo}")
+	public void passaCodigoVoluntario(Long codigo, String tipo){
 		Usuario usuario = usuarioDAO.buscar(Usuario.class, codigo);
 		result.include("usuario", usuario);
 		System.out.println(tipo);

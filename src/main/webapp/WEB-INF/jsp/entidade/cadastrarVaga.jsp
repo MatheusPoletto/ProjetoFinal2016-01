@@ -17,16 +17,10 @@
 			var f = document.getElementById("estado");
 			document.getElementById("vaga.estado").value = f.options[f.selectedIndex].text;
      	}
-     	function trocaSim() {
-     		var radiobtn = document.getElementById("vaga.nao");
-     		radiobtn.checked = false;
-     		document.getElementById("vaga.presencial").value = "Sim";
-		}
-     	function trocaNao() {
-     		var radiobtn = document.getElementById("vaga.sim");
-     		radiobtn.checked = false;
-     		document.getElementById("vaga.presencial").value = "Não";
-		}
+     	function trocaPresencial(){
+     		var e = document.getElementById("presencial");
+			document.getElementById("vaga.presencial").value = e.options[e.selectedIndex].text;
+     	}
      	
     </script>
 </head>
@@ -42,7 +36,7 @@
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+         	               <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">Cadastrar nova vaga</a>
                 </div>
@@ -82,6 +76,15 @@
                   				<input type="number" class="form-control" name="vaga.quantidadePessoa" value="${vaga.quantidadePessoa}" placeholder="Quantidade de vagas disponiveis">
                 			</div>
                 			</div>
+                			<div class="form-group">
+                				<label  class="col-sm-2">
+								Quantidade
+								<br>
+								 de vaga</label>
+                			<div class="col-sm-10">
+                  				<input type="number" class="form-control" name="vaga.quantidadeVaga" value="${vaga.quantidadeVaga}" placeholder="Quantidade de vagas que serão abertas">
+                			</div>
+                			</div>
 							<div class="form-group">
                   				<label class="col-sm-2">Urgência</label>
                   				<div class="col-sm-10">
@@ -96,11 +99,12 @@
 
                 <div class="form-group">
                   <label  class="col-sm-2">Vaga presencial</label>
-                  <div class="col-sm-10">
-                    <br>
-                    <input type="radio"  id="vaga.sim" name="vagapresencialsim" onclick="trocaSim()">     Sim
-                    <input type="radio" id="vaga.nao" name="vagapresencialnao" onclic="trocaNao()">     Não
-                    <input type="text" id="vaga.presencial" name="vaga.presencial" value="${vaga.presencial}" />
+                 <div class="col-sm-10">
+                  				<select class="col-sm-12" name="presencial" onchange="trocaPresencial()" id="presencial">
+                   					<option value="option">Sim</option>
+                    				<option value="option">Não</option>
+                  				</select>
+                  				<input type="hidden" id="vaga.presencial" name="vaga.presencial" value="${vaga.presencial}" />
                   </div>
                   </div>
 
