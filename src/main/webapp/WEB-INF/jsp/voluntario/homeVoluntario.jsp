@@ -73,7 +73,8 @@
 																<td>${atuacao.vaga.cidade}</td>
 																<td>${atuacao.vaga.estado}</td>
 																<td>${atuacao.vaga.descricao}</td>
-																<td>Carregar</td>
+													
+																<td><a href="<c:url value='/passaInteresse/${usuario.codigo},${atuacao.codigo}'/>">INCREVER-SE</a></td>
 															</tr>
 														</c:forEach>
 

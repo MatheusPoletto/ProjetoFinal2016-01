@@ -57,15 +57,18 @@ public class VoluntarioController {
 		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
 		Voluntario voluntario = usuario.getVoluntarios().get(0);
 		
+		
+		
 		//NECESSARIO PARA MOSTRAR POSSIVEIS ATUACOES EM ABERTO
 		List<Atuacao> atuacoesDisponiveis = new ArrayList<>();
-
+		int tamanhoMaximo = 10; //ATUACOES QUE SERAO EXIBIDAS
+		
 		for(Usuario procuraEntidade : usuarioDAO.listar(Usuario.class)){//PROCURA TODAS AS ENTIDADES
-			if((!procuraEntidade.getEntidades().isEmpty())){
+			if((!procuraEntidade.getEntidades().isEmpty()) && (atuacoesDisponiveis.size() < tamanhoMaximo)){
 				Entidade entidadeAnalisa = procuraEntidade.getEntidades().get(0);
 				for(Vaga vaga : entidadeAnalisa.getVagas()){//PROCURA TODAS AS VAGAS DA ENTIDADE EM ABERTO
 					if(vaga.getAtuacoes().get(0).getStatus().equals("Aberta")){
-						if(atuacoesDisponiveis.size() < 10){//ADICIONA AS ATUACOES DISPONIVEIS . TAMANHO MAX 10
+						if(atuacoesDisponiveis.size() < tamanhoMaximo){
 							atuacoesDisponiveis.add(vaga.getAtuacoes().get(0));
 						}
 					}	
@@ -96,6 +99,14 @@ public class VoluntarioController {
 		default:
 			break;
 		}
+	}
+	
+	@Get("/voluntarioInterrese/{usuario},{atuacao}")
+	public void voluntarioInterrese(Long codigo, Long atuacao) {
+		Usuario usuario = usuarioDAO.buscar(Usuario.class, codigo);
+		
+		result.include("usuario", usuario);
+		result.include("atuacao", atuacao);
 	}
 	
 /*
