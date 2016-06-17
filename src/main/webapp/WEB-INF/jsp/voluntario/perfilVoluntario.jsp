@@ -1,3 +1,5 @@
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,37 +29,7 @@
 <body>
 
 	<div class="wrapper">
-		<div class="sidebar" data-color="purple"
-			data-image="img/sidebar-5.jpg">
-
-			<!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
-
-			<div class="sidebar-wrapper">
-
-				<div class="logo">
-					<a href="" class="simple-text"> Eu Voluntário </a>
-				</div>
-				<ul class="nav">
-					<li><a href="dashboard.html"> <i class="pe-7s-graph"></i>
-							<p>Dashboard</p>
-					</a></li>
-					<li class="active"><a href="user.html"> <i
-							class="pe-7s-user"></i>
-							<p>Meu Perfil</p>
-					</a></li>
-					<li><a href="table.html"> <i class="pe-7s-note2"></i>
-							<p>Minhas Atuações</p>
-					</a></li>
-
-
-					<li><a href="procura_vaga.html"> <i class="pe-7s-search"></i>
-							<p>Procurar Vaga</p>
-					</a></li>
-
-				</ul>
-			</div>
-		</div>
+		<c:import url="menu.jsp"/>
 
 		<div class="main-panel">
 			<nav class="navbar navbar-default navbar-fixed">
