@@ -4,6 +4,7 @@
 
 <c:import url="cabecalho.jsp"/>
 <body>
+ 
 	<div class="wrapper">
     	 <c:import url="menu.jsp"/>
     <div class="main-panel">
@@ -38,13 +39,13 @@
                             </div>
                             <div class="content">
                                 <form action="<c:url value='/editarEntidade'/>" method="post">
-                                	<input type="hidden" name="usuario.codigo" value="${usuario.codigo}" />
-                                  	<input type="hidden" name="entidade.fotoEntidade" value="" id="novoCaminho"/>
+                            
+                                  	<input type="hidden" name="usuario.entidade.fotoEntidade" value="" id="novoCaminho"/>
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Entidade</label>
-                                                <input type="text" class="form-control" name="entidade.nomeEntidade" disabled placeholder="Entidade" value="${entidade.nomeEntidade}">
+                                                <input type="text" class="form-control" name="usuario.entidade.nomeEntidade" disabled placeholder="Entidade" value="${usuario.entidade.nomeEntidade}">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -56,7 +57,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email</label>
-                                                <input type="email" class="form-control" name="entidade.email" placeholder="Email" value="${entidade.email}">
+                                                <input type="email" class="form-control" name="usuario.entidade.email" placeholder="Email" value="${usuario.entidade.email}">
                                             </div>
                                         </div>
                                     </div>
@@ -64,35 +65,35 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Rua</label>
-												<input type="text" class="form-control" name="endereco.rua" placeholder="Rua" value="${endereco.rua}">
+												<input type="text" class="form-control" name="usuario.entidade.endereco.rua" placeholder="Rua" value="${usuario.entidade.endereco.rua}">
 											</div>
 										</div>
 										<div class="form-group col-md-4">
 											<label>Bairro</label>
-											<input type="text" class="form-control" name="endereco.bairro" placeholder="Bairro" value="${endereco.bairro}">
+											<input type="text" class="form-control" name="usuario.entidade.endereco.bairro" placeholder="Bairro" value="${usuario.entidade.endereco.bairro}">
 										</div>
 										<div class="form-group col-md-2">
 											<label>Nº</label>
-											<input type="text" class="form-control" name="endereco.numero" placeholder="Nº" value="${endereco.numero}">
+											<input type="text" class="form-control" name="usuario.entidade.endereco.numero" placeholder="Nº" value="${usuario.entidade.endereco.numero}">
 										</div>
 									</div>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Cidade</label>
-                                                <input type="text" class="form-control" name="endereco.cidade" placeholder="Cidade" value="${endereco.cidade}">
+                                                <input type="text" class="form-control" name="usuario.entidade.endereco.cidade" placeholder="Cidade" value="${usuario.entidade.endereco.cidade}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>UF</label>
-                                                <input type="text" class="form-control" name="endereco.uf" placeholder="Unidade Federativa" value="${endereco.uf}">
+                                                <input type="text" class="form-control" name="usuario.entidade.endereco.uf" placeholder="Unidade Federativa" value="${usuario.entidade.endereco.uf}">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>CEP</label>
-                                                <input type="number" class="form-control" name="endereco.cep" placeholder="CEP" value="${endereco.cep}">
+                                                <input type="number" class="form-control" name="usuario.entidade.endereco.cep" placeholder="CEP" value="${usuario.entidade.endereco.cep}">
                                             </div>
                                         </div>
                                     </div>
@@ -100,7 +101,7 @@
 										<div class="col-sm-12">
 											<div class="form-group">
 												<label>Area de atuação</label>
-												<input type="text" name="entidade.areaAtuacao" value="${entidade.areaAtuacao}" class="form-control" placeholder="Aqui vai a area de atuação">
+												<input type="text" name="entidade.areaAtuacao" value="${usuario.entidade.areaAtuacao}" class="form-control" placeholder="Aqui vai a area de atuação">
 											</div>
 										</div>
 									</div>
@@ -108,7 +109,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Sobre</label>
-                                                <textarea rows="5" class="form-control" placeholder="Descricação da entidade" name="entidade.descricao" value="Descrição">${entidade.descricao}</textarea>
+                                                <textarea rows="5" class="form-control" placeholder="Descricação da entidade" name="usuario.entidade.descricao" value="Descrição">${usuario.entidade.descricao}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -126,13 +127,13 @@
                             <div class="content">
                                 <div class="author">
                                 	<a href="#">
-                                    	<img class="avatar border-gray" src="img/faces/face-3.jpg" alt="..."/>
-                                    	<h4 class="title">${entidade.nomeEntidade}<br />
+                                    	<img class="avatar border-gray" src="img/def-user.png" alt="..."/>
+                                    	<h4 class="title">${usuario.entidade.nomeEntidade}<br />
                                     	<small>${usuario.login}</small>
                                     	</h4>
                                    	</a>
                                 </div>
-                                <p class="description text-center">"${entidade.descricao}"</p>
+                                <p class="description text-center">"${usuario.entidade.descricao}"</p>
                             </div>
                         </div>
                     </div>

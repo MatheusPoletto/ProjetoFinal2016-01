@@ -35,19 +35,18 @@ import lombok.ToString;
 @ToString(of = { "codigo", "nome", "celular", "email" })
 @EqualsAndHashCode(of = { "codigo" })
 @Entity
-/*
- * @NamedQueries({ @NamedQuery(name = Voluntario.FILTRA_POR_NOME, query =
- * "from Voluntario a where upper(a.nome) like ? "),
- * 
+ //@NamedQueries({ @NamedQuery(name = Voluntario.FILTRA_POR_NOME, query = "from Voluntario a where upper(a.nome) like ? ")})
+/* 
  * @NamedQuery(name = Voluntario.FILTRA_POR_DATA, query =
  * "from Voluntario a where a.nascimento between ? and ? "),
  * 
  * @NamedQuery(name = Voluntario.TODOS, query = "from Voluntario a ")})
  */
 public @Data class Voluntario implements MinhaEntidade {
-	/*
-	 * public static final String FILTRA_POR_NOME = "FILTRA_POR_NOME"; public
-	 * static final String FILTRA_POR_DATA = "FILTRA_POR_DATA"; public static
+	
+	// public static final String FILTRA_POR_NOME = "FILTRA_POR_NOME";
+	 //public
+	/* static final String FILTRA_POR_DATA = "FILTRA_POR_DATA"; public static
 	 * final String TODOS = "TODOS";
 	 */
 

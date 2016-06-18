@@ -9,8 +9,10 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
+import br.edu.unoesc.dao.EntidadeDAO;
 import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.exception.DAOException;
+import br.edu.unoesc.model.Entidade;
 import br.edu.unoesc.model.Usuario;
 import br.edu.unoesc.model.Voluntario;
 
@@ -22,43 +24,33 @@ public class AcessoController {
 
 	@Inject
 	private Result result;
-	
+
 	@Inject
 	private Validator validator;
-	
+
 	@Path("/index")
 	public void index() {
 		result.include("variable", "");
 	}
-	
-	@Post("/autenticar")
-	public void autenticar(Usuario usuario) {
+
+	@Post("/autenticarUsuario")
+	public void autenticarUsuario(Usuario usuario) {
 		if (usuario != null) {
-			List<Usuario> usuarios = usuarioDAO.buscar(Usuario.class, usuario.getLogin());
-			if(usuarios.isEmpty()){
-				result.redirectTo("/cadastrar");
-			}else{
-				//SE ENCONTROU ALGUEM COM O LOGIN PROCURA VER SE A SENHA BATE
-				Boolean encontrou = false;
-				for(Usuario user : usuarios){
-					if((user.getLogin().equals(usuario.getLogin())) && (user.getSenha().equals(usuario.getSenha())) ){
-						encontrou = true;
-						if(user.getVoluntarios().isEmpty()){
-							//SE N TIVER NENHUM VOLUNTARIO EH UMA ENTIDADE
-							result.include("usuario", user);
-							result.redirectTo(EntidadeController.class).homeEntidade(user);
-						}else{
-							//SE TIVER ELE EH VOLUNTARIO
-							result.include("usuario", user);
-							result.redirectTo(VoluntarioController.class).homeVoluntario(user);
-						}
-						//result.redirectTo("/");
+			Usuario usuarioBusca = usuarioDAO.buscarUsuario(usuario.getLogin());
+			if (usuarioBusca == null) {
+				 result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Usuário não encontrado!</div>");
+				result.redirectTo("/cadastro");
+			} else {
+				if (usuarioBusca.getSenha().equals(usuario.getSenha())) {
+					if (!(usuarioBusca.getEntidade() == null)) {// SE FOR ENTIDADE
+						result.redirectTo(EntidadeController.class).index(usuarioBusca);
+					} else {// SE TIVER ELE EH VOLUNTARIO
+						result.redirectTo(VoluntarioController.class).homeVoluntario(usuarioBusca);
 					}
+				} else {
+			        result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Senha incorreta!</div>");
+					result.redirectTo("/cadastro");
 				}
-				if(!encontrou){
-					result.redirectTo("/cadastrar");
-				}
-				
 			}
 		}
 	}

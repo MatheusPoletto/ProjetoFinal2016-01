@@ -35,7 +35,7 @@
 								<div class="content">
 									<div class="error"></div>
 									<div class="form loginBox">
-										<form action="<c:url value="/autenticar"/>" method="post" accept-charset="UTF-8">
+										<form action="<c:url value="/autenticarUsuario"/>" method="post" accept-charset="UTF-8">
 											<input id="email" class="form-control" type="text" placeholder="Usuário" name="usuario.login" value="${usuario.login}" required>
 												<input id="password" class="form-control" type="password" placeholder="Senha" name="usuario.senha" value="${usuario.senha}" required>
 												<input class="btn btn-default btn-login" type="submit" value="Entrar" onclick="">										

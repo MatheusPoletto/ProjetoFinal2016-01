@@ -22,10 +22,10 @@ public static void main(String[] args) throws DAOException {
 	voluntario.setNome("Bruna");
 	voluntario.setCelular("99443322");
 	voluntario.setEmail("bru@gmail.com");
-	voluntario.setUsuario(usuarioPessoa);
+	//voluntario.setUsuario(usuarioPessoa);
 	voluntario.setNascimento(new Date(1996, 06, 8));
 	
-	usuarioPessoa.adcionarVoluntario(voluntario);
+	//usuarioPessoa.adcionarVoluntario(voluntario);
 	
 	Usuario usuarioEntidade = new Usuario();
 	usuarioEntidade.setLogin("lowmo");
@@ -36,9 +36,9 @@ public static void main(String[] args) throws DAOException {
 	entidade.setAreaAtuacao("Personalização");
 	entidade.setEmail("fabine@lowgrotexturas.com.br");
 	entidade.setTelefone("34350091");
-	entidade.setUsuario(usuarioEntidade);
+	//entidade.setUsuario(usuarioEntidade);
 	
-	usuarioEntidade.adcionarEntidade(entidade);
+	//usuarioEntidade.adcionarEntidade(entidade);
 	
 	Vaga vaga = new Vaga();
 	vaga.setNomeVaga("Festa de aniversário");

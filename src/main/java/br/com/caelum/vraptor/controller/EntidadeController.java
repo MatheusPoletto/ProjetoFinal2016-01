@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
@@ -24,6 +25,7 @@ import br.edu.unoesc.model.Usuario;
 import br.edu.unoesc.model.Vaga;
 import br.edu.unoesc.model.Voluntario;
 
+@ApplicationScoped
 @Controller
 public class EntidadeController {
 	@Inject
@@ -34,17 +36,32 @@ public class EntidadeController {
 	
 	@Inject
 	private Validator validator;
+	
+	private Usuario usuarioSessao = new Usuario();
 
-	@Path("/index")
-	public void index() {
-		result.include("variable", "");
+	//@Path("/index")
+	public void index(Usuario usuario) {
+		this.usuarioSessao = usuario;
+		result.redirectTo(this).homeEntidade();
 	}
 	
 	@Path("/homeEntidade")
-	public void homeEntidade(Usuario usuario) {
-		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
-		Entidade entidade = usuario.getEntidades().get(0);
-		result.include("entidade", entidade);		
+	public void homeEntidade() {
+		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
+		result.include("usuario", usuarioSessao);
+	}
+	
+	@Path("/perfilEntidade")
+	public void perfilEntidade() {
+		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());//CHAMADO PARA ATUALIZAR
+		result.include("usuario", usuarioSessao);	
+		
+	}
+	
+	@Path("/atuacaoEntidade")
+	public void atuacaoEntidade() {
+		result.include("usuario", usuarioSessao);
+		result.include("vagaview", usuarioSessao.getEntidade().getVagas());
 	}
 	
 	@Get("/passaCodigo/{codigo},{tipo}")
@@ -55,40 +72,26 @@ public class EntidadeController {
 		
 		switch (tipo) {
 		case "perfil":
-			result.redirectTo(this).perfilEntidade(usuario);
+			//result.redirectTo(this).perfilEntidade(usuario);
 			break;
 		case "inicio":
-			result.redirectTo(this).homeEntidade(usuario);
+			//result.redirectTo(this).homeEntidade(usuario);
 			break;
 		case "cadastrarVaga":
 			result.redirectTo(this).cadastrarVaga(usuario);
 			break;
 		case "lista":
-			result.redirectTo(this).atuacaoEntidade(usuario);			
+			//result.redirectTo(this).atuacaoEntidade(usuario);			
 		default:
 			break;
 		}
 	}
 	
-	@Path("/atuacaoEntidade")
-	public void atuacaoEntidade(Usuario usuario) {
-		result.include("usuario", usuario);
-		result.include("entidade", usuario.getEntidades().get(0));
-		result.include("vagaview", usuario.getEntidades().get(0).getVagas());
-	}
-	
-	@Path("/perfilEntidade")
-	public void perfilEntidade(Usuario usuario) {
-		result.include("usuario", usuario);
-		result.include("entidade", usuario.getEntidades().get(0));
-		result.include("endereco", usuario.getEntidades().get(0).getEnderecos().get(0));
-	}
-	
 	@Path("/cadastrarVaga")
 	public void cadastrarVaga(Usuario usuario) {
 		result.include("usuario", usuario);
-		result.include("entidade", usuario.getEntidades().get(0));
-		result.include("endereco", usuario.getEntidades().get(0).getEnderecos().get(0));
+		//result.include("entidade", usuario.getEntidades().get(0));
+		//result.include("endereco", usuario.getEntidades().get(0).getEnderecos().get(0));
 	}
 	
 	
@@ -96,10 +99,10 @@ public class EntidadeController {
 	public void cadastrarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {
 		if (usuario != null) {
 			try {
-				entidade.setUsuario(usuario);
-				entidade.adicionarEndereco(endereco);
-				endereco.setEntidade(entidade);
-				usuario.adcionarEntidade(entidade);
+			//	entidade.setUsuario(usuario);
+			//	entidade.adicionarEndereco(endereco);
+			//	endereco.setEntidade(entidade);
+			//	usuario.adcionarEntidade(entidade);
 				usuarioDAO.salvar(usuario);
 			} catch (DAOException e) {
 				
@@ -121,31 +124,31 @@ public class EntidadeController {
 		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
 		
 		//ALTERAR ENTIDADE = AREA DE ATUACAO, DESCRICAO, EMAIL, FOTO
-		usuario.getEntidades().get(0).setAreaAtuacao(entidade.getAreaAtuacao());
-		usuario.getEntidades().get(0).setDescricao(entidade.getDescricao());
-		usuario.getEntidades().get(0).setEmail(entidade.getEmail());	
+		//usuario.getEntidades().get(0).setAreaAtuacao(entidade.getAreaAtuacao());
+		//usuario.getEntidades().get(0).setDescricao(entidade.getDescricao());
+		//usuario.getEntidades().get(0).setEmail(entidade.getEmail());	
 		
 		//ALTERAR ENDERECO = RUA, BAIRRO, NUMERO, CIDADE, UF, CEP
-		usuario.getEntidades().get(0).getEnderecos().get(0).setRua(endereco.getRua());
-		usuario.getEntidades().get(0).getEnderecos().get(0).setBairro(endereco.getBairro());
-		usuario.getEntidades().get(0).getEnderecos().get(0).setNumero(endereco.getNumero());
-		usuario.getEntidades().get(0).getEnderecos().get(0).setCidade(endereco.getCidade());
-		usuario.getEntidades().get(0).getEnderecos().get(0).setUf(endereco.getUf());
-		usuario.getEntidades().get(0).getEnderecos().get(0).setCep(endereco.getCep());
+		//usuario.getEntidades().get(0).getEnderecos().get(0).setRua(endereco.getRua());
+		//usuario.getEntidades().get(0).getEnderecos().get(0).setBairro(endereco.getBairro());
+		//usuario.getEntidades().get(0).getEnderecos().get(0).setNumero(endereco.getNumero());
+		//usuario.getEntidades().get(0).getEnderecos().get(0).setCidade(endereco.getCidade());
+		//usuario.getEntidades().get(0).getEnderecos().get(0).setUf(endereco.getUf());
+		//usuario.getEntidades().get(0).getEnderecos().get(0).setCep(endereco.getCep());
 		
 		try {
 			usuarioDAO.salvar(usuario);
 		} catch (DAOException e) {
 			System.out.println("A desgraça não alterou porque " + e.getMessage());
 		}
-		result.redirectTo(this).perfilEntidade(usuario);
+		//	result.redirectTo(this).perfilEntidade(usuario);
 	}
 	
 	@Post("/salvarVaga")
 	public void salvarVaga(Usuario usuario, Vaga vaga){
 		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
 		
-		vaga.setEntidade(usuario.getEntidades().get(0));
+		//vaga.setEntidade(usuario.getEntidades().get(0));
 		vaga.setDataCadastro(new Date(LocalDate.now().getYear(), LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth()));
 		
 		// TESTE DOS FIELD 
@@ -181,7 +184,7 @@ public class EntidadeController {
 		
 		vaga.adicionarAtuacao(atuacao);
 		
-		usuario.getEntidades().get(0).adicionarVaga(vaga);
+		//usuario.getEntidades().get(0).adicionarVaga(vaga);
 		
 		try {
 			usuarioDAO.salvar(usuario);

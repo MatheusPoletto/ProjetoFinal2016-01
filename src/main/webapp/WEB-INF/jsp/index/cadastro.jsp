@@ -28,6 +28,7 @@
 	<div class="content"></div>
 	<c:import url="menu.jsp" />
 	<div class="content container-fluid  card col-sm-8 col-sm-offset-2">
+	${mensagem}
 		<div class="row content">
 			<div>
 				<div class="col-sm-8 col-sm-offset-2">

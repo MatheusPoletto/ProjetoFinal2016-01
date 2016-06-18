@@ -10,11 +10,10 @@ import br.edu.unoesc.dao.VagaDAO;
 import br.edu.unoesc.dao.VoluntarioDAO;
 import br.edu.unoesc.exception.DAOException;
 import br.edu.unoesc.model.Atuacao;
-import br.edu.unoesc.model.Endereco;
-import br.edu.unoesc.model.Entidade;
+
 import br.edu.unoesc.model.Usuario;
 import br.edu.unoesc.model.Vaga;
-import br.edu.unoesc.model.Voluntario;
+
 
 public class NovoTeste {
 

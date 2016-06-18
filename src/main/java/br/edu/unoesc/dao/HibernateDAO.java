@@ -88,23 +88,6 @@ public abstract class HibernateDAO<T extends MinhaEntidade> implements GenericDA
 	}
 
 	@Override
-	public List<T> buscar(Class<T> classe, String descricao) {
-		this.conectar();
-		try {
-			// String hql = "from "+classe.getName()+" a where upper(a.nome)
-			// like ?";
-			// TypedQuery<T> query = em.createQuery(hql, classe);
-			// TypedQuery<T> query = em.createNativeQuery("SELECT * FROM ALUNO",
-			// classe);
-			TypedQuery<T> query = em.createNamedQuery("FILTRA_POR_NOME", classe);
-			query.setParameter(1, "%" + descricao + "%");
-			return query.getResultList();
-		} finally {
-			this.finalizar();
-		}
-	}
-
-	@Override
 	public List<T> listar(Class<T> classe) {
 		this.conectar();
 		try {

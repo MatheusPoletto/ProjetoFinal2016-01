@@ -42,8 +42,8 @@ public class VoluntarioController {
 	public void cadastrarVoluntario(Usuario usuario, Voluntario voluntario) {
 		if (usuario != null) {
 			try {
-				voluntario.setUsuario(usuario);
-				usuario.adcionarVoluntario(voluntario);
+			//	voluntario.setUsuario(usuario);
+			//	usuario.adcionarVoluntario(voluntario);
 				usuarioDAO.salvar(usuario);
 			} catch (DAOException e) {
 				
@@ -55,7 +55,7 @@ public class VoluntarioController {
 	@Path("/homeVoluntario")
 	public void homeVoluntario(Usuario usuario) {
 		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
-		Voluntario voluntario = usuario.getVoluntarios().get(0);
+		//Voluntario voluntario = usuario.getVoluntarios().get(0);
 		
 		
 		
@@ -63,8 +63,8 @@ public class VoluntarioController {
 		List<Atuacao> atuacoesDisponiveis = new ArrayList<>();
 		int tamanhoMaximo = 10; //ATUACOES QUE SERAO EXIBIDAS
 		
-		for(Usuario procuraEntidade : usuarioDAO.listar(Usuario.class)){//PROCURA TODAS AS ENTIDADES
-			if((!procuraEntidade.getEntidades().isEmpty()) && (atuacoesDisponiveis.size() < tamanhoMaximo)){
+		//for(Usuario procuraEntidade : usuarioDAO.listar(Usuario.class)){//PROCURA TODAS AS ENTIDADES
+			/*if((!procuraEntidade.getEntidades().isEmpty()) && (atuacoesDisponiveis.size() < tamanhoMaximo)){
 				Entidade entidadeAnalisa = procuraEntidade.getEntidades().get(0);
 				for(Vaga vaga : entidadeAnalisa.getVagas()){//PROCURA TODAS AS VAGAS DA ENTIDADE EM ABERTO
 					if(vaga.getAtuacoes().get(0).getStatus().equals("Aberta")){
@@ -74,10 +74,10 @@ public class VoluntarioController {
 					}	
 				}	
 			}
-		}
+		}*/
 		//FIM PROCURA ATUACOES
-		result.include("voluntario", voluntario);	
-		result.include("atuacaoview", atuacoesDisponiveis);		
+		//result.include("voluntario", voluntario);	
+		//result.include("atuacaoview", atuacoesDisponiveis);		
 		
 	}
 	

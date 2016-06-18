@@ -17,7 +17,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Olá ${entidade.nomeEntidade}!</a>
+                    <a class="navbar-brand" href="#">Olá ${usuario.entidade.nomeEntidade}!</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left"></ul>
