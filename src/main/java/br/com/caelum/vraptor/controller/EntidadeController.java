@@ -15,13 +15,17 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.validator.Validator;
+import br.edu.unoesc.dao.AvatarDAO;
 import br.edu.unoesc.dao.EntidadeDAO;
 import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.exception.DAOException;
 import br.edu.unoesc.model.Atuacao;
+import br.edu.unoesc.model.Avatar;
 import br.edu.unoesc.model.Endereco;
 import br.edu.unoesc.model.Entidade;
+import br.edu.unoesc.model.Imagens;
 import br.edu.unoesc.model.Usuario;
 import br.edu.unoesc.model.Vaga;
 import br.edu.unoesc.model.Voluntario;
@@ -77,8 +81,33 @@ public class EntidadeController {
 			usuarioDAO.salvar(usuarioSessao);
 		} catch (DAOException e) {
 			System.out.println("Não alterou porque " + e.getMessage());
+		}		
+		/*APAGUE AQUI*/
+		/*
+		AvatarDAO avatarDao = new AvatarDAO();
+		
+		avatarDao.salvaBlob(new Avatar(), entidade.getFotoEntidade());
+		*/
+		
+		 /*ATE AQUI*/
+		
+		
+		result.redirectTo(this).perfilEntidade();
+	}
+	
+	@Post("/salvarImagem/imagem")
+	public void salvarImagem(UploadedFile imagem) {
+		System.out.println("teste");
+		System.out.println(imagem.getFileName());
+		Imagens imagens = new Imagens();
+		try {
+			imagens.salva(imagem.getFile(), usuarioSessao);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		result.redirectTo(this).perfilEntidade();
+	
 	}
 	
 	@Path("/atuacaoEntidade")

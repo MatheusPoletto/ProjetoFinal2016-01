@@ -63,7 +63,7 @@
                                        <c:forEach items="${vagaview}" var="vaga" >
                                      		<tr>
 												<td>${vaga.nomeVaga}</td>
-												<td>${entidade.nomeEntidade}</td>
+												<td>${usuario.entidade.nomeEntidade}</td>
 												<td>${vaga.cidade}</td>
 												<td>${vaga.estado}</td>
 												<td>${vaga.presencial}</td>

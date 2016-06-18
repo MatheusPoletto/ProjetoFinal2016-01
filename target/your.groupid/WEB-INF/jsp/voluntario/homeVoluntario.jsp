@@ -74,7 +74,7 @@
 																<td>${atuacao.vaga.estado}</td>
 																<td>${atuacao.vaga.descricao}</td>
 													
-																<td><a href="<c:url value='/passaCodigoVoluntario/${usuario.codigo},interesse,${atuacao}'/>">INCREVER-SE</a></td>
+																<td><a href="<c:url value='/passaInteresse/${usuario.codigo},${atuacao.codigo}'/>">INCREVER-SE</a></td>
 															</tr>
 														</c:forEach>
 
