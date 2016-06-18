@@ -16,6 +16,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
+import br.edu.unoesc.dao.EntidadeDAO;
 import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.exception.DAOException;
 import br.edu.unoesc.model.Atuacao;
@@ -53,145 +54,74 @@ public class EntidadeController {
 	
 	@Path("/perfilEntidade")
 	public void perfilEntidade() {
-		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());//CHAMADO PARA ATUALIZAR
+		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
 		result.include("usuario", usuarioSessao);	
+	}
+	
+	@Post("/editarEntidade")
+	public void editarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {		
+		//ALTERAR ENTIDADE = AREA DE ATUACAO, DESCRICAO, EMAIL, FOTO
+		usuarioSessao.getEntidade().setAreaAtuacao(entidade.getAreaAtuacao());
+		usuarioSessao.getEntidade().setDescricao(entidade.getDescricao());
+		usuarioSessao.getEntidade().setEmail(entidade.getEmail());	
 		
+		//ALTERAR ENDERECO = RUA, BAIRRO, NUMERO, CIDADE, UF, CEP
+		usuarioSessao.getEntidade().getEndereco().setRua(endereco.getRua());
+		usuarioSessao.getEntidade().getEndereco().setBairro(endereco.getBairro());
+		usuarioSessao.getEntidade().getEndereco().setNumero(endereco.getNumero());
+		usuarioSessao.getEntidade().getEndereco().setCidade(endereco.getCidade());
+		usuarioSessao.getEntidade().getEndereco().setUf(endereco.getUf());
+		usuarioSessao.getEntidade().getEndereco().setCep(endereco.getCep());
+		
+		try {
+			usuarioDAO.salvar(usuarioSessao);
+		} catch (DAOException e) {
+			System.out.println("Não alterou porque " + e.getMessage());
+		}
+		result.redirectTo(this).perfilEntidade();
 	}
 	
 	@Path("/atuacaoEntidade")
 	public void atuacaoEntidade() {
+		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
 		result.include("usuario", usuarioSessao);
 		result.include("vagaview", usuarioSessao.getEntidade().getVagas());
 	}
 	
-	@Get("/passaCodigo/{codigo},{tipo}")
-	public void passaCodigo(Long codigo, String tipo){
-		Usuario usuario = usuarioDAO.buscar(Usuario.class, codigo);
-		result.include("usuario", usuario);
-		System.out.println(tipo);
-		
-		switch (tipo) {
-		case "perfil":
-			//result.redirectTo(this).perfilEntidade(usuario);
-			break;
-		case "inicio":
-			//result.redirectTo(this).homeEntidade(usuario);
-			break;
-		case "cadastrarVaga":
-			result.redirectTo(this).cadastrarVaga(usuario);
-			break;
-		case "lista":
-			//result.redirectTo(this).atuacaoEntidade(usuario);			
-		default:
-			break;
-		}
-	}
 	
 	@Path("/cadastrarVaga")
-	public void cadastrarVaga(Usuario usuario) {
-		result.include("usuario", usuario);
-		//result.include("entidade", usuario.getEntidades().get(0));
-		//result.include("endereco", usuario.getEntidades().get(0).getEnderecos().get(0));
+	public void cadastrarVaga() {
+		result.include("usuario", usuarioSessao);
 	}
 	
+	@Post("/salvarVaga")
+	public void salvarVaga(Vaga vaga){				
+		EntidadeDAO entidadedao = new EntidadeDAO();
+		Entidade entidade = entidadedao.buscar(Entidade.class, usuarioSessao.getEntidade().getCodigo());			
+		vaga.setEntidade(entidade);
+		entidade.adicionarVaga(vaga);
+		try {
+			entidadedao.salvar(entidade);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+		result.redirectTo(this).atuacaoEntidade();
+	}
 	
 	@Post("/cadastrarEntidade")
 	public void cadastrarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {
-		if (usuario != null) {
+		Usuario usuarioExistente = usuarioDAO.buscarUsuario(usuario.getLogin());
+		if(usuarioExistente.getLogin().isEmpty()){
 			try {
-			//	entidade.setUsuario(usuario);
-			//	entidade.adicionarEndereco(endereco);
-			//	endereco.setEntidade(entidade);
-			//	usuario.adcionarEntidade(entidade);
+				usuario.setEntidade(entidade);
+				entidade.setEndereco(endereco);
 				usuarioDAO.salvar(usuario);
 			} catch (DAOException e) {
 				
 			}
+		}else{
+			result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Tente outro usuário!</div>");
+			result.redirectTo("/cadastro");
 		}
-		result.redirectTo("/");
 	}
-	/*
-	@Get("/editarEntidade/{codigo}")
-	public void editarEntidade(Long codigo) {
-		System.out.println("tou aqui como111 " + codigo);
-		Usuario usuario = usuarioDAO.buscar(Usuario.class, codigo);
-		System.out.println("tou aqui como" + usuario.getCodigo());
-		result.redirectTo(this).homeEntidade(usuario);
-	}*/
-	
-	@Post("/editarEntidade")
-	public void editarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {
-		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
-		
-		//ALTERAR ENTIDADE = AREA DE ATUACAO, DESCRICAO, EMAIL, FOTO
-		//usuario.getEntidades().get(0).setAreaAtuacao(entidade.getAreaAtuacao());
-		//usuario.getEntidades().get(0).setDescricao(entidade.getDescricao());
-		//usuario.getEntidades().get(0).setEmail(entidade.getEmail());	
-		
-		//ALTERAR ENDERECO = RUA, BAIRRO, NUMERO, CIDADE, UF, CEP
-		//usuario.getEntidades().get(0).getEnderecos().get(0).setRua(endereco.getRua());
-		//usuario.getEntidades().get(0).getEnderecos().get(0).setBairro(endereco.getBairro());
-		//usuario.getEntidades().get(0).getEnderecos().get(0).setNumero(endereco.getNumero());
-		//usuario.getEntidades().get(0).getEnderecos().get(0).setCidade(endereco.getCidade());
-		//usuario.getEntidades().get(0).getEnderecos().get(0).setUf(endereco.getUf());
-		//usuario.getEntidades().get(0).getEnderecos().get(0).setCep(endereco.getCep());
-		
-		try {
-			usuarioDAO.salvar(usuario);
-		} catch (DAOException e) {
-			System.out.println("A desgraça não alterou porque " + e.getMessage());
-		}
-		//	result.redirectTo(this).perfilEntidade(usuario);
-	}
-	
-	@Post("/salvarVaga")
-	public void salvarVaga(Usuario usuario, Vaga vaga){
-		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
-		
-		//vaga.setEntidade(usuario.getEntidades().get(0));
-		vaga.setDataCadastro(new Date(LocalDate.now().getYear(), LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth()));
-		
-		// TESTE DOS FIELD 
-		System.out.println(">> CADASTRO DE VAGA - ENTIDADE CONTROLLER ");
-		System.out.println("Nome da vaga (vaga.nomeVaga): "+ vaga.getNomeVaga());
-		System.out.println("Quantidade de pessoas (vaga.quantidadePessoa): "+ vaga.getQuantidadePessoa());
-		System.out.println("Descrição da vaga (vaga.descricao): "+vaga.getDescricao());
-		System.out.println("Quantidade de vaga (vaga.quantidadeVaga): "+ vaga.getQuantidadeVaga());
-		System.out.println("Importância da vaga (vaga.importancia): "+ vaga.getImportancia());
-		System.out.println("Vaga presencial (vaga.presencial): "+ vaga.getPresencial());
-		System.out.println("UF da vaga (vaga.estado): "+ vaga.getEstado());
-		System.out.println("Cidade da vaga (vaga.cidade): "+ vaga.getCidade());
-		System.out.println("Data de cadastro da vaga (LocalDate.now): "+ vaga.getDataCadastro());
-		System.out.println("Data de validade de vaga (vaga.DataValidade): "+ vaga.getDataValidade());
-		System.out.println("Nome da entidade: (vaga.SetEntidade.usuario): "+ vaga.getEntidade().getNomeEntidade());
-		//entidade.adicionarVaga();
-		
-		/*Atuacao atuacao = new Atuacao();
-		atuacao.setStatus("Em andamento");
-		atuacao.setVaga(vaga);
-		atuacao.setVoluntario(null);
-		atuacao.setData(new Date(2016, 06, 11));
-		*/
-		/* FIM DOS TESTES */
-		Voluntario voluntario = new Voluntario();
-		voluntario.setCodigo(1l);
-		
-		Atuacao atuacao = new Atuacao();
-		atuacao.setStatus("Aberta");
-		atuacao.setVaga(vaga);
-		atuacao.setVoluntario(voluntario);
-		atuacao.setData(vaga.getDataCadastro());
-		
-		vaga.adicionarAtuacao(atuacao);
-		
-		//usuario.getEntidades().get(0).adicionarVaga(vaga);
-		
-		try {
-			usuarioDAO.salvar(usuario);
-		} catch (DAOException e) {
-			System.out.println("A desgraça nao adicionou a vaga porque" + e.getMessage());
-		}
-		result.redirectTo(this).cadastrarVaga(usuario);
-	}
-	
 }

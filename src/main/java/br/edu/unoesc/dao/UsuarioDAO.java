@@ -1,6 +1,7 @@
 package br.edu.unoesc.dao;
 
 import javax.enterprise.context.RequestScoped;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import br.edu.unoesc.model.Usuario;
@@ -14,7 +15,10 @@ public class UsuarioDAO  extends HibernateDAO<Usuario>{
 	            TypedQuery<Usuario> query = em.createNamedQuery("FILTRA_POR_LOGIN", Usuario.class);
 	            query.setParameter(1, login);
 	            return query.getSingleResult();
-	        } finally {
+	        } catch(NoResultException e){
+	        	return null;
+	        }
+	        finally {
 	            this.finalizar();
 	        }
 	    }

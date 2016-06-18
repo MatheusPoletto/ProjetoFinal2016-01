@@ -35,10 +35,9 @@ public class AcessoController {
 
 	@Post("/autenticarUsuario")
 	public void autenticarUsuario(Usuario usuario) {
-		if (usuario != null) {
 			Usuario usuarioBusca = usuarioDAO.buscarUsuario(usuario.getLogin());
 			if (usuarioBusca == null) {
-				 result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Usuário não encontrado!</div>");
+				result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Usuário não encontrado!</div>");
 				result.redirectTo("/cadastro");
 			} else {
 				if (usuarioBusca.getSenha().equals(usuario.getSenha())) {
@@ -53,6 +52,5 @@ public class AcessoController {
 				}
 			}
 		}
-	}
 
 }

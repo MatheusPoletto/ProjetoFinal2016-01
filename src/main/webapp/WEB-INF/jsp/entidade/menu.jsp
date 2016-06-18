@@ -27,7 +27,7 @@
                     </a>
                 </li>
 				<li>
-					<a href="<c:url value='/passaCodigo/1,cadastrarVaga'/>">
+					<a href="<c:url value='/cadastrarVaga'/>">
 					<i class="pe-7s-portfolio"></i>
 					<p>Cadastrar Nova Vaga</p>
 					</a>
