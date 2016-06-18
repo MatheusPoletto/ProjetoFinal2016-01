@@ -9,9 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,11 +28,12 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(of = {"codigo", "login", "senha"})
-@EqualsAndHashCode(of = {"codigo"})
+@ToString(of = { "codigo", "login", "senha" })
+@EqualsAndHashCode(of = { "codigo" })
 @Entity
-@NamedQueries({@NamedQuery(name = Usuario.FILTRA_POR_NOME, query = "from Usuario a where upper(a.login) like ? "),
-	@NamedQuery(name = Usuario.TODOS, query = "from Usuario a ")})
+@NamedQueries({
+		@NamedQuery(name = Usuario.FILTRA_POR_NOME, query = "from Usuario a where upper(a.login) like ? "),
+		@NamedQuery(name = Usuario.TODOS, query = "from Usuario a ") })
 public @Data class Usuario implements MinhaEntidade {
 	public static final String FILTRA_POR_NOME = "FILTRA_POR_NOME";
 	public static final String TODOS = "TODOS";
@@ -38,20 +42,15 @@ public @Data class Usuario implements MinhaEntidade {
 	private Long codigo;
 	private String login;
 	private String senha;
-	
-	@OneToMany(mappedBy = "usuario", targetEntity = Voluntario.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Voluntario> voluntarios = new ArrayList<>();
-	
-	public void adcionarVoluntario(Voluntario voluntario){
-		this.voluntarios.add(voluntario);
-	}
-	
-	@OneToMany(mappedBy = "usuario", targetEntity = Entidade.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Entidade> entidades = new ArrayList<>();
-	
-	public void adcionarEntidade(Entidade entidade){
-		this.entidades.add(entidade);
-	}
-	
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_voluntario", joinColumns = { @JoinColumn(name = "usuario_codigo", referencedColumnName = "codigo") }, 
+									 inverseJoinColumns = { @JoinColumn(name = "voluntario_codigo", referencedColumnName = "codigo") })
+	private Voluntario voluntario;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_entidade", joinColumns = { @JoinColumn(name = "usuario_codigo", referencedColumnName = "codigo") }, 
+								   inverseJoinColumns = { @JoinColumn(name = "entidade_codigo", referencedColumnName = "codigo") })
+	private Entidade entidade;
 
 }

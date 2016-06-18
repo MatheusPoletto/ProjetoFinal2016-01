@@ -18,8 +18,11 @@ import javax.persistence.Id;
 
 
 
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -47,20 +50,21 @@ public @Data class Entidade implements MinhaEntidade {
 	private String descricao;
 	private String fotoEntidade;
 	
-	@ManyToOne(optional = false, targetEntity = Usuario.class)
-	private Usuario usuario;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_entidade", joinColumns = { @JoinColumn(name = "entidade_codigo", referencedColumnName = "codigo") }, 
+									 inverseJoinColumns = { @JoinColumn(name = "usuario_codigo", referencedColumnName = "codigo") })
+	private List<Usuario> usuarios = new ArrayList<>();
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinTable(name = "entidade_endereco", joinColumns = { @JoinColumn(name = "entidade_codigo", referencedColumnName = "codigo") }, 
+								   inverseJoinColumns = { @JoinColumn(name = "endereco_codigo", referencedColumnName = "codigo") })
+	private Endereco endereco;
+	
 	
 	@OneToMany(mappedBy = "entidade", targetEntity = Vaga.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Vaga> vagas = new ArrayList<>();
 	
 	public void adicionarVaga(Vaga vaga){
 		this.vagas.add(vaga);
-	}
-	
-	@OneToMany(mappedBy = "entidade", targetEntity = Endereco.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Endereco> enderecos = new ArrayList<>();
-	
-	public void adicionarEndereco(Endereco endereco){
-		this.enderecos.add(endereco);
 	}
 }

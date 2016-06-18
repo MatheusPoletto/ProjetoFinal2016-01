@@ -49,6 +49,7 @@ public abstract class HibernateDAO<T extends MinhaEntidade> implements GenericDA
 		} catch (PersistenceException ex) {
 			if (et.isActive()) {
 				et.rollback();
+				this.finalizar();
 			}
 			throw new DAOException("Erro ao Salvar", ex.getCause());
 		} finally {
@@ -80,7 +81,8 @@ public abstract class HibernateDAO<T extends MinhaEntidade> implements GenericDA
 		this.conectar();
 		try {
 			return em.find(classe, codigo);
-		} finally {
+		}
+		finally {
 			this.finalizar();
 		}
 	}
