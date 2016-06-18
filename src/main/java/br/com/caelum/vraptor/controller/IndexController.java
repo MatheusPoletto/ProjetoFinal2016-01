@@ -26,18 +26,16 @@ public class IndexController {
 
 	@Path("/")
 	public void index() {
-		result.include("variable", "aa");
-	}
-	
-	
-	
-	@Get("/cadastrar")
-	public void cadastrar() {
-		result.include("variable", "");
+		
 	}
 	
 	@Get("/cadastro")
 	public void cadastro() {
-		result.include("variable", "");
+		
+	}
+	
+	@Get("/contato")
+	public void contato() {
+		
 	}
 }
