@@ -57,6 +57,10 @@ public @Data class Vaga implements MinhaEntidade{
 	private List<Atuacao> atuacoes = new ArrayList<>();
 	
 	public void adicionarAtuacao(Atuacao atuacao){
-		this.atuacoes.add(atuacao);
+		if(this.atuacoes.size() < this.quantidadeVaga){
+			this.atuacoes.add(atuacao);
+		}else{
+			System.out.println("estourou o limite da vaga e nao foi adicionado!");
+		}
 	}
 }
