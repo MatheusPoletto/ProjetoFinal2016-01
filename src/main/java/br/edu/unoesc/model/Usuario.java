@@ -53,4 +53,10 @@ public @Data class Usuario implements MinhaEntidade {
 								   inverseJoinColumns = { @JoinColumn(name = "entidade_codigo", referencedColumnName = "codigo") })
 	private Entidade entidade;
 
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_avatar", joinColumns = { @JoinColumn(name = "usuario_codigo", referencedColumnName = "codigo") }, 
+									 inverseJoinColumns = { @JoinColumn(name = "avatar_codigo", referencedColumnName = "codigo") })
+	private Avatar avatar;
+	
 }

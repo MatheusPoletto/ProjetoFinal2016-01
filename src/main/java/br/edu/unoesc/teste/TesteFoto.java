@@ -16,7 +16,7 @@ public class TesteFoto {
 	public static void main(String[] args) {
 		System.out.println("Hibernate save image into database");
 		AvatarDAO avatarDao = new AvatarDAO();
-        Avatar avatar = avatarDao.buscar(Avatar.class, 6l);
+        Avatar avatar = avatarDao.buscar(Avatar.class, 14l);
 		
 		avatarDao.pegaBlob(avatar);
 

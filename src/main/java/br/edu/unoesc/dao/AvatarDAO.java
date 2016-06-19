@@ -31,19 +31,25 @@ public class AvatarDAO extends HibernateDAO<Avatar> {
 		
 	}
 	
-	public void pegaBlob(Avatar avatar) {
+	public FileOutputStream pegaBlob(Avatar avatar) {
 		Avatar avatar2 = buscar(Avatar.class, avatar.getCodigo());
         byte[] bAvatar = avatar2.getImage();	
         
         try{
         	System.out.println("entrou");
-            FileOutputStream fos = new FileOutputStream("C:\\test.jpg"); 
-        	System.out.println("fileoutgerou");
+        	 //  FileOutputStream fos = new FileOutputStream("avatar.jpg"); 
+        	   File file = new File("avatar.jpg");
+        	   file.delete();
+        	
+           // FileOutputStream fos = new FileOutputStream("C:\\test.jpg"); 
+            FileOutputStream fos = new FileOutputStream("src/Package/avatar.jpg"); 
             fos.write(bAvatar);
-        	System.out.println("write");
-            fos.close();
+        	fos.close();
+        	return fos;
+            
         }catch(Exception e){
             e.printStackTrace();
+            return null;
         }
 
        

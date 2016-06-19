@@ -149,7 +149,7 @@
 								<div class="content">
 									<div class="author">
 										<a href="#"> <img class="avatar border-gray"
-											src="img/def-user.png" alt="..." />
+											src="file:///C:/avatar.jpg" alt="..." />
 
 
 											<h4 class="title">${usuario.entidade.nomeEntidade}<br />

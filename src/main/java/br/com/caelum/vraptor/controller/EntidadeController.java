@@ -25,7 +25,7 @@ import br.edu.unoesc.model.Atuacao;
 import br.edu.unoesc.model.Avatar;
 import br.edu.unoesc.model.Endereco;
 import br.edu.unoesc.model.Entidade;
-import br.edu.unoesc.model.Imagens;
+import br.edu.unoesc.model.GerenciadorImagem;
 import br.edu.unoesc.model.Usuario;
 import br.edu.unoesc.model.Vaga;
 import br.edu.unoesc.model.Voluntario;
@@ -59,6 +59,7 @@ public class EntidadeController {
 	@Path("/perfilEntidade")
 	public void perfilEntidade() {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
+		AvatarDAO avatarDao = new AvatarDAO();	
 		result.include("usuario", usuarioSessao);	
 	}
 	
@@ -97,12 +98,15 @@ public class EntidadeController {
 	
 	@Post("/salvarImagem/imagem")
 	public void salvarImagem(UploadedFile imagem) {
-		System.out.println("teste");
-		System.out.println(imagem.getFileName());
-		Imagens imagens = new Imagens();
 		try {
+			GerenciadorImagem imagens = new GerenciadorImagem();
+			Avatar avatar = new Avatar();
+			usuarioSessao.setAvatar(avatar);
 			imagens.salva(imagem.getFile(), usuarioSessao);
+			
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (DAOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
