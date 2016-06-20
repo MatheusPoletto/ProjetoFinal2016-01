@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,8 @@ public @Data class Avatar implements MinhaEntidade{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@Lob @Basic(fetch= FetchType.EAGER)
+	//@Lob @Basic(fetch= FetchType.EAGER)
+	@Column(name = "image", unique = false, nullable = false, length = 100000)
 	private byte[] image;
 
 	@OneToMany(cascade = CascadeType.ALL)

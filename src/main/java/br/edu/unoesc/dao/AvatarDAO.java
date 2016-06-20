@@ -1,8 +1,12 @@
 package br.edu.unoesc.dao;
 
+
+
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.sql.Blob;
 
 import javax.enterprise.context.RequestScoped;
 
@@ -30,6 +34,7 @@ public class AvatarDAO extends HibernateDAO<Avatar> {
 		
 		
 	}
+
 	
 	public FileOutputStream pegaBlob(Avatar avatar) {
 		Avatar avatar2 = buscar(Avatar.class, avatar.getCodigo());
@@ -38,11 +43,19 @@ public class AvatarDAO extends HibernateDAO<Avatar> {
         try{
         	System.out.println("entrou");
         	 //  FileOutputStream fos = new FileOutputStream("avatar.jpg"); 
-        	   File file = new File("avatar.jpg");
+        	  /* File file = new File("avatar.jpg");
         	   file.delete();
-        	
+        	*/
            // FileOutputStream fos = new FileOutputStream("C:\\test.jpg"); 
-            FileOutputStream fos = new FileOutputStream("src/Package/avatar.jpg"); 
+        	 File file = new File("../imgUsuario");
+             if (!file.exists()) {
+                 if (file.mkdir()) {
+                     System.out.println("Diretório imgUsuario foi criado!");
+                 } else {
+                     System.out.println("Diretório imgUsuario já existe!");
+                 }
+             }
+            FileOutputStream fos = new FileOutputStream("../imgUsuario/avatar.jpg"); 
             fos.write(bAvatar);
         	fos.close();
         	return fos;

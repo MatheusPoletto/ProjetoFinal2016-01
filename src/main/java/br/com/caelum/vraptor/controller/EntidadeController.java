@@ -3,7 +3,9 @@ package br.com.caelum.vraptor.controller;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.Date;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -57,14 +59,33 @@ public class EntidadeController {
 	}
 	
 	@Path("/perfilEntidade")
-	public void perfilEntidade() {
+	public void perfilEntidade() throws UnsupportedEncodingException {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
-		AvatarDAO avatarDao = new AvatarDAO();	
+		if(usuarioSessao.getAvatar() == null){
+			usuarioSessao.setAvatar(new Avatar());
+			try {
+				usuarioDAO.salvar(usuarioSessao);
+			} catch (DAOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		//AvatarDAO avatarDao = new AvatarDAO();
+		//avatarDao.pegaBlob(usuarioSessao.getAvatar());
+		System.out.println("atualizou o cod" + usuarioSessao.getCodigo());
+		//String url = "data:image/png;base64," + Base64.getEncoder().enconde(usuarioSessao.getAvatar().getImage());
+		//System.out.println(usuarioSessao.getAvatar().getImage());
+		//System.out.println(usuarioSessao.getAvatar().getImage());
+		byte[] bAvatar = Base64.getEncoder().encode(usuarioSessao.getAvatar().getImage());
+		String base64DataString = new String(bAvatar , "UTF-8");
+		//System.out.println(bAvatar.length);
+		//String url = "data:image/png;base64," + Base64.getEncoder().encode(usuarioSessao.getAvatar().getImage());
+		result.include("imagem", base64DataString);
 		result.include("usuario", usuarioSessao);	
 	}
 	
 	@Post("/editarEntidade")
-	public void editarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {		
+	public void editarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) throws UnsupportedEncodingException {		
 		//ALTERAR ENTIDADE = AREA DE ATUACAO, DESCRICAO, EMAIL, FOTO
 		usuarioSessao.getEntidade().setAreaAtuacao(entidade.getAreaAtuacao());
 		usuarioSessao.getEntidade().setDescricao(entidade.getDescricao());
@@ -97,11 +118,10 @@ public class EntidadeController {
 	}
 	
 	@Post("/salvarImagem/imagem")
-	public void salvarImagem(UploadedFile imagem) {
+	public void salvarImagem(UploadedFile imagem) throws UnsupportedEncodingException {
 		try {
 			GerenciadorImagem imagens = new GerenciadorImagem();
-			Avatar avatar = new Avatar();
-			usuarioSessao.setAvatar(avatar);
+			//usuarioSessao.setAvatar(avatar);
 			imagens.salva(imagem.getFile(), usuarioSessao);
 			
 		} catch (IOException e) {
@@ -148,6 +168,7 @@ public class EntidadeController {
 			try {
 				usuario.setEntidade(entidade);
 				entidade.setEndereco(endereco);
+				usuario.setAvatar(new Avatar());
 				usuarioDAO.salvar(usuario);
 			} catch (DAOException e) {
 				
