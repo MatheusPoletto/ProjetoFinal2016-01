@@ -62,24 +62,22 @@ public class EntidadeController {
 	public void perfilEntidade() throws UnsupportedEncodingException {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
 		if(usuarioSessao.getAvatar() == null){
+			Avatar avatar = new Avatar();
 			usuarioSessao.setAvatar(new Avatar());
 			try {
 				usuarioDAO.salvar(usuarioSessao);
 			} catch (DAOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		//AvatarDAO avatarDao = new AvatarDAO();
-		//avatarDao.pegaBlob(usuarioSessao.getAvatar());
-		System.out.println("atualizou o cod" + usuarioSessao.getCodigo());
-		//String url = "data:image/png;base64," + Base64.getEncoder().enconde(usuarioSessao.getAvatar().getImage());
-		//System.out.println(usuarioSessao.getAvatar().getImage());
-		//System.out.println(usuarioSessao.getAvatar().getImage());
-		byte[] bAvatar = Base64.getEncoder().encode(usuarioSessao.getAvatar().getImage());
-		String base64DataString = new String(bAvatar , "UTF-8");
-		//System.out.println(bAvatar.length);
-		//String url = "data:image/png;base64," + Base64.getEncoder().encode(usuarioSessao.getAvatar().getImage());
+		String base64DataString;
+		try {
+			byte[] bAvatar = Base64.getEncoder().encode(usuarioSessao.getAvatar().getImage());
+			base64DataString = new String(bAvatar , "UTF-8");
+
+		} catch (Exception e) {
+			base64DataString  = "img/def-user.png";
+		}		
 		result.include("imagem", base64DataString);
 		result.include("usuario", usuarioSessao);	
 	}
@@ -121,7 +119,6 @@ public class EntidadeController {
 	public void salvarImagem(UploadedFile imagem) throws UnsupportedEncodingException {
 		try {
 			GerenciadorImagem imagens = new GerenciadorImagem();
-			//usuarioSessao.setAvatar(avatar);
 			imagens.salva(imagem.getFile(), usuarioSessao);
 			
 		} catch (IOException e) {
@@ -164,14 +161,18 @@ public class EntidadeController {
 	@Post("/cadastrarEntidade")
 	public void cadastrarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {
 		Usuario usuarioExistente = usuarioDAO.buscarUsuario(usuario.getLogin());
-		if(usuarioExistente.getLogin().isEmpty()){
+		System.out.println("paassedd");
+		if(usuarioExistente == null){
 			try {
 				usuario.setEntidade(entidade);
 				entidade.setEndereco(endereco);
 				usuario.setAvatar(new Avatar());
 				usuarioDAO.salvar(usuario);
+				result.include("mensagem", "<div class=\"alert alert-sucess\" role=\"alert\">Usuário cadastrado!</div>");
+				result.redirectTo("/cadastro");
 			} catch (DAOException e) {
-				
+				result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Ocorreu um erro. Tente novamente!" + e.getMessage() + "</div>");
+				result.redirectTo("/cadastro");
 			}
 		}else{
 			result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Tente outro usuário!</div>");
