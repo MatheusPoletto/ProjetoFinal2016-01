@@ -22,6 +22,8 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.validator.Validator;
 import br.edu.unoesc.dao.AtuacaoDAO;
+import br.edu.unoesc.dao.AvatarDAO;
+import br.edu.unoesc.dao.EnderecoDAO;
 import br.edu.unoesc.dao.EntidadeDAO;
 import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.exception.DAOException;
@@ -59,17 +61,19 @@ public class EntidadeController {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
 		
 		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
-		result.include("atuacoesConfirmar", atuacaoDao.atuacoesParaConfirmar(usuarioSessao.getEntidade().getCodigo()));
+		result.include("atuacoesConfirmar", atuacaoDao.atuacoesParaConfirmar(usuarioSessao.getEntidades().get(0).getCodigo()));
 		result.include("usuario", usuarioSessao);
 	}
 	
 	@Path("/perfilEntidade")
 	public void perfilEntidade() throws UnsupportedEncodingException {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
-		if(usuarioSessao.getAvatar() == null){
+		if(usuarioSessao.getAvatares() == null){
 			Avatar avatar = new Avatar(null);
-			usuarioSessao.setAvatar(new Avatar());
+			AvatarDAO avatarDao = new AvatarDAO();
+			avatar.setUsuario(usuarioSessao);
 			try {
+				avatarDao.salvar(avatar);
 				usuarioDAO.salvar(usuarioSessao);
 			} catch (DAOException e) {
 				e.printStackTrace();
@@ -77,33 +81,41 @@ public class EntidadeController {
 		}
 		String base64DataString;
 		try {
-			byte[] bAvatar = Base64.getEncoder().encode(usuarioSessao.getAvatar().getImage());
+			byte[] bAvatar = Base64.getEncoder().encode(usuarioSessao.getAvatares().get(0).getImage());
 			base64DataString = new String(bAvatar , "UTF-8");
 
 		} catch (Exception e) {
 			base64DataString  = "img/def-user.png";
 		}		
 		result.include("imagem", base64DataString);
+		result.include("entidade", usuarioSessao.getEntidades().get(0));
+		result.include("endereco", usuarioSessao.getEntidades().get(0).getEnderecos().get(0));
 		result.include("usuario", usuarioSessao);	
 	}
 	
 	@Post("/editarEntidade")
 	public void editarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) throws UnsupportedEncodingException {		
 		//ALTERAR ENTIDADE = AREA DE ATUACAO, DESCRICAO, EMAIL, FOTO
-		usuarioSessao.getEntidade().setAreaAtuacao(entidade.getAreaAtuacao());
-		usuarioSessao.getEntidade().setDescricao(entidade.getDescricao());
-		usuarioSessao.getEntidade().setEmail(entidade.getEmail());	
+		Entidade entidadeUsuarioSessao = usuarioSessao.getEntidades().get(0);
+		entidadeUsuarioSessao.setAreaAtuacao(entidade.getAreaAtuacao());
+		entidadeUsuarioSessao.setDescricao(entidade.getDescricao());
+		entidadeUsuarioSessao.setEmail(entidade.getEmail());	
 		
 		//ALTERAR ENDERECO = RUA, BAIRRO, NUMERO, CIDADE, UF, CEP
-		usuarioSessao.getEntidade().getEndereco().setRua(endereco.getRua());
-		usuarioSessao.getEntidade().getEndereco().setBairro(endereco.getBairro());
-		usuarioSessao.getEntidade().getEndereco().setNumero(endereco.getNumero());
-		usuarioSessao.getEntidade().getEndereco().setCidade(endereco.getCidade());
-		usuarioSessao.getEntidade().getEndereco().setUf(endereco.getUf());
-		usuarioSessao.getEntidade().getEndereco().setCep(endereco.getCep());
+		Endereco enderecoEntidadeSessao = entidadeUsuarioSessao.getEnderecos().get(0);
+		enderecoEntidadeSessao.setRua(endereco.getRua());
+		enderecoEntidadeSessao.setBairro(endereco.getBairro());
+		enderecoEntidadeSessao.setNumero(endereco.getNumero());
+		enderecoEntidadeSessao.setCidade(endereco.getCidade());
+		enderecoEntidadeSessao.setUf(endereco.getUf());
+		enderecoEntidadeSessao.setCep(endereco.getCep());
 		
 		try {
-			usuarioDAO.salvar(usuarioSessao);
+			EnderecoDAO enderecoDao = new EnderecoDAO();
+			enderecoDao.salvar(endereco);
+			EntidadeDAO entidadeDao = new EntidadeDAO();
+			entidadeDao.salvar(entidadeUsuarioSessao);
+			//usuarioDAO.salvar(usuarioSessao);
 		} catch (DAOException e) {
 			System.out.println("Não alterou porque " + e.getMessage());
 		}				
@@ -130,8 +142,10 @@ public class EntidadeController {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
 		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
 		result.include("usuario", usuarioSessao);
-		result.include("vagaview", usuarioSessao.getEntidade().getVagas());
-		result.include("atuacoesConcluidas", atuacaoDao.atuacoesConcluidas(usuarioSessao.getEntidade().getCodigo()));
+		result.include("entidade", usuarioSessao.getEntidades().get(0));
+		result.include("endereco", usuarioSessao.getEntidades().get(0).getEnderecos().get(0));
+		result.include("vagaview", usuarioSessao.getEntidades().get(0).getVagas());
+		result.include("atuacoesConcluidas", atuacaoDao.atuacoesConcluidas(usuarioSessao.getEntidades().get(0).getCodigo()));
 	}
 	
 	@Path("/confirmarVoluntario")
@@ -176,7 +190,7 @@ public class EntidadeController {
 	@Post("/salvarVaga")
 	public void salvarVaga(Vaga vaga){				
 		EntidadeDAO entidadedao = new EntidadeDAO();
-		Entidade entidade = entidadedao.buscar(Entidade.class, usuarioSessao.getEntidade().getCodigo());			
+		Entidade entidade = entidadedao.buscar(Entidade.class, usuarioSessao.getEntidades().get(0).getCodigo());			
 		vaga.setEntidade(entidade);
 		entidade.adicionarVaga(vaga);
 		try {
@@ -192,11 +206,19 @@ public class EntidadeController {
 		Usuario usuarioExistente = usuarioDAO.buscarUsuario(usuario.getLogin());
 		if(usuarioExistente == null){
 			try {
-				usuario.setEntidade(entidade);
-				entidade.setEndereco(endereco);
+				entidade.setUsuario(usuario);
+				endereco.setEntidade(entidade);
 				Avatar avatar = new Avatar(null);
-				usuario.setAvatar(avatar);
+				avatar.setUsuario(usuario);
+				
+				EntidadeDAO entidadeDao = new EntidadeDAO();
+				EnderecoDAO enderecoDao = new EnderecoDAO();
+				AvatarDAO avatarDao = new AvatarDAO();
 				usuarioDAO.salvar(usuario);
+				avatarDao.salvar(avatar);
+				entidadeDao.salvar(entidade);
+				enderecoDao.salvar(endereco);
+				
 				result.include("mensagem", "<div class=\"alert alert-sucess\" role=\"alert\">Usuário cadastrado!</div>");
 				result.redirectTo("/cadastro");
 			} catch (DAOException e) {

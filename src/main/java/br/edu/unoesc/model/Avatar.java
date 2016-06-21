@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -31,8 +33,8 @@ public @Data class Avatar implements MinhaEntidade{
 	@Column(name = "image", unique = false, nullable = false, length = 100000)
 	private byte[] image;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
-	@PrimaryKeyJoinColumn
+	@ManyToOne
+	@JoinColumn(name="usuario_codigo")
 	private Usuario usuario;
 
 	public Avatar(byte[] image) {

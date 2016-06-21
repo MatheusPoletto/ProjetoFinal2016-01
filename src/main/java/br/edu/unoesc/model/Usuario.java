@@ -41,16 +41,13 @@ public @Data class Usuario implements MinhaEntidade {
 	@Column
 	private String senha;
 
-	//@OneToOne(mappedBy="usuario", cascade = CascadeType.ALL)
-	//private Voluntario voluntario;
-	
 	@OneToMany(mappedBy = "usuario", targetEntity = Voluntario.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Voluntario> voluntarios = new ArrayList<>();
 
-	@OneToOne(mappedBy="usuario", cascade = CascadeType.ALL)
-	private Entidade entidade;
+	@OneToMany(mappedBy = "usuario", targetEntity = Entidade.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Entidade> entidades = new ArrayList<>();
 
-	@OneToOne(mappedBy="usuario", cascade = CascadeType.ALL)
-	private Avatar avatar;
+	@OneToMany(mappedBy = "usuario", targetEntity = Avatar.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Avatar> avatares = new ArrayList<>();
 	
 }

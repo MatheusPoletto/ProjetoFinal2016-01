@@ -41,7 +41,7 @@ public class AcessoController {
 				result.redirectTo("/cadastro");
 			} else {
 				if (usuarioBusca.getSenha().equals(usuario.getSenha())) {
-					if (!(usuarioBusca.getEntidade() == null)) {// SE FOR ENTIDADE
+					if (!(usuarioBusca.getEntidades().size() == 0)) {// SE FOR ENTIDADE
 						result.redirectTo(EntidadeController.class).index(usuarioBusca);
 					} else {// SE TIVER ELE EH VOLUNTARIO
 						result.redirectTo(VoluntarioController.class).index(usuarioBusca);

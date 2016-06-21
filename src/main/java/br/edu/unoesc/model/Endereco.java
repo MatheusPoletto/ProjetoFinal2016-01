@@ -39,9 +39,10 @@ public @Data class Endereco implements MinhaEntidade {
 	private String cep;
 	private String uf;
 	
-	@OneToOne(mappedBy="endereco")
+	@ManyToOne
+	@JoinColumn(name="entidade_codigo")
 	private Entidade entidade;
-
+	
 	public Endereco(String rua, String numero, String bairro, String cidade,
 			String uf, String cep) {
 		super();

@@ -47,9 +47,9 @@
 													<label>Entidade</label> <input type="text"
 														class="form-control" name="nomeEntidade"
 														placeholder="Entidade"
-														value="${usuario.entidade.nomeEntidade}" disabled /> <input
+														value="${entidade.nomeEntidade}" disabled /> <input
 														type="hidden" name="entidade.nomeEntidade"
-														value="${usuario.entidade.nomeEntidade}" />
+														value="${entidade.nomeEntidade}" />
 												</div>
 											</div>
 											<div class="col-md-3">
@@ -65,7 +65,7 @@
 												<div class="form-group">
 													<label for="exampleInputEmail1">Email</label> <input
 														type="email" class="form-control" name="entidade.email"
-														placeholder="Email" value="${usuario.entidade.email}" />
+														placeholder="Email" value="${entidade.email}" />
 												</div>
 											</div>
 										</div>
@@ -74,19 +74,19 @@
 												<div class="form-group">
 													<label>Rua</label> <input type="text" class="form-control"
 														name="endereco.rua" placeholder="Rua"
-														value="${usuario.entidade.endereco.rua}">
+														value="${endereco.rua}">
 												</div>
 											</div>
 											<div class="form-group col-md-4">
 												<label>Bairro</label> <input type="text"
 													class="form-control" name="endereco.bairro"
 													placeholder="Bairro"
-													value="${usuario.entidade.endereco.bairro}">
+													value="${endereco.bairro}">
 											</div>
 											<div class="form-group col-md-2">
 												<label>Nº</label> <input type="text" class="form-control"
 													name="endereco.numero" placeholder="Nº"
-													value="${usuario.entidade.endereco.numero}">
+													value="${endereco.numero}">
 											</div>
 										</div>
 										<div class="row">
@@ -95,21 +95,21 @@
 													<label>Cidade</label> <input type="text"
 														class="form-control" name="endereco.cidade"
 														placeholder="Cidade"
-														value="${usuario.entidade.endereco.cidade}">
+														value="${endereco.cidade}">
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
 													<label>UF</label> <input type="text" class="form-control"
 														name="endereco.uf" placeholder="Unidade Federativa"
-														value="${usuario.entidade.endereco.uf}">
+														value="${endereco.uf}">
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
 													<label>CEP</label> <input type="text" class="form-control"
 														name="endereco.cep" placeholder="CEP"
-														value="${usuario.entidade.endereco.cep}">
+														value="${endereco.cep}">
 												</div>
 											</div>
 										</div>
@@ -118,7 +118,7 @@
 												<div class="form-group">
 													<label>Area de atuação</label> <input type="text"
 														name="entidade.areaAtuacao"
-														value="${usuario.entidade.areaAtuacao}"
+														value="${entidade.areaAtuacao}"
 														class="form-control"
 														placeholder="Aqui vai a area de atuação">
 												</div>
@@ -131,7 +131,7 @@
 													<textarea rows="5" class="form-control"
 														placeholder="Descricação da entidade"
 														name="entidade.descricao"
-														value="${usuario.entidade.descricao}">${usuario.entidade.descricao}</textarea>
+														value="${entidade.descricao}">${entidade.descricao}</textarea>
 												</div>
 											</div>
 										</div>
@@ -155,12 +155,12 @@
 											src="data:image/jpeg;base64,${imagem}" width="100" height="100" alt="..." />
 
 
-											<h4 class="title">${usuario.entidade.nomeEntidade}<br />
+											<h4 class="title">${entidade.nomeEntidade}<br />
 												<small>${usuario.login}</small>
 											</h4>
 										</a>
 									</div>
-									<p class="description text-center">"${usuario.entidade.descricao}"</p>
+									<p class="description text-center">"${entidade.descricao}"</p>
 								</div>
 							</div>
 						</div>

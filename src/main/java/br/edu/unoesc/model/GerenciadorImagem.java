@@ -20,7 +20,7 @@ public class GerenciadorImagem {
 	  public void salva(InputStream imagem, Usuario usuario) throws IOException, DAOException {
 		    byte[] bytes = IOUtils.toByteArray(imagem);
 		    AvatarDAO avatarDao = new AvatarDAO();
-		    avatarDao.salvaBlob(usuario.getAvatar(), bytes);
+		    avatarDao.salvaBlob(usuario.getAvatares().get(0), bytes);
 		    
 		    UsuarioDAO usuarioDao = new UsuarioDAO();
 		    usuarioDao.salvar(usuario);

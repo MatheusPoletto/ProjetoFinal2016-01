@@ -14,6 +14,9 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 import br.edu.unoesc.dao.AtuacaoDAO;
+import br.edu.unoesc.dao.AvatarDAO;
+import br.edu.unoesc.dao.EnderecoDAO;
+import br.edu.unoesc.dao.EntidadeDAO;
 import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.dao.VagaDAO;
 import br.edu.unoesc.dao.VoluntarioDAO;
@@ -50,10 +53,15 @@ public class VoluntarioController {
 		Usuario usuarioExistente = usuarioDAO.buscarUsuario(usuario.getLogin());
 		if(usuarioExistente == null){
 			try {
-				usuario.setVoluntario(voluntario);
+				voluntario.setUsuario(usuario);
 				Avatar avatar = new Avatar(null);
-				usuario.setAvatar(avatar);
+				avatar.setUsuario(usuario);
+				
+				VoluntarioDAO voluntarioDao = new VoluntarioDAO();
+				AvatarDAO avatarDao = new AvatarDAO();
 				usuarioDAO.salvar(usuario);
+				avatarDao.salvar(avatar);
+				voluntarioDao.salvar(voluntario);
 				result.include("mensagem", "<div class=\"alert alert-sucess\" role=\"alert\">Usuário cadastrado!</div>");
 				result.redirectTo("/cadastro");
 			} catch (DAOException e) {
@@ -75,71 +83,10 @@ public class VoluntarioController {
 		result.include("usuario", usuarioSessao);
 	}
 	
-	@Get("/passaCodigoVoluntario/{codigo},{tipo}")
-	public void passaCodigoVoluntario(Long codigo, String tipo){
-		Usuario usuario = usuarioDAO.buscar(Usuario.class, codigo);
-		result.include("usuario", usuario);
-		System.out.println(tipo);
-		
-		switch (tipo) {
-		case "perfil":
-			//result.redirectTo(this).perfilEntidade(usuario);
-			break;
-		case "inicio":
-			result.redirectTo(this).homeVoluntario();
-			break;
-		case "cadastrarVaga":
-			//result.redirectTo(this).cadastrarVaga(usuario);
-		default:
-			break;
-		}
+	@Get("/voluntarioVerVaga/{codigo}")
+	public void voluntarioVerVaga(Long codigo) {
+		VagaDAO vagaDao = new VagaDAO();		
+		result.include("vaga", vagaDao.buscar(Vaga.class, codigo));
 	}
-	
-	@Get("/voluntarioInterrese/{usuario},{atuacao}")
-	public void voluntarioInterrese(Long codigo, Long atuacao) {
-		Usuario usuario = usuarioDAO.buscar(Usuario.class, codigo);
-		
-		result.include("usuario", usuario);
-		result.include("atuacao", atuacao);
-	}
-	
-/*
-	@Get("/home")
-	public void home() {
-		if (pessoa != null) {
-			result.include("pessoa", pessoa);
-		}
-		result.include("mensagem", "Olá Mundo");
-	}
-
-	@Post("/cadastrar")
-	public void cadastrar(Pessoa pessoa) {
-		if (pessoa != null) {
-			try {
-				pessoaDao.salvar(pessoa);
-			} catch (DAOException e) {
-				// validator.add(new Messages());
-			}
-		}
-		result.include("agendaview", pessoaDao.listar(Pessoa.class));
-	}
-
-	@Get("/editar/{codigo}")
-	public void editar(Long codigo) {
-		this.pessoa = pessoaDao.buscar(Pessoa.class, codigo);
-		result.forwardTo(PessoaController.class).home();
-	}
-
-	@Get("/excluir/{codigo}")
-	public void excluir(Long codigo) {
-		Pessoa pes = pessoaDao.buscar(Pessoa.class, codigo);
-		try {
-			pessoaDao.excluir(pes);
-			result.forwardTo(PessoaController.class).cadastrar(null);
-		} catch (DAOException e) {
-			validator.onErrorForwardTo(PessoaController.class).cadastrar(null);
-		}
-	}
-*/
 }
 

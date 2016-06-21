@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -32,7 +33,7 @@ public @Data class Entidade implements MinhaEntidade {
 	
 	@Column
 	private String nomeEntidade;
-	
+
 	@Column
 	private String areaAtuacao;
 	
@@ -44,14 +45,13 @@ public @Data class Entidade implements MinhaEntidade {
 	
 	@Column
 	private String descricao;
-		
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
-	@PrimaryKeyJoinColumn
+	
+	@ManyToOne
+	@JoinColumn(name="usuario_codigo")
 	private Usuario usuario;
 	
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
-	@PrimaryKeyJoinColumn
-	private Endereco endereco;
+	@OneToMany(mappedBy = "entidade", targetEntity = Endereco.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Endereco> enderecos = new ArrayList<>();
 	
 	
 	@OneToMany(mappedBy = "entidade", targetEntity = Vaga.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
