@@ -18,7 +18,7 @@ import br.edu.unoesc.model.Vaga;
 public class NovoTeste {
 
 	public static void main(String[] args) throws DAOException {
-		String bigLog = "";
+		/*String bigLog = "";
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario entidadeSessao = usuarioDAO.buscar(Usuario.class, 1l);
 		
@@ -96,6 +96,6 @@ public class NovoTeste {
 		user.setEntidade(teste);
 		
 		System.out.println(user.getEntidade().getEndereco().getRua());
-		usuarioDao.salvar(user);
-	 */
+		usuarioDao.salvar(user);*/
+	}
 }
