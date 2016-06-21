@@ -69,7 +69,7 @@
 																				<td>${atuacao.vaga.nomeVaga}</td>
 																				<td>${atuacao.vaga.descricao}</td>
 																				<td>${atuacao.voluntario.nome}</td>
-																				<td>Ver inscrição</td>
+																			<td><a href="<c:url value='/abrirInscricao/${atuacao.codigo}'/>">Ver inscrição</a></td>
 										  									</tr>
 																		</c:forEach>				
 																	</tbody>

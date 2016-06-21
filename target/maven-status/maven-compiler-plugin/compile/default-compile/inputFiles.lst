@@ -1,10 +1,12 @@
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\Atuacao.java
+C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\TesteVagaAtuacao.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\dao\VagaDAO.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\DaoTeste.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\Vaga.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\dao\GenericDAO.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\Avatar.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\Main.java
+C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\dao\AtuacaoDAO.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\Endereco.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\Usuario.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\dao\UsuarioDAO.java
@@ -18,6 +20,7 @@ C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\com\caelum\vraptor\controller\IndexController.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\Voluntario.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\com\caelum\vraptor\controller\VagaController.java
+C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\TestesNovoMapeamento.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\exception\DAOException.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\MinhaEntidade.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\com\caelum\vraptor\controller\AcessoController.java

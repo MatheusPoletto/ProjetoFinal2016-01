@@ -2,14 +2,20 @@ package br.com.caelum.vraptor.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -40,6 +46,8 @@ public class EntidadeController {
 	private Validator validator;
 	
 	private Usuario usuarioSessao = new Usuario();
+	
+	private Atuacao atuacao = new Atuacao();
 
 	public void index(Usuario usuario) {
 		this.usuarioSessao = usuario;
@@ -122,6 +130,39 @@ public class EntidadeController {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
 		result.include("usuario", usuarioSessao);
 		result.include("vagaview", usuarioSessao.getEntidade().getVagas());
+	}
+	
+	@Path("/confirmarVoluntario")
+	public void confirmarVoluntario() {
+		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
+		result.include("atuacao", atuacao);
+		
+		Date date = atuacao.getVoluntario().getNascimento();
+	    Calendar cal = Calendar.getInstance();
+	    cal.setTime(date);
+	    int year = cal.get(Calendar.YEAR);
+	    int month = cal.get(Calendar.MONTH);
+	    int day = cal.get(Calendar.DAY_OF_MONTH);
+		
+		
+		result.include("idadeVoluntario", LocalDate.now().getYear() - year);
+		result.include("usuario", usuarioSessao);
+	}
+	
+	@Get("/abrirInscricao/{codigo}")
+	public void abrirInscricao(Long codigo) {
+		//this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
+		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
+		this.atuacao = atuacaoDao.buscar(Atuacao.class, codigo);
+		result.redirectTo(this).confirmarVoluntario();
+	}
+	
+	@Post("/aceitarInscricao")
+	public void aceitarInscricao() throws DAOException {
+		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
+		this.atuacao.setStatus("Inscrição confirmada pela entidade " +usuarioSessao.getEntidade().getNomeEntidade());
+		atuacaoDao.salvar(this.atuacao);
+		result.redirectTo(this).homeEntidade();
 	}
 	
 	
