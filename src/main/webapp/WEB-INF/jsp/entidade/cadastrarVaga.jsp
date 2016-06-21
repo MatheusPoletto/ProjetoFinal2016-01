@@ -88,7 +88,7 @@
                   				<label class="col-sm-2">Urgência</label>
                   				<div class="col-xs-12 col-sm-9">
                   				<select class="col-xs-12 col-sm-12" name="urgencia" onchange="trocaUrgencia()" id="listaUrgencia">
-									<option value="option">Por favor selecione a urgência da vaga</option>
+									<option value="option" >Por favor selecione a urgência da vaga</option>
                    					<option value="option">Muito Importante - Precisamos de voluntários urgentemente</option>
                     				<option value="option">Normal</option>
                   				</select>

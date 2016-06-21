@@ -23,7 +23,10 @@
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-left"></ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="<c:url value='/cadastro'/>">Deslogar</a></li>
+						 
+							<li><a href="<c:url value='/cadastro'/>"> 
+							 Deslogar
+							</a></li>
 						</ul>
 					</div>
 				</div>
@@ -161,16 +164,22 @@
 								</div>
 							</div>
 						</div>
-
+						
+						<div class="col-sm-12 col-md-4">
+						
 						<form action="<c:url value="/salvarImagem/imagem"/>"
 							method="POST" enctype="multipart/form-data">
 							<fieldset>
 								<legend>Upload de Imagem</legend>
 								<input type="file" name="imagem" />
+							
 
 								<button type="submit">Enviar</button>
 							</fieldset>
 						</form>
+						</div>
+
+						
 					</div>
 				</div>
 			</div>
