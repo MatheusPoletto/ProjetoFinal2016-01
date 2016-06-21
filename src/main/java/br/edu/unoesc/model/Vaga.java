@@ -69,6 +69,6 @@ public @Data class Vaga implements MinhaEntidade{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinTable(name = "vaga_atuacao", joinColumns = { @JoinColumn(name = "vaga_codigo", referencedColumnName = "codigo") }, 
 									 inverseJoinColumns = { @JoinColumn(name = "atuacao_codigo", referencedColumnName = "codigo") })
-	private Atuacao atuacaoes;
+	private Atuacao atuacao;
 	
 }

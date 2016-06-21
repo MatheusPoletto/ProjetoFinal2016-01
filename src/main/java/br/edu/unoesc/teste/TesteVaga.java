@@ -1,40 +1,28 @@
 package br.edu.unoesc.teste;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.unoesc.dao.VagaDAO;
+import br.edu.unoesc.dao.VoluntarioDAO;
+import br.edu.unoesc.exception.DAOException;
+import br.edu.unoesc.model.Atuacao;
+import br.edu.unoesc.model.Entidade;
 import br.edu.unoesc.model.Vaga;
+import br.edu.unoesc.model.Voluntario;
 
 public class TesteVaga {
 
-	public static void main(String[] args) {
-		/*VagaDAO vagaDao = new VagaDAO();
-		List<Vaga> vagas  = new ArrayList<>();
-		//vagas = vagaDao.listarAbertas();
-		
-		vagas = vagaDao.listar(Vaga.class);
-	
-		for(Vaga vaga : vagas){
-			System.out.println(vaga.getDescricao());
-		}*/
-		
+	public static void main(String[] args) throws DAOException {
 		VagaDAO vagaDao = new VagaDAO();
 		
-		Vaga vaga = new Vaga();
-		vaga.setNomeVaga("Festa de aniversário");
-		vaga.setQuantidadePessoa(1);
-		vaga.setDescricao("Preciso de alguém para ajudar com personalização.");
-		vaga.setQuantidadeVaga(1);
-		vaga.setImportancia("MÉDIA");
-		vaga.setPresencial("Não");
-		vaga.setEstado("SC");
-		vaga.setCidade("Ponte Serrada");
-		vaga.setDataCadastro(new Date(2016, 06, 10));
-		vaga.setDataValidade(new Date(2016, 06, 12));
-		vaga.setEntidade(entidade);
-		entidade.adicionarVaga(vaga);
+		Vaga vaga = vagaDao.buscar(Vaga.class, 1l);
+		System.out.println(vaga.getCidade());
 		
+		
+		
+		System.exit(0);
 	}
 
 }

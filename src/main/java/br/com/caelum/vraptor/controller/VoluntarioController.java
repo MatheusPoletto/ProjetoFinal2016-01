@@ -17,6 +17,7 @@ import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.dao.VoluntarioDAO;
 import br.edu.unoesc.exception.DAOException;
 import br.edu.unoesc.model.Atuacao;
+import br.edu.unoesc.model.Avatar;
 import br.edu.unoesc.model.Entidade;
 import br.edu.unoesc.model.Usuario;
 import br.edu.unoesc.model.Vaga;
@@ -45,16 +46,26 @@ public class VoluntarioController {
 	
 	@Post("/cadastrarVoluntario")
 	public void cadastrarVoluntario(Usuario usuario, Voluntario voluntario) {
-		if (usuario != null) {
+		Usuario usuarioExistente = usuarioDAO.buscarUsuario(usuario.getLogin());
+		System.out.println("paassedd");
+		if(usuarioExistente == null){
 			try {
-			//	voluntario.setUsuario(usuario);
-			//	usuario.adcionarVoluntario(voluntario);
+				usuario.setVoluntario(voluntario);
+				Avatar avatar = new Avatar();
+				byte[] b = new byte[20];
+				avatar.setImage(b);
+				usuario.setAvatar(avatar);
 				usuarioDAO.salvar(usuario);
+				result.include("mensagem", "<div class=\"alert alert-sucess\" role=\"alert\">Usuário cadastrado!</div>");
+				result.redirectTo("/cadastro");
 			} catch (DAOException e) {
-				
+				result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Ocorreu um erro. Tente novamente!" + e.getMessage() + "</div>");
+				result.redirectTo("/cadastro");
 			}
+		}else{
+			result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Tente outro usuário!</div>");
+			result.redirectTo("/cadastro");
 		}
-		result.redirectTo("/");
 	}
 	
 	@Path("/homeVoluntario")
