@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -44,8 +46,8 @@ public @Data class Voluntario implements MinhaEntidade {
 	@Temporal(TemporalType.DATE)
 	private Date nascimento;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
-	@PrimaryKeyJoinColumn
+	@ManyToOne
+	@JoinColumn(name="usuario_codigo")
 	private Usuario usuario;
 
 	public Voluntario(String nome, String celular, String email,

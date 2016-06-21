@@ -1,8 +1,12 @@
 package br.edu.unoesc.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -36,8 +41,11 @@ public @Data class Usuario implements MinhaEntidade {
 	@Column
 	private String senha;
 
-	@OneToOne(mappedBy="usuario", cascade = CascadeType.ALL)
-	private Voluntario voluntario;
+	//@OneToOne(mappedBy="usuario", cascade = CascadeType.ALL)
+	//private Voluntario voluntario;
+	
+	@OneToMany(mappedBy = "usuario", targetEntity = Voluntario.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Voluntario> voluntarios = new ArrayList<>();
 
 	@OneToOne(mappedBy="usuario", cascade = CascadeType.ALL)
 	private Entidade entidade;
