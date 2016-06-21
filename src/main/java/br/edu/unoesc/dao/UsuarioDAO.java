@@ -14,7 +14,7 @@ public class UsuarioDAO extends HibernateDAO<Usuario> {
 		try {
 			TypedQuery<Usuario> query = em.createNamedQuery("FILTRA_POR_LOGIN",
 					Usuario.class);
-			query.setParameter(1, login);
+			query.setParameter("login", login);
 			return query.getSingleResult();
 		} catch (NoResultException e) {
 			return null;

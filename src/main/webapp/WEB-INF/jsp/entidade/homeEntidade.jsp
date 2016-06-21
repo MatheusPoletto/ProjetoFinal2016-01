@@ -30,7 +30,7 @@
 
 
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='/cadastro'/>">
                                 Deslogar
                             </a>
                         </li>
