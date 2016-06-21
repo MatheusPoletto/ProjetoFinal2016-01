@@ -19,7 +19,7 @@ public class TesteVagaAtuacao {
 		VagaDAO atDao = new VagaDAO();
 		
 		List<Vaga> at = new ArrayList<>();
-		at = atDao.vagasDisponiveis(1l);
+		//at = atDao.vagasDisponiveis(1l);
 		
 		VoluntarioDAO volDao = new VoluntarioDAO();
 		

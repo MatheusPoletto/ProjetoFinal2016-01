@@ -26,7 +26,7 @@ public class VagaDAO  extends HibernateDAO<Vaga>{
 		}
 	}
 	
-	public List<Vaga> vagasDisponiveis(Long entidade_codigo){
+	public List<Vaga> vagasDisponiveisPorEntidade(Long entidade_codigo){
 		this.conectar();
 		try {
 			EntidadeDAO entDao = new EntidadeDAO();
@@ -35,6 +35,18 @@ public class VagaDAO  extends HibernateDAO<Vaga>{
 			TypedQuery<Vaga> query = em.createNamedQuery("NM_VAGAS_ABERTAS", Vaga.class);
 			query.setParameter(1, entidade);
 			return query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			this.finalizar();
+		}
+	}
+	
+	public List<Vaga> vagasDisponiveisVoluntario(){
+		this.conectar();
+		try {
+			TypedQuery<Vaga> query = em.createNamedQuery("NM_VAGAS_SUGERIDA_VOLUNTARIO", Vaga.class);
+			return query.setMaxResults(10).getResultList();
 		} catch (NoResultException e) {
 			return null;
 		} finally {

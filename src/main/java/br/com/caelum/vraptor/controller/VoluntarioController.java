@@ -13,7 +13,9 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
+import br.edu.unoesc.dao.AtuacaoDAO;
 import br.edu.unoesc.dao.UsuarioDAO;
+import br.edu.unoesc.dao.VagaDAO;
 import br.edu.unoesc.dao.VoluntarioDAO;
 import br.edu.unoesc.exception.DAOException;
 import br.edu.unoesc.model.Atuacao;
@@ -67,30 +69,10 @@ public class VoluntarioController {
 	@Path("/homeVoluntario")
 	public void homeVoluntario() {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
-		//Voluntario voluntario = usuario.getVoluntarios().get(0);
 		
-		
-		
-		//NECESSARIO PARA MOSTRAR POSSIVEIS ATUACOES EM ABERTO
-		List<Atuacao> atuacoesDisponiveis = new ArrayList<>();
-		int tamanhoMaximo = 10; //ATUACOES QUE SERAO EXIBIDAS
-		
-		//for(Usuario procuraEntidade : usuarioDAO.listar(Usuario.class)){//PROCURA TODAS AS ENTIDADES
-			/*if((!procuraEntidade.getEntidades().isEmpty()) && (atuacoesDisponiveis.size() < tamanhoMaximo)){
-				Entidade entidadeAnalisa = procuraEntidade.getEntidades().get(0);
-				for(Vaga vaga : entidadeAnalisa.getVagas()){//PROCURA TODAS AS VAGAS DA ENTIDADE EM ABERTO
-					if(vaga.getAtuacoes().get(0).getStatus().equals("Aberta")){
-						if(atuacoesDisponiveis.size() < tamanhoMaximo){
-							atuacoesDisponiveis.add(vaga.getAtuacoes().get(0));
-						}
-					}	
-				}	
-			}
-		}*/
-		//FIM PROCURA ATUACOES
-		//result.include("voluntario", voluntario);	
-		//result.include("atuacaoview", atuacoesDisponiveis);		
-		
+		VagaDAO vagaDao = new VagaDAO();
+		result.include("vagasDisponiveis", vagaDao.vagasDisponiveisVoluntario());
+		result.include("usuario", usuarioSessao);
 	}
 	
 	@Get("/passaCodigoVoluntario/{codigo},{tipo}")

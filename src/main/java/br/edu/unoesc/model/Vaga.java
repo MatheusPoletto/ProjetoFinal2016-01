@@ -35,7 +35,8 @@ import lombok.ToString;
 @EqualsAndHashCode(of = {"codigo"})
 @Entity
 @NamedQueries({ @NamedQuery(name = "NM_VAGAS", query = "select v from Vaga v where v.entidade = ?1 "),
-				@NamedQuery(name = "NM_VAGAS_ABERTAS", query = "from Vaga v where v.entidade = ?1 and v.quantidadeVaga > 0 ")})
+				@NamedQuery(name = "NM_VAGAS_ABERTAS", query = "from Vaga v where v.entidade = ?1 and v.quantidadeVaga > 0 "),
+				@NamedQuery(name = "NM_VAGAS_SUGERIDA_VOLUNTARIO", query = "from Vaga v where v.quantidadeVaga > 0")})
 public @Data class Vaga implements MinhaEntidade{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

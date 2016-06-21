@@ -48,33 +48,31 @@
 									<div class="col-md-12">
 										<div class="card">
 											<div class="header">
-												<h4 class="title">Últimas vagas que foram abertas</h4>
-												<p class="category">Veja abaixo as últimas vagas
-													cadastradas em nosso site</p>
+												<h4 class="title">Vagas disponíves</h4>
+												<p class="category">Vagas abertas por entidades que estão aguardando voluntários para começar</p>
 											</div>
 											<div class="content table-responsive table-full-width">
 												<table class="table table-hover table-striped">
 													<thead>
-														<th>Vaga nº</th>
+														<th>Vaga Nº</th>
 														<th>Nome</th>
 														<th>Presencial?</th>
-														<th>Estado</th>
 														<th>Cidade</th>
-
+														<th>Estado</th>
 														<th>Descrição</th>
 														<th>Ver</th>
 													</thead>
 													<tbody>
-														<c:forEach items="${atuacaoview}" var="atuacao">
+														<c:forEach items="${vagasDisponiveis}" var="vaga">
 															<tr>
-																<td>${atuacao.codigo}</td>
-																<td>${atuacao.vaga.nomeVaga}</td>
-																<td>${atuacao.vaga.presencial}</td>
-																<td>${atuacao.vaga.cidade}</td>
-																<td>${atuacao.vaga.estado}</td>
-																<td>${atuacao.vaga.descricao}</td>
-													
-																<td><a href="<c:url value='/passaInteresse/${usuario.codigo},${atuacao.codigo}'/>">INCREVER-SE</a></td>
+																<td>${vaga.codigo}</td>
+																<td>${vaga.nomeVaga}</td>
+																<td>${vaga.presencial}</td>
+																<td>${vaga.cidade}</td>
+																<td>${vaga.estado}</td>
+																<td>${vaga.descricao}</td>
+																<td><a
+																	href="<c:url value='/voluntarioVerVaga/${vaga.codigo}'/>">Detalhes</a></td>
 															</tr>
 														</c:forEach>
 
