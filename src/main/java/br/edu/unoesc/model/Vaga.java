@@ -10,8 +10,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -30,7 +35,15 @@ import lombok.ToString;
 @ToString(of = {"codigo", "nomeVaga", "descricao", "importancia", "presencial", "estado", "cidade"})
 @EqualsAndHashCode(of = {"codigo"})
 @Entity
+/*@NamedQueries({
+	@NamedQuery(name=Vaga.FILTRA_POR_ABERTA, query = "SELECT v FROM Vaga v JOIN Atuacao a WHERE a.vaga_codigo != v.codigo") })*/
+//@NamedQueries({
+		/*@NamedQuery(name="VagaAberta", query = "SELECT v FROM Vaga v JOIN Atuacao a WHERE a.vaga_codigo != v.codigo "),*/
+		//@NamedQuery(name = "br.edu.unoesc.model.Vaga", query = "SELECT v FROM Vaga v LEFT JOIN Atuacao a WHERE a.vaga_codigo != v.codigo ") })
 public @Data class Vaga implements MinhaEntidade{
+	//public static final String FILTRA_POR_ABERTA = "FILTRA_POR_ABERTA";
+	//public static final String TODOS = "TODOS";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
@@ -53,14 +66,9 @@ public @Data class Vaga implements MinhaEntidade{
 	@ManyToOne(optional = false, targetEntity = Entidade.class)
 	private Entidade entidade;
 	
-	@OneToMany(mappedBy = "vaga", targetEntity = Atuacao.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Atuacao> atuacoes = new ArrayList<>();
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinTable(name = "vaga_atuacao", joinColumns = { @JoinColumn(name = "vaga_codigo", referencedColumnName = "codigo") }, 
+									 inverseJoinColumns = { @JoinColumn(name = "atuacao_codigo", referencedColumnName = "codigo") })
+	private Atuacao atuacaoes;
 	
-	public void adicionarAtuacao(Atuacao atuacao){
-		if(this.atuacoes.size() < this.quantidadeVaga){
-			this.atuacoes.add(atuacao);
-		}else{
-			System.out.println("estourou o limite da vaga e nao foi adicionado!");
-		}
-	}
 }

@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Random;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.imageio.ImageIO;
@@ -36,7 +37,7 @@ import br.edu.unoesc.model.Voluntario;
 @Controller
 public class EntidadeController {
 	@Inject
-	private UsuarioDAO usuarioDAO;
+	private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
 	@Inject
 	private Result result;
@@ -166,7 +167,10 @@ public class EntidadeController {
 			try {
 				usuario.setEntidade(entidade);
 				entidade.setEndereco(endereco);
-				usuario.setAvatar(new Avatar());
+				Avatar avatar = new Avatar();
+				byte[] b = new byte[20];
+				avatar.setImage(b);
+				usuario.setAvatar(avatar);
 				usuarioDAO.salvar(usuario);
 				result.include("mensagem", "<div class=\"alert alert-sucess\" role=\"alert\">Usuário cadastrado!</div>");
 				result.redirectTo("/cadastro");

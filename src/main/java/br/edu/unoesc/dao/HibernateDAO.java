@@ -91,7 +91,7 @@ public abstract class HibernateDAO<T extends MinhaEntidade> implements GenericDA
 	public List<T> listar(Class<T> classe) {
 		this.conectar();
 		try {
-			TypedQuery<T> query = em.createNamedQuery("TODOS", classe);
+			TypedQuery<T> query = em.createNamedQuery(classe.getName(), classe);
 			return query.getResultList();
 		} finally {
 			this.finalizar();

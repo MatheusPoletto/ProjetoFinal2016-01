@@ -44,7 +44,7 @@ public class AcessoController {
 					if (!(usuarioBusca.getEntidade() == null)) {// SE FOR ENTIDADE
 						result.redirectTo(EntidadeController.class).index(usuarioBusca);
 					} else {// SE TIVER ELE EH VOLUNTARIO
-						result.redirectTo(VoluntarioController.class).homeVoluntario(usuarioBusca);
+						result.redirectTo(VoluntarioController.class).index(usuarioBusca);
 					}
 				} else {
 			        result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Senha incorreta!</div>");

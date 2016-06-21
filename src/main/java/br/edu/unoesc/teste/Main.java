@@ -40,7 +40,7 @@ public static void main(String[] args) throws DAOException {
 	
 	//usuarioEntidade.adcionarEntidade(entidade);
 	
-	Vaga vaga = new Vaga();
+	/*Vaga vaga = new Vaga();
 	vaga.setNomeVaga("Festa de aniversário");
 	vaga.setQuantidadePessoa(1);
 	vaga.setDescricao("Preciso de alguém para ajudar com personalização.");
@@ -60,7 +60,7 @@ public static void main(String[] args) throws DAOException {
 	atuacao.setVoluntario(voluntario);
 	atuacao.setData(new Date(2016, 06, 11));
 	
-	vaga.adicionarAtuacao(atuacao);
+	vaga.adicionarAtuacao(atuacao);*/
 	
 	UsuarioDAO usuarioDao = new UsuarioDAO();
 	usuarioDao.salvar(usuarioPessoa);

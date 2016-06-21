@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
@@ -21,6 +22,7 @@ import br.edu.unoesc.model.Usuario;
 import br.edu.unoesc.model.Vaga;
 import br.edu.unoesc.model.Voluntario;
 
+@ApplicationScoped
 @Controller
 public class VoluntarioController {
 
@@ -32,10 +34,13 @@ public class VoluntarioController {
 	
 	@Inject
 	private Validator validator;
+
+	private Usuario usuarioSessao = new Usuario();
 	
-	@Path("/index")
-	public void index() {
-		result.include("variable", "");
+	//@Path("/index")
+	public void index(Usuario usuario) {
+		this.usuarioSessao = usuario;
+		result.redirectTo(this).homeVoluntario();
 	}
 	
 	@Post("/cadastrarVoluntario")
@@ -53,8 +58,8 @@ public class VoluntarioController {
 	}
 	
 	@Path("/homeVoluntario")
-	public void homeVoluntario(Usuario usuario) {
-		usuario = usuarioDAO.buscar(Usuario.class, usuario.getCodigo());
+	public void homeVoluntario() {
+		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
 		//Voluntario voluntario = usuario.getVoluntarios().get(0);
 		
 		
@@ -92,7 +97,7 @@ public class VoluntarioController {
 			//result.redirectTo(this).perfilEntidade(usuario);
 			break;
 		case "inicio":
-			result.redirectTo(this).homeVoluntario(usuario);
+			result.redirectTo(this).homeVoluntario();
 			break;
 		case "cadastrarVaga":
 			//result.redirectTo(this).cadastrarVaga(usuario);

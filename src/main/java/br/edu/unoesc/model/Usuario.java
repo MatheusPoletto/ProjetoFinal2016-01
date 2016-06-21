@@ -33,10 +33,10 @@ import lombok.ToString;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = Usuario.FILTRA_POR_LOGIN, query = "from Usuario a where upper(a.login) like ? "),
-		@NamedQuery(name = Usuario.TODOS, query = "from Usuario a ") })
+		@NamedQuery(name = "Usuario", query = "from Usuario a ") })
 public @Data class Usuario implements MinhaEntidade {
 	public static final String FILTRA_POR_LOGIN = "FILTRA_POR_LOGIN";
-	public static final String TODOS = "TODOS";
+	//public static final String TODOS = "TODOS";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;

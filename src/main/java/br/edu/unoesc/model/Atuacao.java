@@ -1,15 +1,21 @@
 package br.edu.unoesc.model;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -38,8 +44,10 @@ public @Data class Atuacao implements MinhaEntidade {
 	@ManyToOne(optional = false, targetEntity = Voluntario.class)
 	private Voluntario voluntario; 
 	
-	@ManyToOne(optional = false, targetEntity = Vaga.class)
-	private Vaga vaga;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "vaga_atuacao", joinColumns = { @JoinColumn(name = "atuacao_codigo", referencedColumnName = "codigo") }, 
+									 inverseJoinColumns = { @JoinColumn(name = "vaga_codigo", referencedColumnName = "codigo") })
+	private List<Vaga> vagas = new ArrayList<>();
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
