@@ -14,7 +14,7 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="<c:url value="/"/>">Home</a></li>
-				<li><a href="<c:url value="/contato"/>">Contato</a></li>
+				
 			</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a></li>
