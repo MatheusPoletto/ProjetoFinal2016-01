@@ -1,5 +1,6 @@
 package br.edu.unoesc.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,26 +30,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString(of = {"codigo", "nomeVaga", "descricao", "importancia", "presencial", "estado", "cidade"})
 @EqualsAndHashCode(of = {"codigo"})
 @Entity
-/*@NamedQueries({
-	@NamedQuery(name=Vaga.FILTRA_POR_ABERTA, query = "SELECT v FROM Vaga v JOIN Atuacao a WHERE a.vaga_codigo != v.codigo") })*/
-//@NamedQueries({
-		/*@NamedQuery(name="VagaAberta", query = "SELECT v FROM Vaga v JOIN Atuacao a WHERE a.vaga_codigo != v.codigo "),*/
-		//@NamedQuery(name = "br.edu.unoesc.model.Vaga", query = "SELECT v FROM Vaga v LEFT JOIN Atuacao a WHERE a.vaga_codigo != v.codigo ") })
+@NamedQueries({ @NamedQuery(name = "NM_VAGAS", query = "select v from Vaga v where v.entidade = ?1 ")})
 public @Data class Vaga implements MinhaEntidade{
-	//public static final String FILTRA_POR_ABERTA = "FILTRA_POR_ABERTA";
-	//public static final String TODOS = "TODOS";
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	//private Integer idEntidade;
+
 	private String nomeVaga;
 	private Integer quantidadePessoa;
 	private String descricao;
@@ -58,7 +50,7 @@ public @Data class Vaga implements MinhaEntidade{
 	private String cidade;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCadastro;
+	private Date dataCadastro = new Date(Calendar.getInstance().getTime().getTime());
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataValidade;
@@ -66,9 +58,35 @@ public @Data class Vaga implements MinhaEntidade{
 	@ManyToOne(optional = false, targetEntity = Entidade.class)
 	private Entidade entidade;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "vaga_atuacao", joinColumns = { @JoinColumn(name = "vaga_codigo", referencedColumnName = "codigo") }, 
-									 inverseJoinColumns = { @JoinColumn(name = "atuacao_codigo", referencedColumnName = "codigo") })
-	private Atuacao atuacao;
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="vaga_codigo")
+	private List<Atuacao> atuacao;
+	
+	public boolean adicionarVaga(Atuacao atuacao){
+		if(this.getQuantidadeVaga() > 0){
+			this.atuacao.add(atuacao);
+			this.quantidadeVaga = this.quantidadeVaga - 1;
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public Vaga(String nomeVaga, Integer quantidadePessoa, String descricao,
+			Integer quantidadeVaga, String importancia, String presencial,
+			String estado, String cidade, Date dataValidade, Entidade entidade) {
+		super();
+		this.nomeVaga = nomeVaga;
+		this.quantidadePessoa = quantidadePessoa;
+		this.descricao = descricao;
+		this.quantidadeVaga = quantidadeVaga;
+		this.importancia = importancia;
+		this.presencial = presencial;
+		this.estado = estado;
+		this.cidade = cidade;
+		this.dataValidade = dataValidade;
+		this.entidade = entidade;
+	}
+	
 	
 }

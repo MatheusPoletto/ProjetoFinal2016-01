@@ -21,17 +21,25 @@ public class TesteVaga {
 		Voluntario voluntario = voluntarioDAO.buscar(Voluntario.class, 1l);
 		
 		VagaDAO vagaDao = new VagaDAO();
-		Vaga vaga = vagaDao.buscar(Vaga.class, 1l);
+		//Vaga vaga = vagaDao.buscar(Vaga.class, 1l);
+		//vaga.setQuantidadeVaga(3);
 		
-		Atuacao atuacao = new Atuacao();
+		
+		List<Vaga> vagas = vagaDao.listarTodos();
+		
+		for(Vaga vaga:vagas){
+			System.out.println(vaga.getDescricao());
+		}
+		
+		/*Atuacao atuacao = new Atuacao();
 		atuacao.setStatus("andando");
 		atuacao.setVoluntario(voluntario);
 		//atuacao.setVagas(vaga);
 		atuacao.setData(new java.util.Date(1997,10,10));
 	
 		vaga.setAtuacao(atuacao);
-		
-		vagaDao.salvar(vaga);
+		*/
+		//vagaDao.salvar(vaga);
 		
 		
 		System.exit(0);

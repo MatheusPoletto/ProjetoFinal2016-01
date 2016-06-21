@@ -10,31 +10,17 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
-
-
-
-
-
-
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "codigo")
 @ToString(of = {"codigo", "nomeEntidade", "areaAtuacao", "email", "telefone", "fotoEntidade"})
@@ -43,21 +29,28 @@ public @Data class Entidade implements MinhaEntidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
+	
+	@Column
 	private String nomeEntidade;
-	private String areaAtuacao; //se ajuda crianças, pessoas que não tem o que comer, etc; 
+	
+	@Column
+	private String areaAtuacao;
+	
+	@Column
 	private String email;
+	
+	@Column
 	private String telefone; 
+	
+	@Column
 	private String descricao;
-	private String fotoEntidade;
+		
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+	@PrimaryKeyJoinColumn
+	private Usuario usuario;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "usuario_entidade", joinColumns = { @JoinColumn(name = "entidade_codigo", referencedColumnName = "codigo") }, 
-									 inverseJoinColumns = { @JoinColumn(name = "usuario_codigo", referencedColumnName = "codigo") })
-	private List<Usuario> usuarios = new ArrayList<>();
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "entidade_endereco", joinColumns = { @JoinColumn(name = "entidade_codigo", referencedColumnName = "codigo") }, 
-								   inverseJoinColumns = { @JoinColumn(name = "endereco_codigo", referencedColumnName = "codigo") })
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+	@PrimaryKeyJoinColumn
 	private Endereco endereco;
 	
 	
@@ -67,4 +60,14 @@ public @Data class Entidade implements MinhaEntidade {
 	public void adicionarVaga(Vaga vaga){
 		this.vagas.add(vaga);
 	}
+
+	public Entidade(String nomeEntidade, String areaAtuacao, String email,
+			String telefone, String descricao) {
+		super();
+		this.nomeEntidade = nomeEntidade;
+		this.areaAtuacao = areaAtuacao;
+		this.email = email;
+		this.telefone = telefone;
+	}
+
 }

@@ -1,37 +1,27 @@
 package br.com.caelum.vraptor.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.time.LocalDate;
 import java.util.Base64;
-import java.util.Date;
-import java.util.Random;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.validator.Validator;
-import br.edu.unoesc.dao.AvatarDAO;
 import br.edu.unoesc.dao.EntidadeDAO;
 import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.exception.DAOException;
-import br.edu.unoesc.model.Atuacao;
 import br.edu.unoesc.model.Avatar;
 import br.edu.unoesc.model.Endereco;
 import br.edu.unoesc.model.Entidade;
 import br.edu.unoesc.model.GerenciadorImagem;
 import br.edu.unoesc.model.Usuario;
 import br.edu.unoesc.model.Vaga;
-import br.edu.unoesc.model.Voluntario;
 
 @ApplicationScoped
 @Controller
@@ -47,7 +37,6 @@ public class EntidadeController {
 	
 	private Usuario usuarioSessao = new Usuario();
 
-	//@Path("/index")
 	public void index(Usuario usuario) {
 		this.usuarioSessao = usuario;
 		result.redirectTo(this).homeEntidade();
@@ -63,7 +52,7 @@ public class EntidadeController {
 	public void perfilEntidade() throws UnsupportedEncodingException {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
 		if(usuarioSessao.getAvatar() == null){
-			Avatar avatar = new Avatar();
+			Avatar avatar = new Avatar(null);
 			usuarioSessao.setAvatar(new Avatar());
 			try {
 				usuarioDAO.salvar(usuarioSessao);
@@ -102,17 +91,7 @@ public class EntidadeController {
 			usuarioDAO.salvar(usuarioSessao);
 		} catch (DAOException e) {
 			System.out.println("Não alterou porque " + e.getMessage());
-		}		
-		/*APAGUE AQUI*/
-		/*
-		AvatarDAO avatarDao = new AvatarDAO();
-		
-		avatarDao.salvaBlob(new Avatar(), entidade.getFotoEntidade());
-		*/
-		
-		 /*ATE AQUI*/
-		
-		
+		}				
 		result.redirectTo(this).perfilEntidade();
 	}
 	
@@ -125,7 +104,6 @@ public class EntidadeController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (DAOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		result.redirectTo(this).perfilEntidade();
@@ -162,14 +140,11 @@ public class EntidadeController {
 	@Post("/cadastrarEntidade")
 	public void cadastrarEntidade(Usuario usuario, Entidade entidade, Endereco endereco) {
 		Usuario usuarioExistente = usuarioDAO.buscarUsuario(usuario.getLogin());
-		System.out.println("paassedd");
 		if(usuarioExistente == null){
 			try {
 				usuario.setEntidade(entidade);
 				entidade.setEndereco(endereco);
-				Avatar avatar = new Avatar();
-				byte[] b = new byte[20];
-				avatar.setImage(b);
+				Avatar avatar = new Avatar(null);
 				usuario.setAvatar(avatar);
 				usuarioDAO.salvar(usuario);
 				result.include("mensagem", "<div class=\"alert alert-sucess\" role=\"alert\">Usuário cadastrado!</div>");

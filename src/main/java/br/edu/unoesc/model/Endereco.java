@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +24,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "codigo")
 @ToString(of = {"codigo", "rua", "numero", "bairro", "cidade", "cep", "uf"})
@@ -39,8 +39,19 @@ public @Data class Endereco implements MinhaEntidade {
 	private String cep;
 	private String uf;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "entidade_endereco", joinColumns = { @JoinColumn(name = "endereco_codigo", referencedColumnName = "codigo") }, 
-									 inverseJoinColumns = { @JoinColumn(name = "entidade_codigo", referencedColumnName = "codigo") })
-	private List<Entidade> entidades = new ArrayList<>();
+	@OneToOne(mappedBy="endereco")
+	private Entidade entidade;
+
+	public Endereco(String rua, String numero, String bairro, String cidade,
+			String uf, String cep) {
+		super();
+		this.rua = rua;
+		this.numero = numero;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.cep = cep;
+		this.uf = uf;
+	}
+	
+	
 }

@@ -38,7 +38,6 @@ public class VoluntarioController {
 
 	private Usuario usuarioSessao = new Usuario();
 	
-	//@Path("/index")
 	public void index(Usuario usuario) {
 		this.usuarioSessao = usuario;
 		result.redirectTo(this).homeVoluntario();
@@ -47,13 +46,10 @@ public class VoluntarioController {
 	@Post("/cadastrarVoluntario")
 	public void cadastrarVoluntario(Usuario usuario, Voluntario voluntario) {
 		Usuario usuarioExistente = usuarioDAO.buscarUsuario(usuario.getLogin());
-		System.out.println("paassedd");
 		if(usuarioExistente == null){
 			try {
 				usuario.setVoluntario(voluntario);
-				Avatar avatar = new Avatar();
-				byte[] b = new byte[20];
-				avatar.setImage(b);
+				Avatar avatar = new Avatar(null);
 				usuario.setAvatar(avatar);
 				usuarioDAO.salvar(usuario);
 				result.include("mensagem", "<div class=\"alert alert-sucess\" role=\"alert\">Usuário cadastrado!</div>");

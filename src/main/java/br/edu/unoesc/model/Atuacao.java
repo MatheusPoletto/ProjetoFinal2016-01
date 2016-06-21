@@ -1,6 +1,5 @@
 package br.edu.unoesc.model;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,13 +28,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "codigo")
 @ToString(of = {"codigo", "status"})
 @Entity
+@NamedQueries({ @NamedQuery(name = "NM_ATUACOES", query = "select a from Atuacao a where a.voluntario = ?1 ")})
 public @Data class Atuacao implements MinhaEntidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,11 +43,18 @@ public @Data class Atuacao implements MinhaEntidade {
 	@ManyToOne(optional = false, targetEntity = Voluntario.class)
 	private Voluntario voluntario; 
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "vaga_atuacao", joinColumns = { @JoinColumn(name = "atuacao_codigo", referencedColumnName = "codigo") }, 
-									 inverseJoinColumns = { @JoinColumn(name = "vaga_codigo", referencedColumnName = "codigo") })
-	private List<Vaga> vagas = new ArrayList<>();
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Vaga vaga;    
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
+
+	public Atuacao(String status, Voluntario voluntario, Vaga vaga, Date data) {
+		super();
+		this.status = status;
+		this.voluntario = voluntario;
+		this.vaga = vaga;
+		this.data = data;
+	}
 }
+

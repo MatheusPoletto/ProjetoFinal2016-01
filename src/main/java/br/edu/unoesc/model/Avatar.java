@@ -1,9 +1,5 @@
 package br.edu.unoesc.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,21 +7,18 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
-import lombok.AllArgsConstructor;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "codigo")
 @Entity
@@ -38,11 +31,25 @@ public @Data class Avatar implements MinhaEntidade{
 	@Column(name = "image", unique = false, nullable = false, length = 100000)
 	private byte[] image;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "usuario_avatar", joinColumns = { @JoinColumn(name = "avatar_codigo", referencedColumnName = "codigo") }, 
-									 inverseJoinColumns = { @JoinColumn(name = "usuario_codigo", referencedColumnName = "codigo") })
-	private List<Usuario> usuarios = new ArrayList<>();
-	
-	
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+	@PrimaryKeyJoinColumn
+	private Usuario usuario;
 
+	public Avatar(byte[] image) {
+		super();
+		if(image == null){
+			Path path = Paths.get("img/def-user.png");
+			byte[] data;
+			try {
+				this.image = data = Files.readAllBytes(path);
+			} catch (IOException e) {
+				data = new byte[20];
+				this.image = data;
+			}
+		}else{
+			this.image = image;
+		}
+		
+	}
+	
 }
