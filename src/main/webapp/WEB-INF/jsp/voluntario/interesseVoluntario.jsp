@@ -52,7 +52,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Nome da ONG</label> <input type="text"
-														class="form-control"
+														class="form-control" name="vaga.entidade.nomeEntidade" value="${vaga.entidade.nomeEntidade}"
 														placeholder="Aqui tem que aparecer o nome" disabled="">
 												</div>
 											</div>
@@ -61,6 +61,7 @@
 												<div class="form-group">
 													<label>Email da ONG</label> <input type="email"
 														class="form-control" placeholder="vai o email da ong"
+														name="vaga.entidade.email" value="${vaga.entidade.email}"
 														disabled="">
 												</div>
 											</div>
@@ -73,6 +74,7 @@
 												<div class="form-group">
 													<label>Nome da Vaga</label> <input type="text"
 														class="form-control" placeholder="Aqui o nome da vaga"
+														name="vaga.nomeVaga" value="${vaga.nomeVaga}"
 														disabled="">
 												</div>
 											</div>
@@ -82,6 +84,7 @@
 												<div class="form-group">
 													<label>Vaga Presencial ?</label> <input type="text"
 														class="form-control" placeholder="Aqui vai sim ou nÃ£o"
+														name="vaga.presencial" value="${vaga.presencial}"
 														disabled="">
 												</div>
 											</div>
@@ -93,6 +96,7 @@
 												<div class="form-group">
 													<label>Estado</label> <input type="text"
 														class="form-control" placeholder="Aqui vai o estado"
+														name="vaga.estado" value="${vaga.estado}"
 														disabled="">
 												</div>
 											</div>
@@ -100,6 +104,7 @@
 												<div class="form-group">
 													<label>Cidade</label> <input type="text"
 														class="form-control" placeholder="vai a cidade"
+														name="vaga.cidade" value="${vaga.cidade}"
 														disabled="">
 												</div>
 											</div>
@@ -108,9 +113,10 @@
 										<div class="row">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>DescriÃ§Ã£o</label>
+													<label>Descrição</label>
 													<textarea name="name" rows="2" cols="40"
-														class="form-control" disabled=""></textarea>
+														class="form-control" disabled=""
+														name="vaga.nomeVaga" value="${vaga.descricao}">${vaga.descricao}</textarea>
 												</div>
 											</div>
 

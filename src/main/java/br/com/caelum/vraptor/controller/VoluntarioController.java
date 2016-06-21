@@ -43,6 +43,8 @@ public class VoluntarioController {
 
 	private Usuario usuarioSessao = new Usuario();
 	
+	private Vaga vagaInteresse = new Vaga();
+	
 	public void index(Usuario usuario) {
 		this.usuarioSessao = usuario;
 		result.redirectTo(this).homeVoluntario();
@@ -85,8 +87,14 @@ public class VoluntarioController {
 	
 	@Get("/voluntarioVerVaga/{codigo}")
 	public void voluntarioVerVaga(Long codigo) {
-		VagaDAO vagaDao = new VagaDAO();		
-		result.include("vaga", vagaDao.buscar(Vaga.class, codigo));
+		VagaDAO vagaDao = new VagaDAO();
+		this.vagaInteresse = vagaDao.buscar(Vaga.class, codigo);
+		result.redirectTo(this).interesseVoluntario();
+	}
+	
+	@Path("/interesseVoluntario")
+	public void interesseVoluntario() {	
+		result.include("vaga", this.vagaInteresse);
 	}
 }
 
