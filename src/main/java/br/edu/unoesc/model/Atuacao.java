@@ -32,7 +32,8 @@ import lombok.ToString;
 @EqualsAndHashCode(of = "codigo")
 @ToString(of = {"codigo", "status"})
 @Entity
-@NamedQueries({ @NamedQuery(name = "NM_ATUACOES", query = "select a from Atuacao a where a.voluntario = ?1 ")})
+@NamedQueries({ @NamedQuery(name = "NM_ATUACOES", query = "select a from Atuacao a where a.voluntario = ?1 "),
+				@NamedQuery(name = "NM_ATUACOES_CONFIRMAR", query = "SELECT DISTINCT a FROM Atuacao a JOIN FETCH a.vaga v WHERE v.entidade.codigo = ?1 AND a.status = 'Aguardando confirmação' ")})
 public @Data class Atuacao implements MinhaEntidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +47,7 @@ public @Data class Atuacao implements MinhaEntidade {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Vaga vaga;    
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date data;
 
 	public Atuacao(String status, Voluntario voluntario, Vaga vaga, Date data) {

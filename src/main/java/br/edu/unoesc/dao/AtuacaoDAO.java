@@ -7,7 +7,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import br.edu.unoesc.model.Atuacao;
+import br.edu.unoesc.model.Entidade;
 import br.edu.unoesc.model.Usuario;
+import br.edu.unoesc.model.Vaga;
 import br.edu.unoesc.model.Voluntario;
 
 @RequestScoped
@@ -26,4 +28,18 @@ public class AtuacaoDAO extends HibernateDAO<Atuacao> {
 			this.finalizar();
 		}
 	}
+	
+	public List<Atuacao> atuacoesParaConfirmar(Long entidade_codigo){
+		this.conectar();
+		try {
+			TypedQuery<Atuacao> query = em.createNamedQuery("NM_ATUACOES_CONFIRMAR", Atuacao.class);
+			query.setParameter(1, entidade_codigo);
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			this.finalizar();
+		}
+	}
+	
 }

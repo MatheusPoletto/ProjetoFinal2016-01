@@ -2,7 +2,9 @@ package br.com.caelum.vraptor.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,9 +15,11 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.validator.Validator;
+import br.edu.unoesc.dao.AtuacaoDAO;
 import br.edu.unoesc.dao.EntidadeDAO;
 import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.exception.DAOException;
+import br.edu.unoesc.model.Atuacao;
 import br.edu.unoesc.model.Avatar;
 import br.edu.unoesc.model.Endereco;
 import br.edu.unoesc.model.Entidade;
@@ -45,6 +49,9 @@ public class EntidadeController {
 	@Path("/homeEntidade")
 	public void homeEntidade() {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
+		
+		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
+		result.include("atuacoesConfirmar", atuacaoDao.atuacoesParaConfirmar(usuarioSessao.getEntidade().getCodigo()));
 		result.include("usuario", usuarioSessao);
 	}
 	

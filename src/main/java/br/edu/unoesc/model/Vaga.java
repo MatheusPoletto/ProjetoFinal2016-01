@@ -34,7 +34,8 @@ import lombok.ToString;
 @ToString(of = {"codigo", "nomeVaga", "descricao", "importancia", "presencial", "estado", "cidade"})
 @EqualsAndHashCode(of = {"codigo"})
 @Entity
-@NamedQueries({ @NamedQuery(name = "NM_VAGAS", query = "select v from Vaga v where v.entidade = ?1 ")})
+@NamedQueries({ @NamedQuery(name = "NM_VAGAS", query = "select v from Vaga v where v.entidade = ?1 "),
+				@NamedQuery(name = "NM_VAGAS_ABERTAS", query = "from Vaga v where v.entidade = ?1 and v.quantidadeVaga > 0 ")})
 public @Data class Vaga implements MinhaEntidade{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,7 +63,7 @@ public @Data class Vaga implements MinhaEntidade{
 	@JoinColumn(name="vaga_codigo")
 	private List<Atuacao> atuacao;
 	
-	public boolean adicionarVaga(Atuacao atuacao){
+	public boolean adicionarAtuacao(Atuacao atuacao){
 		if(this.getQuantidadeVaga() > 0){
 			this.atuacao.add(atuacao);
 			this.quantidadeVaga = this.quantidadeVaga - 1;

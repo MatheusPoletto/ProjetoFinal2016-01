@@ -34,14 +34,14 @@ public class TestesNovoMapeamento {
 		VoluntarioDAO volDao = new VoluntarioDAO();
 		VagaDAO vagaDao = new VagaDAO();
 		Vaga vaga = vagaDao.buscar(Vaga.class, 2l);
-		boolean salvou = vaga.adicionarVaga(new Atuacao("Aguardando confirmação", volDao.buscar(Voluntario.class, 1l), vaga, new Date(Calendar.getInstance().getTime().getTime())));
+		//boolean salvou = vaga.adicionarVaga(new Atuacao("Aguardando confirmação", volDao.buscar(Voluntario.class, 1l), vaga, new Date(Calendar.getInstance().getTime().getTime())));
 		vagaDao.salvar(vaga);
 		
-		if(salvou){
+	//	if(salvou){
 			System.out.println("add e salvou");
-		}else{
+		//}else{
 			System.out.println("no e save");
-		}
+		//}
 		
 		
 		EntidadeDAO entidadeDao = new EntidadeDAO();
