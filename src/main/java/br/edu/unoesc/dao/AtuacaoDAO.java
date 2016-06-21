@@ -42,4 +42,17 @@ public class AtuacaoDAO extends HibernateDAO<Atuacao> {
 		}
 	}
 	
+	public List<Atuacao> atuacoesConcluidas(Long entidade_codigo){
+		this.conectar();
+		try {
+			TypedQuery<Atuacao> query = em.createNamedQuery("NM_ATUACOES_CONCLUIDAS", Atuacao.class);
+			query.setParameter(1, entidade_codigo);
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			this.finalizar();
+		}
+	}
+	
 }

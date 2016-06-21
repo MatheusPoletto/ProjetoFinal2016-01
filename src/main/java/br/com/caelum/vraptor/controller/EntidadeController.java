@@ -128,8 +128,10 @@ public class EntidadeController {
 	@Path("/atuacaoEntidade")
 	public void atuacaoEntidade() {
 		this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
+		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
 		result.include("usuario", usuarioSessao);
 		result.include("vagaview", usuarioSessao.getEntidade().getVagas());
+		result.include("atuacoesConcluidas", atuacaoDao.atuacoesConcluidas(usuarioSessao.getEntidade().getCodigo()));
 	}
 	
 	@Path("/confirmarVoluntario")
@@ -160,7 +162,7 @@ public class EntidadeController {
 	@Post("/aceitarInscricao")
 	public void aceitarInscricao() throws DAOException {
 		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
-		this.atuacao.setStatus("Inscrição confirmada pela entidade " +usuarioSessao.getEntidade().getNomeEntidade());
+		this.atuacao.setStatus("Inscrição confirmada pela entidade");
 		atuacaoDao.salvar(this.atuacao);
 		result.redirectTo(this).homeEntidade();
 	}

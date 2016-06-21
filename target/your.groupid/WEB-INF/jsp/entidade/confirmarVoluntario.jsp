@@ -1,179 +1,190 @@
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <title>Cadastrar vaga</title>
 </head>
 
 <body>
-<c:import url="cabecalho.jsp"/>
-${atuacao.codigo}
+	<c:import url="cabecalho.jsp" />
 
-<div class="wrapper">
-   <c:import url="menu.jsp"/>
+	<div class="wrapper">
+		<c:import url="menu.jsp" />
 
-    <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Dados do Volunt√°rio</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-
-
-
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-
-
-                        <li>
-                            <a href="#">
-                                Deslogar
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-
-													 <div class="header">
-                                <h4 class="title">Dados do Possivel Volunt√°rio</h4>
-																<br>
-																<p class="category">
-																	Observe abaixo os dados do volunt√°rio e entre em contato com o mesmo por email ou telefone
-																	para combinarem eu n√£o sei como teminar essa frase, ent√£o estou escrevendo isto para ver
-																	se o Poletto olha o que eu mando para ele.
-																</p>
-                            </div>
-
-													<div class="content">
-															<form>
-																	<div class="row">
-																		<div class="col-md-6">
-																				<div class="form-group">
-																						<label>Vaga N¬∫</label>
-																						<input type="number" class="form-control" placeholder="Aqui tem que aparecer o numero da vaga" disabled="">
-																				</div>
-																		</div>
-
-																		<div class="col-md-6">
-																				<div class="form-group">
-																						<label>Nome da Vaga</label>
-																						<input type="text" class="form-control" placeholder="Aqui vai o nome da vaga" disabled="">
-																				</div>
-																		</div>
-
-
-																	</div>
-
-																	<div class="row">
-																		<div class="col-md-6">
-																				<div class="form-group">
-																						<label>Nome do Possivel Voluntario</label>
-																						<input type="text" class="form-control" placeholder="Aqui o nome do volunt√°rio" disabled="">
-																				</div>
-																		</div>
-
-
-																			<div class="col-md-6">
-																					<div class="form-group">
-																							<label>Email do Voluntar√≠o</label>
-																							<input type="email" class="form-control" placeholder="Aqui vai o email do volunt√°rio" disabled="" >
-																					</div>
-																			</div>
-
-																	</div>
-
-																	<div class="row">
-																		<div class="col-md-6">
-																				<div class="form-group">
-																						<label>Telefone do Volunt√°rio</label>
-																						<input type="tel" class="form-control" placeholder="Aqui vai o telefone do voluntario." disabled="">
-																				</div>
-																		</div>
-
-
-																			<div class="col-md-6">
-																					<div class="form-group">
-																							<label>Idade do Volunt√°rio</label>
-																							<input type="number" class="form-control" placeholder="Aqui vai a idade do Voluntario" disabled="" >
-																					</div>
-																			</div>
-
-																	</div>
-
-<a href="#">Voltar para a p√°gina principal.</a>
-																	<div class="clearfix"></div>
-															</form>
-													</div>
-                        </div>
-                    </div>
-
-
-                </div>
+		<div class="main-panel">
+			<nav class="navbar navbar-default navbar-fixed">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#navigation-example-2">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Dados da inscriÁ„o</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-left">
 
 
 
+						</ul>
 
-        </div>
-
-
-        <footer class="footer">
-            <div class="container-fluid">
-                <p class="copyright pull-right">
-                    &copy; 2016 EuVolunt√°rio
-                </p>
-            </div>
-        </footer>
-
-    </div>
-</div>
+						<ul class="nav navbar-nav navbar-right">
 
 
+							<li><a href="#"> Deslogar </a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">Dados do possÌvel volunt·rio</h4>
+									<br>
+									<p class="category">Observe abaixo os dados do volunt·rio e
+										opte por aceitar a inscriÁ„o ou revogar. Entre em contato com
+										o volunt·rio por email ou telefone.</p>
+								</div>
+
+								<div class="content">
+									<form action="<c:url value='/aceitarInscricao'/>" method="post">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Vaga N∫</label> <input type="number"
+														class="form-control" placeholder="N˙mero da vaga"
+														value="${atuacao.vaga.codigo}" disabled=""> <input
+														type="hidden" name="atuacao.vaga.codigo"
+														value="${atuacao.vaga.codigo}" />
+												</div>
+											</div>
+
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Nome da Vaga</label> <input type="text"
+														class="form-control" placeholder="atuacao.vaga.nomeVaga"
+														value="${atuacao.vaga.nomeVaga}" disabled="">
+												</div>
+											</div>
+
+
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Nome do possÌvel volunt·rio</label> <input
+														type="text" class="form-control"
+														placeholder="Nome do volunt·rio"
+														value="${atuacao.voluntario.nome}" disabled=""> 
+												</div>
+											</div>
+
+
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>E-mail do volunt·rio</label> <input type="email"
+														class="form-control" placeholder="E-mail do volunt·rio"
+														value="${atuacao.voluntario.email}" disabled="">
+												</div>
+											</div>
+
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Celular do volunt·rio</label> <input type="tel"
+														class="form-control" placeholder="Celular do volunt·rio"
+														value="${atuacao.voluntario.celular}" disabled="">
+												</div>
+											</div>
+
+
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Idade do volunt·rio</label> <input
+														type="text" class="form-control"
+														placeholder="Idade do volunt·rio"
+														value="${idadeVoluntario}" disabled="">
+												</div>
+											</div>
+
+										</div>
+		
+										<div class="row">
+										<div class="col-md-6">
+											<a href="<c:url value='/homeEntidade'/>">Voltar para a
+												p·gina principal</a>
+											<div class="clearfix"></div>
+										</div>
+
+										<div class="col-md-6">
+											<button type="submit"
+												class="btn btn-info btn-fill pull-right">Confirmar inscriÁ„o</button>
+											<div class="clearfix"></div>
+										</div>
+										</div>
+									</form>
+								</div>
+
+
+							</div>
+						</div>
+
+
+					</div>
+
+
+
+
+				</div>
+
+
+				<footer class="footer">
+					<div class="container-fluid">
+						<p class="copyright pull-right">&copy; 2016 EuVolunt·rio</p>
+					</div>
+				</footer>
+
+			</div>
+		</div>
 </body>
 
-    <!--   Core JS Files   -->
-    <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<!--   Core JS Files   -->
+<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="js/bootstrap-checkbox-radio-switch.js"></script>
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="js/bootstrap-checkbox-radio-switch.js"></script>
 
-	<!--  Charts Plugin -->
-	<script src="js/chartist.min.js"></script>
+<!--  Charts Plugin -->
+<script src="js/chartist.min.js"></script>
 
-    <!--  Notifications Plugin    -->
-    <script src="js/bootstrap-notify.js"></script>
+<!--  Notifications Plugin    -->
+<script src="js/bootstrap-notify.js"></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<!--  Google Maps Plugin    -->
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="js/light-bootstrap-dashboard.js"></script>
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="js/light-bootstrap-dashboard.js"></script>
 
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="js/demo.js"></script>
+<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+<script src="js/demo.js"></script>
 
-	<script type="text/javascript">
-    	$(document).ready(function(){
+<script type="text/javascript">
+	$(document).ready(function() {
 
-        	demo.initChartist();
+		demo.initChartist();
 
-
-
-    	});
-	</script>
+	});
+</script>
 
 </html>
