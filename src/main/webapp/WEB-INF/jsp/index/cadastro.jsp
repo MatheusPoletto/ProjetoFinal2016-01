@@ -14,7 +14,7 @@
 	<c:import url="menu.jsp" />
 
 	<c:if test="${precisaMensagem == 'SIM'}">
-		<div class="content container-fluid  card col-sm-8 col-sm-offset-2">
+		
 			<div class="row">
 				<div class="col-sm-8 col-sm-offset-2">
 					</br>
@@ -35,13 +35,11 @@
 					<c:if test="${tipoMensagem == 'ERRO_LOGIN_INCORRETO'}">
 						<div class="alert alert-danger fade in">
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-							<strong>Problema de autenticação!</strong> O usuário ou senha foi
-							inserido incorretamente!
+							<strong>Problema de autenticação!</strong> O usuário ou senha está incorreto!
 						</div>
 					</c:if>
 				</div>
 			</div>
-		</div>
 	</c:if>
 	<div class="content container-fluid  card col-sm-8 col-sm-offset-2">
 		<div class="row content">
@@ -62,76 +60,76 @@
 									<label for="nomeEntidade">Nome da sua organização(ONG):</label> 
 									<input type="text" 
 										id="nomeEntidade" name="entidade.nomeEntidade"
-										value="${entidade.nomeEntidade}" class="form-control" />
+										value="${entidade.nomeEntidade}" class="form-control" required />
 								</div>
 								<div class="form-group">
 									<label for="telefoneEntidade">Telefone para contato:</label> 
 									<input type="tel"
 										id="telefoneEntidade" name="entidade.telefone"
-										value="${entidade.telefone}" class="form-control" />
+										value="${entidade.telefone}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="emailEntidade">E-mail:</label> 
 									<input type="email"
 										name="entidade.email" id="emailEntidade"
-										value="${entidade.email}" class="form-control" />
+										value="${entidade.email}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="entidadeLogin">Login:</label>
 									<input type="text" 
 										id="entidadeLogin" name="usuario.login"
-										value="${usuario.login}" class="form-control" />
+										value="${usuario.login}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="senhaEntidade">Senha:</label>
 									<input type="password"
 										id="senhaEntidade" name="usuario.senha" 
-										value="${usuario.senha}" class="form-control" />
+										value="${usuario.senha}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="areaAtuacao">Area de atuação da organização:</label> 
 									<input type="text"	
 										id="areaAtuacao" name="entidade.areaAtuacao" 
-										value="${entidade.areaAtuacao}"	class="form-control" />
+										value="${entidade.areaAtuacao}"	class="form-control" required  />
 								</div>
 								<h3>Endereço da organização:</h3>
 								<div class="form-group">
 									<label for="ruaEntidade">Rua:</label>
 									<input type="text"
 										id="ruaEntidade" name="endereco.rua"
-										value="${endereco.rua}" class="form-control" />
+										value="${endereco.rua}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="bairroEntidade">Bairro:</label>
 									<input type="text"
 										id="bairroEntidade" name="endereco.bairro"
-										value="${endereco.bairro}" class="form-control" />
+										value="${endereco.bairro}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="numeroEntidade">Número:</label>
 									<input type="text"
 										id="numeroEntidade" name="endereco.numero"
-										value="${endereco.numero}" class="form-control" />
+										value="${endereco.numero}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="cidadeEntidade">Cidade:</label>
 									<input type="text" 
 										id="cidadeEntidade" name="endereco.cidade"
-										value="${endereco.cidade}" class="form-control" />
+										value="${endereco.cidade}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="ufEntidade">UF:</label>
 									<input type="text"
 										id="ufEntidade" name="endereco.uf"
-										value="${endereco.uf}" class="form-control" />
+										value="${endereco.uf}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="cepEntidade">Cep:</label>
 									<input type="text"
 										id="cepEntidade" name="endereco.cep"
-										value="${endereco.cep}" class="form-control" />
+										value="${endereco.cep}" class="form-control" required  />
 								</div>
-								<button type="submit" class="btn btn-default">Cadastrar</button>
+								<button type="submit" class="btn btn-primary btn-info">CADASTRAR <span class="glyphicon glyphicon-ok"></span></button>
 								<br> <br>
 							</form>
 						</div>
@@ -143,39 +141,39 @@
 									<label for="nomeVoluntario">Nome completo:</label>
 									<input type="text"
 										id="nomeVoluntario" name="voluntario.nome" 
-										value="${voluntario.nome}" class="form-control" />
+										value="${voluntario.nome}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="celularVoluntario">Celular para contato:</label>
 									<input type="tel"
 										id="celularVoluntario" name="voluntario.celular"
-										value="${voluntario.celular}" class="form-control" />
+										value="${voluntario.celular}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="dataVoluntario">Data de nascimento:</label>
 									<input type="text"
 										id="dataVoluntario" name="voluntario.nascimento"
-										value="${voluntario.nascimento}" class="form-control" />
+										value="${voluntario.nascimento}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="emailVoluntario">Email:</label>
 									<input type="email"
 										id="emailVoluntario" name="voluntario.email"
-										value="${voluntario.email}" class="form-control" />
+										value="${voluntario.email}" class="form-control" required  />
 								</div>
 								<div class="form-group">
 									<label for="loginVoluntario">Login:</label>
 									<input type="text"
 										id="loginVoluntario" name="usuario.login"
-										value="${usuario.login}" class="form-control" />
+										value="${usuario.login}" class="form-control" required />
 								</div>
 								<div class="form-group">
 									<label for="senhaVoluntario">Senha:</label>
 									<input type="password"
 										id="senhaVoluntario" name="usuario.senha"
-										value="${usuario.senha}" class="form-control" />
+										value="${usuario.senha}" class="form-control" required  />
 								</div>
-								<button type="submit" class="btn btn-default">Cadastrar</button>
+								<button type="submit" class="btn btn-primary btn-success">CADASTRAR <span class="glyphicon glyphicon-ok"></span></button>
 								<br> <br>
 							</form>
 						</div>

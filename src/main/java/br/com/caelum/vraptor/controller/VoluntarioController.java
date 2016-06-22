@@ -66,15 +66,12 @@ public class VoluntarioController {
 				usuarioDAO.salvar(usuario);
 				avatarDao.salvar(avatar);
 				voluntarioDao.salvar(voluntario);
-				result.include("mensagem", "<div class=\"alert alert-sucess\" role=\"alert\">Usuário cadastrado!</div>");
-				result.redirectTo("/cadastro");
+				result.redirectTo(IndexController.class).precisaMensagem("SUCESSO");
 			} catch (DAOException e) {
-				result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Ocorreu um erro. Tente novamente!" + e.getMessage() + "</div>");
-				result.redirectTo("/cadastro");
+				result.redirectTo(IndexController.class).precisaMensagem("ALERTA_LOGIN_EXISTE");
 			}
 		}else{
-			result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Tente outro usuário!</div>");
-			result.redirectTo("/cadastro");
+			result.redirectTo(IndexController.class).precisaMensagem("ALERTA_LOGIN_EXISTE");
 		}
 	}
 	

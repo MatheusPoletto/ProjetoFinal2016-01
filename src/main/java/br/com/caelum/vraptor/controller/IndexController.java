@@ -1,5 +1,6 @@
 package br.com.caelum.vraptor.controller;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
@@ -7,12 +8,13 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
 
+@ApplicationScoped
 @Controller
 public class IndexController {
 
 	private final Result result;
 	
-	String tipoMensagem, precisaMensagem = "NAO";
+	private String tipoMensagem = "TESTE", precisaMensagem = "NAO";
 
 	/**
 	 * @deprecated CDI eyes only
@@ -35,12 +37,13 @@ public class IndexController {
 	public void cadastro() {
 		result.include("precisaMensagem", precisaMensagem);
 		result.include("tipoMensagem", tipoMensagem);
+		this.precisaMensagem = "NAO";
 	}
 	
 	public void precisaMensagem(String tipo) {
 		this.tipoMensagem = tipo;
 		this.precisaMensagem = "SIM";
-		result.redirectTo(this).cadastro();;
+		result.redirectTo(this).cadastro();
 	}
 	
 	@Get("/contato")

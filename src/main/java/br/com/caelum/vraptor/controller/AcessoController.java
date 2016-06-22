@@ -37,8 +37,9 @@ public class AcessoController {
 	public void autenticarUsuario(Usuario usuario) {
 			Usuario usuarioBusca = usuarioDAO.buscarUsuario(usuario.getLogin());
 			if (usuarioBusca == null) {
-				result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Usuário não encontrado!</div>");
-				result.redirectTo("/cadastro");
+				/*result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Usuário não encontrado!</div>");
+				result.redirectTo("/cadastro");*/
+				result.redirectTo(IndexController.class).precisaMensagem("ERRO_LOGIN_INCORRETO");
 			} else {
 				if (usuarioBusca.getSenha().equals(usuario.getSenha())) {
 					if (!(usuarioBusca.getEntidades().size() == 0)) {// SE FOR ENTIDADE
@@ -47,8 +48,7 @@ public class AcessoController {
 						result.redirectTo(VoluntarioController.class).index(usuarioBusca);
 					}
 				} else {
-			        result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Senha incorreta!</div>");
-					result.redirectTo("/cadastro");
+					result.redirectTo(IndexController.class).precisaMensagem("ERRO_LOGIN_INCORRETO");
 				}
 			}
 		}
