@@ -18,6 +18,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
+import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.edu.unoesc.dao.AtuacaoDAO;
 import br.edu.unoesc.dao.AvatarDAO;
@@ -56,7 +57,7 @@ public class VoluntarioController {
 	private String erroSenha = "NAO";
 
 	private Boolean temCodigo() {
-		if (usuarioSessao.getCodigo() != null) {
+		if ((usuarioSessao.getCodigo() != null) && usuarioSessao.getVoluntarios().get(0) != null) {
 			return true;
 		} else {
 			result.redirectTo(AcessoController.class).redirecionaLogin();
@@ -70,7 +71,7 @@ public class VoluntarioController {
 	}
 
 	@Post("/cadastrarVoluntario")
-	public void cadastrarVoluntario(Usuario usuario, Voluntario voluntario) {
+	public void cadastrarVoluntario(Usuario usuario, Voluntario voluntario){
 			Usuario usuarioExistente = usuarioDAO.buscarUsuario(usuario
 					.getLogin());
 			if (usuarioExistente == null) {
@@ -87,6 +88,7 @@ public class VoluntarioController {
 					result.redirectTo(IndexController.class).precisaMensagem(
 							"SUCESSO");
 				} catch (DAOException e) {
+					validator.add(new SimpleMessage("erroData", e.getMensagemTratada()));
 					result.redirectTo(IndexController.class).precisaMensagem(
 							"ALERTA_LOGIN_EXISTE");
 				}

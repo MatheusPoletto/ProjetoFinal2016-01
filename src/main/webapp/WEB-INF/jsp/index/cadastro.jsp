@@ -145,8 +145,7 @@
 						</div>
 						<div id="entidade" class="tab-pane fade">
 							</br>
-							<form action="<c:url value='/cadastrarVoluntario'/>"
-								method="post">
+							<form action="<c:url value='/cadastrarVoluntario'/>" method="post">
 								<div class="form-group">
 									<label for="nomeVoluntario">Nome completo:</label>
 									<input type="text"
@@ -163,7 +162,8 @@
 									<label for="dataVoluntario">Data de nascimento:</label>
 									<input type="text"
 										id="dataVoluntario" name="voluntario.nascimento"
-										value="${voluntario.nascimento}" class="form-control" required  />
+										value="${voluntario.nascimento}"  class="form-control"
+										required pattern="\d{4}/\d{1,2}/\d{1,2}" placeholder="yyyy/mm/dd"  />
 								</div>
 								<div class="form-group">
 									<label for="emailVoluntario">Email:</label>

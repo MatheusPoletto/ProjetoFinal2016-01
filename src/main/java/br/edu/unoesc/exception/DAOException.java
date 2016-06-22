@@ -28,6 +28,9 @@ public class DAOException extends Exception {
 			if (mensagem.contains("br.edu.unoesc.modelo.Aluno.data")) {
 				return "campo data do aluno obrigatório";	
 			}
+			if(mensagem.contains("br.com.caelum.vraptor.validator.ValidationFailedException")){
+				return "erro nos campos";
+			}
 		}
 		return null;
 	}

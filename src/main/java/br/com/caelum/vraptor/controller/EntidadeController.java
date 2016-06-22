@@ -53,7 +53,7 @@ public class EntidadeController {
 	private Atuacao atuacao = new Atuacao();
 
 	private Boolean temCodigo() {
-		if (usuarioSessao.getCodigo() != null) {
+		if ((usuarioSessao.getCodigo() != null) && usuarioSessao.getEntidades().get(0) != null) {
 			return true;
 		} else {
 			result.redirectTo(AcessoController.class).redirecionaLogin();
