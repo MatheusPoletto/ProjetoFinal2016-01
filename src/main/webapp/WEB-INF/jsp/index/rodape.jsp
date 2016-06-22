@@ -59,7 +59,7 @@
 						</div>
 						<div class="modal-footer">
 							<div class="forgot login-footer">
-								<span><a href="">Deseja criar uma conta?</a></span>
+								<span><a href="<c:url value="/cadastro"/>">Deseja criar uma conta? É de graça!</a></span>
 							</div>
 						</div>
 					</div>

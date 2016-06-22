@@ -20,6 +20,7 @@
 					</br>
 					<c:if test="${tipoMensagem == 'SUCESSO'}">
 						<div class="alert alert-success fade in">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 							<strong>Successo!</strong> Seu usuário foi cadastrado com
 							sucesso!
@@ -27,6 +28,7 @@
 					</c:if>
 					<c:if test="${tipoMensagem == 'ALERTA_LOGIN_EXISTE'}">
 						<div class="alert alert-warning fade in">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 							<strong>Cadastro cancelado!</strong> Login já está em uso, tente
 							outro!
@@ -34,6 +36,7 @@
 					</c:if>
 					<c:if test="${tipoMensagem == 'ERRO_LOGIN_INCORRETO'}">
 						<div class="alert alert-danger fade in">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 							<strong>Problema de autenticação!</strong> O usuário ou senha está incorreto!
 						</div>

@@ -18,11 +18,11 @@
 		</ol>
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
-				<img class="first-slide" src="img/fundo1mp.jpg" alt="First slide">
+				<img class="first-slide" src="img/meslide2.jpg" alt="First slide">
 				<div class="container">
 					<div class="carousel-caption">
-						<h1>Eu Voluntário</h1>
-						<p>Venha fazer parte da nossa família ainda hoje.</p>
+						<h1>DEMONSTRE</h1>
+						<p>"O amor não se vê com os olhos mas com o coração"</p>
 						<p>
 							<a class="btn btn-lg btn-primary"
 								href="<c:url value='/cadastro'/>" role="button">CADASTRE-SE</a>
@@ -31,11 +31,11 @@
 				</div>
 			</div>
 			<div class="item">
-				<img class="second-slide" src="img/fundo2mp.jpg" alt="Second slide">
+				<img class="second-slide" src="img/meslide3.jpg" alt="Second slide">
 				<div class="container">
 					<div class="carousel-caption">
-						<h1>Eu Voluntário</h1>
-						<p>Venha fazer parte da nossa família ainda hoje.</p>
+						<h1>PERSISTA</h1>
+						<p>"Você só terá fracassado quando desisitir de tentar"</p>
 						<p>
 							<a class="btn btn-lg btn-primary"
 								href="<c:url value='/cadastro'/>" role="button">CADASTRE-SE</a>
@@ -44,11 +44,11 @@
 				</div>
 			</div>
 			<div class="item">
-				<img class="third-slide" src="img/fundo3mp.jpg" alt="Third slide">
+				<img class="third-slide" src="img/mpslide2.jpg" alt="Third slide">
 				<div class="container">
 					<div class="carousel-caption">
-						<h1>Eu Voluntário</h1>
-						<p>Venha fazer parte da nossa família ainda hoje.</p>
+						<h1>ALEGRIA</h1>
+						<p>"Saber encontrar a alegria na alegria dos outros, é o segredo da felicidade"</p>
 						<p>
 							<a class="btn btn-lg btn-primary"
 								href="<c:url value='/cadastro'/>" role="button">CADASTRE-SE</a>
