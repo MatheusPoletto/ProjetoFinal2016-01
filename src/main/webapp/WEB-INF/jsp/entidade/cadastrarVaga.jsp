@@ -70,7 +70,7 @@
 									<div class="col-sm-9">
 										<input type="number" class="form-control"
 											name="vaga.quantidadePessoa" value="${vaga.quantidadePessoa}"
-											placeholder="Quantidade de vagas disponiveis" required/>
+											placeholder="Quantidade de valuntários que vão ser necessários" required/>
 									</div>
 								</div>
 								<div class="form-group">

@@ -120,7 +120,7 @@
 														name="entidade.areaAtuacao"
 														value="${entidade.areaAtuacao}"
 														class="form-control"
-														placeholder="Aqui vai a area de atuação">
+														placeholder="Área de atuação">
 												</div>
 											</div>
 										</div>
