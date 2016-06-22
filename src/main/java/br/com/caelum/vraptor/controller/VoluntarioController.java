@@ -1,6 +1,8 @@
 package br.com.caelum.vraptor.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -95,6 +97,16 @@ public class VoluntarioController {
 	@Path("/interesseVoluntario")
 	public void interesseVoluntario() {	
 		result.include("vaga", this.vagaInteresse);
+	}
+	
+	@Get("/interesseVoluntarioInscricao")
+	public void interesseVoluntarioInscricao() throws DAOException {	
+		Atuacao atuacao = new Atuacao("Aguardando confirmação", usuarioSessao.getVoluntarios().get(0), this.vagaInteresse, new Date(Calendar.getInstance().getTime().getTime()));
+		VagaDAO vagaDao = new VagaDAO();
+		this.vagaInteresse.adicionarAtuacao(atuacao);
+		vagaDao.salvar(this.vagaInteresse);
+		
+		result.redirectTo(this).homeVoluntario();
 	}
 }
 

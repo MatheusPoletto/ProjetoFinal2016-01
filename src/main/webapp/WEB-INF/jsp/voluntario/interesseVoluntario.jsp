@@ -47,7 +47,7 @@
 										caso tenha certeza clique em candidatar-se.</p>
 								</div>
 								<div class="content">
-									<form>
+									<form action="<c:url value='/interesseVoluntarioInscricao'/>" method="get">
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
@@ -126,8 +126,7 @@
 
 
 
-										<button type="submit" class="btn btn-info btn-fill pull-right">Quero
-											Me Candidatar</button>
+										<button type="submit" class="btn btn-info btn-fill pull-right">Concorrer a vaga</button>
 										<div class="clearfix"></div>
 									</form>
 								</div>
