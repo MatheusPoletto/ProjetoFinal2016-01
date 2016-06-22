@@ -20,37 +20,37 @@
 		</ol>
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
-				<img class="first-slide" src="img/imagem2.png" alt="First slide">
+				<img class="first-slide" src="img/fundo1mp.jpg" alt="First slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>Eu Voluntário</h1>
-						<p>Faça parte desta familia você também.</p>
+						<p>Venha fazer parte da nossa família ainda hoje.</p>
 						<p>
-							<a class="btn btn-lg btn-primary" href="#" role="button">CADASTRE-SE</a>
+							<a class="btn btn-lg btn-primary" href="<c:url value='/cadastro'/>" role="button">CADASTRE-SE</a>
 						</p>
 					</div>
 				</div>
 			</div>
 			<div class="item">
-				<img class="second-slide" src="img/banner2.jpg" alt="Second slide">
+				<img class="second-slide" src="img/fundo2mp.jpg" alt="Second slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>Eu Voluntário</h1>
-						<p>Faça parte desta familia você também.</p>
+						<p>Venha fazer parte da nossa família ainda hoje.</p>
 						<p>
-							<a class="btn btn-lg btn-primary" href="#" role="button">CADASTRE-SE</a>
+							<a class="btn btn-lg btn-primary" href="<c:url value='/cadastro'/>" role="button">CADASTRE-SE</a>
 						</p>
 					</div>
 				</div>
 			</div>
 			<div class="item">
-				<img class="third-slide" src="img/banner3.jpg" alt="Third slide">
+				<img class="third-slide" src="img/fundo3mp.jpg" alt="Third slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>Eu Voluntário</h1>
-						<p>Faça parte desta familia você também.</p>
+						<p>Venha fazer parte da nossa família ainda hoje.</p>
 						<p>
-							<a class="btn btn-lg btn-primary" href="#" role="button">CADASTRE-SE</a>
+							<a class="btn btn-lg btn-primary" href="<c:url value='/cadastro'/>" role="button">CADASTRE-SE</a>
 						</p>
 					</div>
 				</div>
@@ -69,19 +69,19 @@
 	<div class="container marketing">
 		<div class="row">
 			<div class="col-lg-4">
-				<img class="img-circle" src="aqui vai a outra imagem" alt="Generic placeholder image" width="140" height="140">
-				<h3>Somos mais de 80 ONGs</h3>
-				<p>Na semana de lançamento do EuVoluntário tivemos mais de 50 cadatrados de ONGs de todos os cantos do Brasil.</p>
+				<img class="img-circle" src="img/backcircle80.png" alt="Generic placeholder image" width="140" height="140">
+				<h3>São mais de 80 ONGs</h3>
+				<p>Na semana de lançamento do sistema foram cadastradas mais de 80 organizações estabelecidas nos quatro cantos do páis.</p>
 			</div>
 			<div class="col-lg-4">
-				<img class="img-circle" src="aqui vai a imagem" alt="Generic placeholder image" width="140" height="140">
-				<h3>764 Voluntários</h3>
-				<p>Mais de 700 voluntários ja se cadastraram, mostrando que o voluntáriado só cresce no Brasil.</p>
+				<img class="img-circle" src="img/backcircle500.png" alt="Generic placeholder image" width="140" height="140">
+				<h3>Com mais de 500 vagas</h3>
+				<p>Uma média de 50 vagas são abertas por dia pelas diversas organizações cadastradas e os números só crescem.</p>
 			</div>
 			<div class="col-lg-4">
-				<img class="img-circle" src="e por fim aqui a imagem" alt="Generic placeholder image" width="140" height="140">
-				<h3>Mais de 500 Vagas Abertas</h3>
-				<p>A cada dia mais de 50 vagas são abertas pelas nossas ONGs cadastradas, agregando reconhecimento ao EuVoluntário.</p>
+				<img class="img-circle" src="img/backcircle764.png" alt="Generic placeholder image" width="140" height="140">
+				<h3>e 764 voluntários</h3>
+				<p>Mais de 765 pessoas já se cadastraram como voluntários sendo que mais da metade já começou atuar em uma vaga.</p>
 			</div>
 		</div>
 		
