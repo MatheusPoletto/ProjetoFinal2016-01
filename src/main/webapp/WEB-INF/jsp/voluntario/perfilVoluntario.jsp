@@ -107,8 +107,8 @@
 												</div>
 											</div>
 										</div>
-										<button type="submit" class="btn btn-info btn-fill pull-right">Salvar
-											Alterações</button>
+										<button type="submit" class="btn btn-primary pull-right">SALVAR
+											ALTERAÇÕES</button>
 										<div class="clearfix"></div>
 									</form>
 								</div>

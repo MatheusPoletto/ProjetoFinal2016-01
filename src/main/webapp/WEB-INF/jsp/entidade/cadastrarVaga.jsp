@@ -164,8 +164,8 @@
 								<div class="form-group">
 
 									<label class="col-sm-2"></label>
-									<button type="submit" class="btn btn-primary btn-info">
-									<span class="glyphicon glyphicon-ok"></span> Cadastrar vaga</button>
+									<button type="submit" class="btn btn-primary">
+									 CADASTRAR VAGA <span class="glyphicon glyphicon-ok"></span></button>
 								</div>
 
 

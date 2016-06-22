@@ -139,7 +139,7 @@
 										id="cepEntidade" name="endereco.cep"
 										value="${endereco.cep}" class="form-control" required  />
 								</div>
-								<button type="submit" class="btn btn-primary btn-info">CADASTRAR <span class="glyphicon glyphicon-ok"></span></button>
+								<button type="submit" class="btn btn-primary">CADASTRAR <span class="glyphicon glyphicon-ok"></span></button>
 								<br> <br>
 							</form>
 						</div>
@@ -183,7 +183,7 @@
 										id="senhaVoluntario" name="usuario.senha"
 										value="${usuario.senha}" class="form-control" required  />
 								</div>
-								<button type="submit" class="btn btn-primary btn-success">CADASTRAR <span class="glyphicon glyphicon-ok"></span></button>
+								<button type="submit" class="btn btn-primary">CADASTRAR <span class="glyphicon glyphicon-ok"></span></button>
 								<br> <br>
 							</form>
 						</div>
