@@ -34,7 +34,9 @@ import lombok.ToString;
 @Entity
 @NamedQueries({ @NamedQuery(name = "NM_ATUACOES", query = "select a from Atuacao a where a.voluntario = ?1 "),
 				@NamedQuery(name = "NM_ATUACOES_CONFIRMAR", query = "SELECT DISTINCT a FROM Atuacao a JOIN FETCH a.vaga v WHERE v.entidade.codigo = ?1 AND a.status = 'Aguardando confirmação' "),
-				@NamedQuery(name = "NM_ATUACOES_CONCLUIDAS", query = "SELECT DISTINCT a FROM Atuacao a JOIN FETCH a.vaga v WHERE v.entidade.codigo = ?1 AND a.status = 'Inscrição confirmada pela entidade' ")})
+				@NamedQuery(name = "NM_ATUACOES_CONCLUIDAS", query = "SELECT DISTINCT a FROM Atuacao a JOIN FETCH a.vaga v WHERE v.entidade.codigo = ?1 AND a.status = 'Inscrição confirmada pela entidade' "),
+				@NamedQuery(name = "NM_ATUACOES_VOLUNTARIO", query = "SELECT DISTINCT a FROM Atuacao a  WHERE a.voluntario = ?1 AND a.status = 'Aguardando confirmação' "),
+				@NamedQuery(name = "NM_ATUACOES_VOLUNTARIO_CONCLUIDAS", query = "SELECT DISTINCT a FROM Atuacao a WHERE a.voluntario = ?1 AND a.status = 'Inscrição confirmada pela entidade' ")})
 public @Data class Atuacao implements MinhaEntidade {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

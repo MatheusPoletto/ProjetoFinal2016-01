@@ -55,4 +55,37 @@ public class AtuacaoDAO extends HibernateDAO<Atuacao> {
 		}
 	}
 	
+	public List<Atuacao> atuacoesInscrito(Long voluntario_codigo){
+		this.conectar();
+		try {
+			VoluntarioDAO volDao = new VoluntarioDAO();
+			Voluntario voluntario = volDao.buscar(Voluntario.class, voluntario_codigo);
+			
+			TypedQuery<Atuacao> query = em.createNamedQuery("NM_ATUACOES_VOLUNTARIO", Atuacao.class);
+			query.setParameter(1, voluntario);
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			this.finalizar();
+		}
+	}
+	
+	public List<Atuacao> atuacoesInscritoAceitas(Long voluntario_codigo){
+		this.conectar();
+		try {
+			VoluntarioDAO volDao = new VoluntarioDAO();
+			Voluntario voluntario = volDao.buscar(Voluntario.class, voluntario_codigo);
+			
+			TypedQuery<Atuacao> query = em.createNamedQuery("NM_ATUACOES_VOLUNTARIO_CONCLUIDAS", Atuacao.class);
+			query.setParameter(1, voluntario);
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			this.finalizar();
+		}
+	}
+	
+	
 }

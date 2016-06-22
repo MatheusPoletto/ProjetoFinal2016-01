@@ -18,7 +18,7 @@
 					class="pe-7s-user"></i>
 					<p>Meu Perfil</p>
 			</a></li>
-			<li><a href="<c:url value='/interesseVoluntario'/>"> <i
+			<li><a href="<c:url value='/atuacaoVoluntario'/>"> <i
 					class="pe-7s-note2"></i>
 					<p>Minhas Atuações</p>
 			</a></li>

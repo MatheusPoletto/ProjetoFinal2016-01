@@ -71,7 +71,6 @@ public class VoluntarioController {
 
 	@Post("/cadastrarVoluntario")
 	public void cadastrarVoluntario(Usuario usuario, Voluntario voluntario) {
-		if (temCodigo()) {
 			Usuario usuarioExistente = usuarioDAO.buscarUsuario(usuario
 					.getLogin());
 			if (usuarioExistente == null) {
@@ -95,7 +94,6 @@ public class VoluntarioController {
 				result.redirectTo(IndexController.class).precisaMensagem(
 						"ALERTA_LOGIN_EXISTE");
 			}
-		}
 	}
 
 	@Path("/homeVoluntario")
@@ -188,15 +186,14 @@ public class VoluntarioController {
 			this.erroSenha = "NAO";
 		}
 	}
-	
+
 	@Post("/procurarVagaResultado")
-	public void procurarVagaResultado(String nome, String descricao){
-		if(temCodigo()){
+	public void procurarVagaResultado(String nome, String descricao) {
+		if (temCodigo()) {
 			VagaDAO vagaDao = new VagaDAO();
 			result.include("vagasPesquisa",
 					vagaDao.vagasVoluntarioProcurar(nome, descricao));
 
-		
 		}
 	}
 
@@ -255,4 +252,14 @@ public class VoluntarioController {
 		}
 	}
 
+	@Path("/atuacaoVoluntario")
+	public void atuacaoVoluntario() {
+		if (temCodigo()) {
+			this.usuarioSessao = usuarioDAO.buscar(Usuario.class, usuarioSessao.getCodigo());
+			
+			AtuacaoDAO atuacaoDao = new AtuacaoDAO();
+			result.include("vagasInscrito", atuacaoDao.atuacoesInscrito(usuarioSessao.getVoluntarios().get(0).getCodigo()));
+			result.include("atuacoesConcluidas", atuacaoDao.atuacoesInscritoAceitas(usuarioSessao.getVoluntarios().get(0).getCodigo()));
+		}
+	}
 }

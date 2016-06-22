@@ -52,6 +52,15 @@ public class EntidadeController {
 
 	private Atuacao atuacao = new Atuacao();
 
+	private Boolean temCodigo() {
+		if (usuarioSessao.getCodigo() != null) {
+			return true;
+		} else {
+			result.redirectTo(AcessoController.class).redirecionaLogin();
+			return false;
+		}
+	}
+
 	public void index(Usuario usuario) {
 		this.usuarioSessao = usuario;
 		result.redirectTo(this).homeEntidade();
@@ -59,186 +68,208 @@ public class EntidadeController {
 
 	@Path("/homeEntidade")
 	public void homeEntidade() {
-		this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
-				usuarioSessao.getCodigo());
+		if (temCodigo()) {
+			this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
+					usuarioSessao.getCodigo());
 
-		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
-		result.include(
-				"atuacoesConfirmar",
-				atuacaoDao.atuacoesParaConfirmar(usuarioSessao.getEntidades()
-						.get(0).getCodigo()));
-		result.include("usuario", usuarioSessao);
+			AtuacaoDAO atuacaoDao = new AtuacaoDAO();
+			result.include(
+					"atuacoesConfirmar",
+					atuacaoDao.atuacoesParaConfirmar(usuarioSessao
+							.getEntidades().get(0).getCodigo()));
+			result.include("usuario", usuarioSessao);
+		}
 	}
 
 	@Path("/perfilEntidade")
 	public void perfilEntidade() throws UnsupportedEncodingException {
-		this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
-				usuarioSessao.getCodigo());
-		if (usuarioSessao.getAvatares() == null) {
-			Avatar avatar = new Avatar(null);
-			AvatarDAO avatarDao = new AvatarDAO();
-			avatar.setUsuario(usuarioSessao);
-			try {
-				avatarDao.salvar(avatar);
-				usuarioDAO.salvar(usuarioSessao);
-			} catch (DAOException e) {
-				e.printStackTrace();
+		if (temCodigo()) {
+			this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
+					usuarioSessao.getCodigo());
+			if (usuarioSessao.getAvatares() == null) {
+				Avatar avatar = new Avatar(null);
+				AvatarDAO avatarDao = new AvatarDAO();
+				avatar.setUsuario(usuarioSessao);
+				try {
+					avatarDao.salvar(avatar);
+					usuarioDAO.salvar(usuarioSessao);
+				} catch (DAOException e) {
+					e.printStackTrace();
+				}
 			}
-		}
-		String base64DataString;
-		try {
-			byte[] bAvatar = Base64.getEncoder().encode(
-					usuarioSessao.getAvatares().get(0).getImage());
-			base64DataString = new String(bAvatar, "UTF-8");
+			String base64DataString;
+			try {
+				byte[] bAvatar = Base64.getEncoder().encode(
+						usuarioSessao.getAvatares().get(0).getImage());
+				base64DataString = new String(bAvatar, "UTF-8");
 
-		} catch (Exception e) {
-			base64DataString = "img/def-user.png";
+			} catch (Exception e) {
+				base64DataString = "img/def-user.png";
+			}
+			result.include("imagem", base64DataString);
+			result.include("entidade", usuarioSessao.getEntidades().get(0));
+			result.include("endereco", usuarioSessao.getEntidades().get(0)
+					.getEnderecos().get(0));
+			result.include("usuario", usuarioSessao);
 		}
-		result.include("imagem", base64DataString);
-		result.include("entidade", usuarioSessao.getEntidades().get(0));
-		result.include("endereco", usuarioSessao.getEntidades().get(0)
-				.getEnderecos().get(0));
-		result.include("usuario", usuarioSessao);
 	}
 
 	@Post("/editarEntidade")
 	public void editarEntidade(Usuario usuario, Entidade entidade,
 			Endereco endereco) throws UnsupportedEncodingException {
-		// ALTERAR ENTIDADE = AREA DE ATUACAO, DESCRICAO, EMAIL, FOTO
-		Entidade entidadeUsuarioSessao = usuarioSessao.getEntidades().get(0);
-		entidadeUsuarioSessao.setAreaAtuacao(entidade.getAreaAtuacao());
-		entidadeUsuarioSessao.setDescricao(entidade.getDescricao());
-		entidadeUsuarioSessao.setEmail(entidade.getEmail());
+		if (temCodigo()) {
+			// ALTERAR ENTIDADE = AREA DE ATUACAO, DESCRICAO, EMAIL, FOTO
+			Entidade entidadeUsuarioSessao = usuarioSessao.getEntidades()
+					.get(0);
+			entidadeUsuarioSessao.setAreaAtuacao(entidade.getAreaAtuacao());
+			entidadeUsuarioSessao.setDescricao(entidade.getDescricao());
+			entidadeUsuarioSessao.setEmail(entidade.getEmail());
 
-		// ALTERAR ENDERECO = RUA, BAIRRO, NUMERO, CIDADE, UF, CEP
-		Endereco enderecoEntidadeSessao = entidadeUsuarioSessao.getEnderecos()
-				.get(0);
-		enderecoEntidadeSessao.setRua(endereco.getRua());
-		enderecoEntidadeSessao.setBairro(endereco.getBairro());
-		enderecoEntidadeSessao.setNumero(endereco.getNumero());
-		enderecoEntidadeSessao.setCidade(endereco.getCidade());
-		enderecoEntidadeSessao.setUf(endereco.getUf());
-		enderecoEntidadeSessao.setCep(endereco.getCep());
+			// ALTERAR ENDERECO = RUA, BAIRRO, NUMERO, CIDADE, UF, CEP
+			Endereco enderecoEntidadeSessao = entidadeUsuarioSessao
+					.getEnderecos().get(0);
+			enderecoEntidadeSessao.setRua(endereco.getRua());
+			enderecoEntidadeSessao.setBairro(endereco.getBairro());
+			enderecoEntidadeSessao.setNumero(endereco.getNumero());
+			enderecoEntidadeSessao.setCidade(endereco.getCidade());
+			enderecoEntidadeSessao.setUf(endereco.getUf());
+			enderecoEntidadeSessao.setCep(endereco.getCep());
 
-		try {
-			EnderecoDAO enderecoDao = new EnderecoDAO();
-			enderecoDao.salvar(endereco);
-			EntidadeDAO entidadeDao = new EntidadeDAO();
-			entidadeDao.salvar(entidadeUsuarioSessao);
-			// usuarioDAO.salvar(usuarioSessao);
-		} catch (DAOException e) {
-			System.out.println("Não alterou porque " + e.getMessage());
+			try {
+				EnderecoDAO enderecoDao = new EnderecoDAO();
+				enderecoDao.salvar(endereco);
+				EntidadeDAO entidadeDao = new EntidadeDAO();
+				entidadeDao.salvar(entidadeUsuarioSessao);
+				// usuarioDAO.salvar(usuarioSessao);
+			} catch (DAOException e) {
+				System.out.println("Não alterou porque " + e.getMessage());
+			}
+			result.redirectTo(this).perfilEntidade();
 		}
-		result.redirectTo(this).perfilEntidade();
 	}
 
 	@Post("/salvarImagem/imagem")
 	public void salvarImagem(UploadedFile imagem)
 			throws UnsupportedEncodingException {
-		try {
-			GerenciadorImagem imagens = new GerenciadorImagem();
-			imagens.salva(imagem.getFile(), usuarioSessao);
+		if (temCodigo()) {
+			try {
+				GerenciadorImagem imagens = new GerenciadorImagem();
+				imagens.salva(imagem.getFile(), usuarioSessao);
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (DAOException e) {
-			e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (DAOException e) {
+				e.printStackTrace();
+			}
+			result.redirectTo(this).perfilEntidade();
 		}
-		result.redirectTo(this).perfilEntidade();
-
 	}
 
 	@Path("/atuacaoEntidade")
 	public void atuacaoEntidade() {
-		this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
-				usuarioSessao.getCodigo());
-		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
-		result.include("usuario", usuarioSessao);
-		result.include("entidade", usuarioSessao.getEntidades().get(0));
-		result.include("endereco", usuarioSessao.getEntidades().get(0)
-				.getEnderecos().get(0));
-		result.include("vagaview", usuarioSessao.getEntidades().get(0)
-				.getVagas());
-		result.include(
-				"atuacoesConcluidas",
-				atuacaoDao.atuacoesConcluidas(usuarioSessao.getEntidades()
-						.get(0).getCodigo()));
+		if (temCodigo()) {
+			this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
+					usuarioSessao.getCodigo());
+			AtuacaoDAO atuacaoDao = new AtuacaoDAO();
+			result.include("usuario", usuarioSessao);
+			result.include("entidade", usuarioSessao.getEntidades().get(0));
+			result.include("endereco", usuarioSessao.getEntidades().get(0)
+					.getEnderecos().get(0));
+			result.include("vagaview", usuarioSessao.getEntidades().get(0)
+					.getVagas());
+			result.include(
+					"atuacoesConcluidas",
+					atuacaoDao.atuacoesConcluidas(usuarioSessao.getEntidades()
+							.get(0).getCodigo()));
+		}
 	}
 
 	@Path("/confirmarVoluntario")
 	public void confirmarVoluntario() {
-		this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
-				usuarioSessao.getCodigo());
-		result.include("atuacao", atuacao);
+		if (temCodigo()) {
+			this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
+					usuarioSessao.getCodigo());
+			result.include("atuacao", atuacao);
 
-		Date date = atuacao.getVoluntario().getNascimento();
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH);
-		int day = cal.get(Calendar.DAY_OF_MONTH);
+			Date date = atuacao.getVoluntario().getNascimento();
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(date);
+			int year = cal.get(Calendar.YEAR);
+			int month = cal.get(Calendar.MONTH);
+			int day = cal.get(Calendar.DAY_OF_MONTH);
 
-		result.include("idadeVoluntario", LocalDate.now().getYear() - year);
-		result.include("usuario", usuarioSessao);
+			result.include("idadeVoluntario", LocalDate.now().getYear() - year);
+			result.include("usuario", usuarioSessao);
+		}
 	}
 
 	@Get("/abrirInscricao/{codigo}")
 	public void abrirInscricao(Long codigo) {
-		// this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
-		// usuarioSessao.getCodigo());
-		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
-		this.atuacao = atuacaoDao.buscar(Atuacao.class, codigo);
-		result.redirectTo(this).confirmarVoluntario();
+		if (temCodigo()) {
+			// this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
+			// usuarioSessao.getCodigo());
+			AtuacaoDAO atuacaoDao = new AtuacaoDAO();
+			this.atuacao = atuacaoDao.buscar(Atuacao.class, codigo);
+			result.redirectTo(this).confirmarVoluntario();
+		}
 	}
 
 	@Get("/revogarInscricao/{codigo}")
 	public void revogarInscricao(Long codigo) throws DAOException {
-		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
-		this.atuacao = atuacaoDao.buscar(Atuacao.class, codigo);
-		System.out.println(atuacao.getVaga());
-		VagaDAO vagaDao = new VagaDAO();
-		Vaga vaga = atuacao.getVaga();
-		vaga.setQuantidadeVaga(vaga.getQuantidadeVaga() + 1);
+		if (temCodigo()) {
+			AtuacaoDAO atuacaoDao = new AtuacaoDAO();
+			this.atuacao = atuacaoDao.buscar(Atuacao.class, codigo);
+			System.out.println(atuacao.getVaga());
+			VagaDAO vagaDao = new VagaDAO();
+			Vaga vaga = atuacao.getVaga();
+			vaga.setQuantidadeVaga(vaga.getQuantidadeVaga() + 1);
 
-		for (Atuacao encontraAtuacao : vaga.getAtuacao()) {
-			if (encontraAtuacao.getCodigo().equals(atuacao.getCodigo())) {
-				atuacaoDao.excluir(encontraAtuacao);
-				vaga.getAtuacao().remove(encontraAtuacao);
-				break;
+			for (Atuacao encontraAtuacao : vaga.getAtuacao()) {
+				if (encontraAtuacao.getCodigo().equals(atuacao.getCodigo())) {
+					atuacaoDao.excluir(encontraAtuacao);
+					vaga.getAtuacao().remove(encontraAtuacao);
+					break;
+				}
 			}
+
+			vagaDao.salvar(vaga);
+
+			result.redirectTo(this).homeEntidade();
 		}
-
-		vagaDao.salvar(vaga);
-
-		result.redirectTo(this).homeEntidade();
 	}
 
 	@Post("/aceitarInscricao")
 	public void aceitarInscricao() throws DAOException {
-		AtuacaoDAO atuacaoDao = new AtuacaoDAO();
-		this.atuacao.setStatus("Inscrição confirmada pela entidade");
-		atuacaoDao.salvar(this.atuacao);
-		result.redirectTo(this).homeEntidade();
+		if (temCodigo()) {
+			AtuacaoDAO atuacaoDao = new AtuacaoDAO();
+			this.atuacao.setStatus("Inscrição confirmada pela entidade");
+			atuacaoDao.salvar(this.atuacao);
+			result.redirectTo(this).homeEntidade();
+		}
 	}
 
 	@Path("/cadastrarVaga")
 	public void cadastrarVaga() {
-		result.include("usuario", usuarioSessao);
+		if (temCodigo()) {
+			result.include("usuario", usuarioSessao);
+		}
 	}
 
 	@Post("/salvarVaga")
 	public void salvarVaga(Vaga vaga) {
-		EntidadeDAO entidadedao = new EntidadeDAO();
-		Entidade entidade = entidadedao.buscar(Entidade.class, usuarioSessao
-				.getEntidades().get(0).getCodigo());
-		vaga.setEntidade(entidade);
-		entidade.adicionarVaga(vaga);
-		try {
-			entidadedao.salvar(entidade);
-		} catch (DAOException e) {
-			e.printStackTrace();
+		if (temCodigo()) {
+			EntidadeDAO entidadedao = new EntidadeDAO();
+			Entidade entidade = entidadedao.buscar(Entidade.class,
+					usuarioSessao.getEntidades().get(0).getCodigo());
+			vaga.setEntidade(entidade);
+			entidade.adicionarVaga(vaga);
+			try {
+				entidadedao.salvar(entidade);
+			} catch (DAOException e) {
+				e.printStackTrace();
+			}
+			result.redirectTo(this).atuacaoEntidade();
 		}
-		result.redirectTo(this).atuacaoEntidade();
 	}
 
 	@Post("/cadastrarEntidade")

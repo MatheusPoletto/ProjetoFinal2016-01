@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<link href="css/gambiarra.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <link href="css/signin.css" rel="stylesheet">
 <link href="css/cadastro.css" rel="stylesheet">
 <title>Eu voluntário</title>
@@ -32,6 +32,13 @@
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 							<strong>Cadastro cancelado!</strong> Login já está em uso, tente
 							outro!
+						</div>
+					</c:if>
+					<c:if test="${tipoMensagem == 'ERRO_LOGIN_EXPIROU'}">
+						<div class="alert alert-danger fade in">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<strong>Sua sessão expirou!</strong> Faça login novamente para continuar!
 						</div>
 					</c:if>
 					<c:if test="${tipoMensagem == 'ERRO_LOGIN_INCORRETO'}">
