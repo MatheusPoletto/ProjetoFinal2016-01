@@ -9,137 +9,184 @@
 <c:import url="cabecalho.jsp" />
 </head>
 
-
-<script language="javascript" type="text/javascript">
-	function tipoSelecionado() {
-		document.getElementById('formOng').style.display = 'none';
-		document.getElementById('formVoluntario').style.display = 'none';
-		if (document.getElementById('radioOng').checked) {
-			document.getElementById('formOng').style.display = 'block';
-		}
-		if (document.getElementById('radioVoluntario').checked) {
-			document.getElementById('formVoluntario').style.display = 'block';
-		}
-
-	}
-</script>
 <body>
 	<div class="content"></div>
 	<c:import url="menu.jsp" />
+
+	<c:if test="${precisaMensagem == 'SIM'}">
+		<div class="content container-fluid  card col-sm-8 col-sm-offset-2">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					</br>
+					<c:if test="${tipoMensagem == 'SUCESSO'}">
+						<div class="alert alert-success fade in">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<strong>Successo!</strong> Seu usuário foi cadastrado com
+							sucesso!
+						</div>
+					</c:if>
+					<c:if test="${tipoMensagem == 'ALERTA_LOGIN_EXISTE'}">
+						<div class="alert alert-warning fade in">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<strong>Cadastro cancelado!</strong> Login já está em uso, tente
+							outro!
+						</div>
+					</c:if>
+					<c:if test="${tipoMensagem == 'ERRO_LOGIN_INCORRETO'}">
+						<div class="alert alert-danger fade in">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<strong>Problema de autenticação!</strong> O usuário ou senha foi
+							inserido incorretamente!
+						</div>
+					</c:if>
+				</div>
+			</div>
+		</div>
+	</c:if>
 	<div class="content container-fluid  card col-sm-8 col-sm-offset-2">
-	${mensagem}
 		<div class="row content">
 			<div>
 				<div class="col-sm-8 col-sm-offset-2">
-					<h1>Cadastro de novo usuario</h1>
-					<p>Por favor, escolha como você deseja se cadastrar:</p>
-						<input type="radio" name="optradio" onclick="tipoSelecionado()" id="radioOng">
-						Ong 
-						<br><input type="radio"	name="optradio" onclick="tipoSelecionado()" id="radioVoluntario">
-						Voluntário
-					<br> <br>
-					<div id="formVoluntario">
-						<form action="<c:url value='/cadastrarVoluntario'/>" method="post">
-							<h2>Cadastro de novo Voluntario:</h2>
-							<br />
-							<div class="form-group">
-								<label>Nome completo: </label> <input type="text"
-									name="voluntario.nome" value="${voluntario.nome}"
-									class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Celular: </label> <input type="tel"
-									name="voluntario.celular" value="${voluntario.celular}"
-									class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Data de nascimento: </label> <input type="text"
-									name="voluntario.nascimento" value="${voluntario.nascimento}"
-									class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Email</label> <input type="email" name="voluntario.email"
-									value="${voluntario.email}" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Login</label> <input type="text" name="usuario.login"
-									value="${usuario.login}" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Senha</label> <input type="password" name="usuario.senha"
-									value="${usuario.senha}" class="form-control" />
-							</div>
-							<button type="submit" class="btn btn-default">Cadastrar</button>
-							<br> <br>
-						</form>
-					</div>
-					<div id="formOng">
-						<h2>Cadastro de Nova organização:</h2>
-						</br>
-						<form action="<c:url value='/cadastrarEntidade'/>" method="post">
-							<div class="form-group">
-								<label>Nome da Ong:</label> <input type="text"
-									name="entidade.nomeEntidade" value="${entidade.nomeEntidade}"
-									class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Telefone: </label> <input type="tel"
-									name="entidade.telefone" value="${entidade.telefone}"
-									class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Email</label> <input type="email" name="entidade.email"
-									value="${entidade.email}" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Login</label> <input type="text" name="usuario.login"
-									value="${usuario.login}" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Senha</label> <input type="password" name="usuario.senha"
-									value="${usuario.senha}" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Area de atuação</label> <input type="text"
-									name="entidade.areaAtuacao" value="${entidade.areaAtuacao}"
-									class="form-control" />
-							</div>
-							<h3>Endereço da instituição:</h3>
-							<div class="form-group">
-								<label>Rua</label> <input type="text" name="endereco.rua"
-									value="${endereco.rua}" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Bairro</label> <input type="text" name="endereco.bairro"
-									value="${endereco.bairro}" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Número</label> <input type="text" name="endereco.numero"
-									value="${endereco.numero}" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Cidade</label> <input type="text" name="endereco.cidade"
-									value="${endereco.cidade}" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>UF </label> <input type="text" name="endereco.uf"
-									value="${endereco.uf}" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Cep </label> <input type="text" name="endereco.cep"
-									value="${endereco.rua}" class="form-control" />
-							</div>
-							<button type="submit" class="btn btn-default">Cadastrar</button>
-							<br> <br>
-						</form>
+					<h2>Cadastro de novo usuário</h2>
+					<p>Escolha como você deseja se cadastrar:</p>
+					<ul class="nav nav-tabs">
+						<li><a data-toggle="tab" href="#entidade">Voluntário</a></li>
+						<li class="active"><a data-toggle="tab" href="#ong">ONG</a></li>
+					</ul>
+
+					<div class="tab-content">
+						<div id="ong" class="tab-pane fade in active">
+							</br>
+							<form action="<c:url value='/cadastrarEntidade'/>" method="post">
+								<div class="form-group">
+									<label for="nomeEntidade">Nome da sua organização(ONG):</label> 
+									<input type="text" 
+										id="nomeEntidade" name="entidade.nomeEntidade"
+										value="${entidade.nomeEntidade}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="telefoneEntidade">Telefone para contato:</label> 
+									<input type="tel"
+										id="telefoneEntidade" name="entidade.telefone"
+										value="${entidade.telefone}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="emailEntidade">E-mail:</label> 
+									<input type="email"
+										name="entidade.email" id="emailEntidade"
+										value="${entidade.email}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="entidadeLogin">Login:</label>
+									<input type="text" 
+										id="entidadeLogin" name="usuario.login"
+										value="${usuario.login}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="senhaEntidade">Senha:</label>
+									<input type="password"
+										id="senhaEntidade" name="usuario.senha" 
+										value="${usuario.senha}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="areaAtuacao">Area de atuação da organização:</label> 
+									<input type="text"	
+										id="areaAtuacao" name="entidade.areaAtuacao" 
+										value="${entidade.areaAtuacao}"	class="form-control" />
+								</div>
+								<h3>Endereço da organização:</h3>
+								<div class="form-group">
+									<label for="ruaEntidade">Rua:</label>
+									<input type="text"
+										id="ruaEntidade" name="endereco.rua"
+										value="${endereco.rua}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="bairroEntidade">Bairro:</label>
+									<input type="text"
+										id="bairroEntidade" name="endereco.bairro"
+										value="${endereco.bairro}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="numeroEntidade">Número:</label>
+									<input type="text"
+										id="numeroEntidade" name="endereco.numero"
+										value="${endereco.numero}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="cidadeEntidade">Cidade:</label>
+									<input type="text" 
+										id="cidadeEntidade" name="endereco.cidade"
+										value="${endereco.cidade}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="ufEntidade">UF:</label>
+									<input type="text"
+										id="ufEntidade" name="endereco.uf"
+										value="${endereco.uf}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="cepEntidade">Cep:</label>
+									<input type="text"
+										id="cepEntidade" name="endereco.cep"
+										value="${endereco.cep}" class="form-control" />
+								</div>
+								<button type="submit" class="btn btn-default">Cadastrar</button>
+								<br> <br>
+							</form>
+						</div>
+						<div id="entidade" class="tab-pane fade">
+							</br>
+							<form action="<c:url value='/cadastrarVoluntario'/>"
+								method="post">
+								<div class="form-group">
+									<label for="nomeVoluntario">Nome completo:</label>
+									<input type="text"
+										id="nomeVoluntario" name="voluntario.nome" 
+										value="${voluntario.nome}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="celularVoluntario">Celular para contato:</label>
+									<input type="tel"
+										id="celularVoluntario" name="voluntario.celular"
+										value="${voluntario.celular}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="dataVoluntario">Data de nascimento:</label>
+									<input type="text"
+										id="dataVoluntario" name="voluntario.nascimento"
+										value="${voluntario.nascimento}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="emailVoluntario">Email:</label>
+									<input type="email"
+										id="emailVoluntario" name="voluntario.email"
+										value="${voluntario.email}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="loginVoluntario">Login:</label>
+									<input type="text"
+										id="loginVoluntario" name="usuario.login"
+										value="${usuario.login}" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label for="senhaVoluntario">Senha:</label>
+									<input type="password"
+										id="senhaVoluntario" name="usuario.senha"
+										value="${usuario.senha}" class="form-control" />
+								</div>
+								<button type="submit" class="btn btn-default">Cadastrar</button>
+								<br> <br>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-		
+
 	<footer class="footer col-sm-8 col-sm-offset-2">
 		<div class="container-fluid">
-		
-	<c:import url="rodape.jsp" />
+
+			<c:import url="rodape.jsp" />

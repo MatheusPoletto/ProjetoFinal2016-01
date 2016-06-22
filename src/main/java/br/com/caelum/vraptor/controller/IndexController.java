@@ -11,6 +11,8 @@ import br.com.caelum.vraptor.Result;
 public class IndexController {
 
 	private final Result result;
+	
+	String tipoMensagem, precisaMensagem = "NAO";
 
 	/**
 	 * @deprecated CDI eyes only
@@ -31,7 +33,14 @@ public class IndexController {
 	
 	@Get("/cadastro")
 	public void cadastro() {
-		
+		result.include("precisaMensagem", precisaMensagem);
+		result.include("tipoMensagem", tipoMensagem);
+	}
+	
+	public void precisaMensagem(String tipo) {
+		this.tipoMensagem = tipo;
+		this.precisaMensagem = "SIM";
+		result.redirectTo(this).cadastro();;
 	}
 	
 	@Get("/contato")
