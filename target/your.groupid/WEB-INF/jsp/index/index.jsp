@@ -47,7 +47,7 @@
 				<img class="third-slide" src="img/mpslide2.jpg" alt="Third slide">
 				<div class="container">
 					<div class="carousel-caption">
-						<h1>ALEGRIA</h1>
+						<h1>ALEGRE-SE</h1>
 						<p>"Saber encontrar a alegria na alegria dos outros, é o segredo da felicidade"</p>
 						<p>
 							<a class="btn btn-lg btn-primary"
@@ -95,14 +95,16 @@
 		<hr class="featurette-divider">
 
 		<div class="row featurette">
-			<div class="col-md-7">
+			<div class="col-md-9">
 				<h2 class="featurette-heading">
-					De o primeiro <span class="text-muted">passo!</span>
+					Dê o primeiro passo!
 				</h2>
-				<p class="lead">O primeiro passo para a cidadania plena é o
-					compromisso com o voluntariado.</p>
+				<p class="lead">
+					Faça como Joana, ela encarou que o primeiro passo para a mudança é a aceitação. 
+					Uma vez que você aceite a si mesmo, você abre a porta para a mudança. 
+					Isso é tudo o que você tem que fazer. Mudança não é algo que você faz, é algo que você permite.</p>
 			</div>
-			<div class="col-md-5">
+			<div class="col-md-3">
 				<img class="featurette-image img-responsive center-block"
 					src="img/imagem4.jpg" alt="Generic placeholder image">
 			</div>
@@ -111,15 +113,16 @@
 		<hr class="featurette-divider">
 
 		<div class="row featurette">
-			<div class="col-md-7 col-md-push-5">
+			<div class="col-md-9 col-md-push-3">
 				<h2 class="featurette-heading">
-					Amar ao próximo <br> <span class="text-muted">não faz
-						mal!</span>
+					Seja solidário, ame o próximo!
 				</h2>
-				<p class="lead">Praticar o voluntariado é um ato de amor. Todos
-					devem praticar o voluntariado, amar não faz mal.</p>
+				<p class="lead">Sentimento de ajudar ao próximo. 
+				Esta é a base deste conceito tão amplo chamado solidariedade.
+				Uma postura solidária envolve a capacidade de compartilhar o sentimento de outra pessoa e,
+				de alguma forma, tentar amenizar o problema.</p>
 			</div>
-			<div class="col-md-5 col-md-pull-7">
+			<div class="col-md-3 col-md-pull-9">
 				<img class="featurette-image img-responsive center-block"
 					src="img/imagem6.jpg" alt="Generic placeholder image">
 			</div>
@@ -128,14 +131,17 @@
 		<hr class="featurette-divider">
 
 		<div class="row featurette">
-			<div class="col-md-7">
+			<div class="col-md-9">
 				<h2 class="featurette-heading">
-					O amor pode transformar <br> <span class="text-muted">tudo!</span>
+					Transforme a si e o resto do mundo em algo melhor!
 				</h2>
-				<p class="lead">Cada pequeno esforço voluntário, quando é feito
-					com amor, transforma qualquer coisa, até mesmo a mais difícil.</p>
+				<p class="lead">O sentimento verdadeiro é a compreensão, é o perdão; 
+				é aquele que dá uma sensação de paz.
+				Em vez da ação que busca se desfazer de partes de nós mesmos, 
+				devemos aprender a arte da transformação. Podemos transformar nossa raiva, 
+				por exemplo, em algo mais salutar, como a compreensão.</p>
 			</div>
-			<div class="col-md-5">
+			<div class="col-md-3">
 				<img class="featurette-image img-responsive center-block"
 					src="img/imagem 10.jpg" alt="Generic placeholder image">
 			</div>

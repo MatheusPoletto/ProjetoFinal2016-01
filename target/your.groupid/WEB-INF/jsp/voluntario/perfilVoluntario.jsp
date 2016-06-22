@@ -1,35 +1,12 @@
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<title>Principal</title>
 
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<link rel="icon" type="image/png" href="img/favicon.ico">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-<title>Light Bootstrap Dashboard by Creative Tim</title>
-
-<meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
-	name='viewport' />
-<meta name="viewport" content="width=device-width" />
-
-
-<link href="css/bootstrap.min.css" rel="stylesheet" />
-<link href="css/animate.min.css" rel="stylesheet" />
-<link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
-<link href="css/demo.css" rel="stylesheet" />
-<link
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-	rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300'
-	rel='stylesheet' type='text/css'>
-<link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
 </head>
-<body>
 
+<body>
+	<c:import url="cabecalho.jsp" />
 	<div class="wrapper">
-		<c:import url="menu.jsp"/>
+		<c:import url="menu.jsp" />
 
 		<div class="main-panel">
 			<nav class="navbar navbar-default navbar-fixed">
@@ -64,23 +41,34 @@
 						<div class="col-md-8">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Edit Profile</h4>
+									<h4 class="title">Editar perfil</h4>
+									<c:if test="${erroSenha == 'SIM'}">
+									</br>
+										<div class="alert alert-warning fade in">
+											<span class="glyphicon glyphicon-no" aria-hidden="true"></span>
+											<a href="#" class="close" data-dismiss="alert"
+												aria-label="close">&times;</a> <strong>Ops!</strong>
+												SENHA e CONFIRMAR SENHA não são iguais. Sua senha não foi alterada.
+										</div>
+									</c:if>
 								</div>
 								<div class="content">
-									<form>
+									<form action="<c:url value='/editarVoluntario'/>" method="post">
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Nome Completo</label> <input type="text"
-														class="form-control"
-														placeholder="Aqui tem que aparecer o nome">
+													<label>Nome completo</label> <input type="text"
+														class="form-control" name="voluntario.nome"
+														value="${voluntario.nome}"
+														placeholder="Aqui tem que aparecer o nome" />
 												</div>
 											</div>
 
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Email address</label> <input type="email"
-														class="form-control" placeholder="Aqui o Email">
+													<label>E-mail</label> <input type="email"
+														name="voluntario.email" value="${voluntario.email}"
+														class="form-control" placeholder="Aqui o Email" />
 												</div>
 											</div>
 										</div>
@@ -88,16 +76,18 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Número de Telefone</label> <input type="tel"
-														class="form-control" placeholder="Aqui vai o celular">
+													<label>Telefone celular</label> <input type="tel"
+														name="voluntario.celular" value="${voluntario.celular}"
+														class="form-control" placeholder="Aqui vai o celular" />
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Data de Nascimento</label> <input type="text"
+													<label>Data de nascimento</label> <input type="text"
 														class="form-control"
 														placeholder="Desabilitado, não muda quando nasce"
-														disabled="">
+														name="voluntario.nascimento"
+														value="${voluntario.nascimento}" disabled />
 												</div>
 											</div>
 										</div>
@@ -106,21 +96,17 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Senha</label> <input type="password"
-														class="form-control">
+														name="usuario.senha" value="${usuario.senha}"
+														class="form-control" />
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Confirmar Senha</label> <input type="password"
-														class="form-control">
+													<label>Confirmar senha</label> <input type="password"
+														name="repete" value="" class="form-control">
 												</div>
 											</div>
 										</div>
-
-
-
-
-
 										<button type="submit" class="btn btn-info btn-fill pull-right">Salvar
 											Alterações</button>
 										<div class="clearfix"></div>
@@ -138,10 +124,11 @@
 								<div class="content">
 									<div class="author">
 										<a href="#"> <img class="avatar border-gray"
-											src="img/faces/face-3.jpg" alt="..." />
+											src="data:image/jpeg;base64,${imagem}" width="100"
+											height="100" alt="..." />
 
 											<h4 class="title">
-												Nome do Voluntário<br /> <small>login do voluntário</small>
+												${voluntario.nome}<br /> <small>${usuario.login}</small>
 											</h4>
 										</a>
 									</div>
@@ -149,6 +136,20 @@
 								</div>
 
 							</div>
+						</div>
+
+						<div class="col-sm-12 col-md-4">
+
+							<form action="<c:url value="/salvarImagemVoluntario/imagem"/>"
+								method="POST" enctype="multipart/form-data">
+								<fieldset>
+									<legend>Upload de Imagem</legend>
+									<input type="file" name="imagem" />
+
+
+									<button type="submit">Enviar</button>
+								</fieldset>
+							</form>
 						</div>
 
 					</div>

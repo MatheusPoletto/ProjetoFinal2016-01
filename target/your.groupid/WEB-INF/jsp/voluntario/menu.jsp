@@ -11,7 +11,7 @@
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="<c:url value='/homeVoluntario'/>">
                         <i class="pe-7s-graph"></i>
                         <p>Principal</p>
@@ -32,7 +32,7 @@
 
 
 								<li>
-										<a href="procurar_vaga.html">
+										<a href="/procurarVaga">
 												<i class="pe-7s-search"></i>
 												<p>Procurar Vaga</p>
 										</a>

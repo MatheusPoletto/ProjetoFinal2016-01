@@ -53,6 +53,20 @@ public class VagaDAO  extends HibernateDAO<Vaga>{
 			this.finalizar();
 		}
 	}
+	
+	public List<Vaga> vagasVoluntarioProcurar(String nome, String descricao){
+		this.conectar();
+		try {
+			TypedQuery<Vaga> query = em.createNamedQuery("NM_VAGAS_VOLUNTARIO_PROCURAR", Vaga.class);
+			query.setParameter("nome", nome + "%");
+			query.setParameter("descricao", "%" + descricao + "%");
+			return query.setMaxResults(10).getResultList();
+		} catch (NoResultException e) {
+			return null;
+		} finally {
+			this.finalizar();
+		}
+	}
 
 }
 

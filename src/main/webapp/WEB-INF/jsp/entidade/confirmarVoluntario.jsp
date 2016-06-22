@@ -119,8 +119,7 @@
 		
 										<div class="row">
 										<div class="col-md-6">
-											<a href="<c:url value='/homeEntidade'/>">Voltar para a
-												página principal</a>
+											<a href="<c:url value="/revogarInscricao/${atuacao.codigo}"/>" class="btn btn-primary btn-danger">REVOGAR INSCRIÇÃO</a>
 											<div class="clearfix"></div>
 										</div>
 
@@ -131,6 +130,7 @@
 										</div>
 										</div>
 									</form>
+									
 								</div>
 
 

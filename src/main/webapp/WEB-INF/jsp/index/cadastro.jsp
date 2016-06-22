@@ -34,6 +34,13 @@
 							outro!
 						</div>
 					</c:if>
+					<c:if test="${tipoMensagem == 'ERRO_LOGIN_EXPIROU'}">
+						<div class="alert alert-danger fade in">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<strong>Sua sessão expirou!</strong> Faça login novamente para continuar!
+						</div>
+					</c:if>
 					<c:if test="${tipoMensagem == 'ERRO_LOGIN_INCORRETO'}">
 						<div class="alert alert-danger fade in">
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

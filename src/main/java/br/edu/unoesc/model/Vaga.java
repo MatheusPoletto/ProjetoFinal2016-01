@@ -36,7 +36,8 @@ import lombok.ToString;
 @Entity
 @NamedQueries({ @NamedQuery(name = "NM_VAGAS", query = "select v from Vaga v where v.entidade = ?1 "),
 				@NamedQuery(name = "NM_VAGAS_ABERTAS", query = "from Vaga v where v.entidade = ?1 and v.quantidadeVaga > 0 "),
-				@NamedQuery(name = "NM_VAGAS_SUGERIDA_VOLUNTARIO", query = "from Vaga v where v.quantidadeVaga > 0")})
+				@NamedQuery(name = "NM_VAGAS_SUGERIDA_VOLUNTARIO", query = "from Vaga v where v.quantidadeVaga > 0"),
+				@NamedQuery(name = "NM_VAGAS_VOLUNTARIO_PROCURAR", query = "from Vaga v where v.quantidadeVaga > 0 and v.nomeVaga like :nome or v.descricao like :descricao")})
 public @Data class Vaga implements MinhaEntidade{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
