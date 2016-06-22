@@ -155,7 +155,7 @@
 									<div class="col-sm-9">
 
 										<input type="text" name="vaga.dataValidade"
-											value="${vaga.dataValidade}" class="form-control" required/>
+											value="${vaga.dataValidade}" class="form-control" required pattern="\d{4}/\d{1,2}/\d{1,2}" placeholder="yyyy/mm/dd"/>
 
 									</div>
 								</div>
