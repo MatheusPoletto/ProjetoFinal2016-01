@@ -17,6 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -50,4 +52,8 @@ public @Data class Usuario implements MinhaEntidade {
 	@OneToMany(mappedBy = "usuario", targetEntity = Avatar.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Avatar> avatares = new ArrayList<>();
 	
+	
+	public void setSenha(String senhaParaCriptografar){
+		this.senha = DigestUtils.md5Hex(senhaParaCriptografar);
+	}
 }

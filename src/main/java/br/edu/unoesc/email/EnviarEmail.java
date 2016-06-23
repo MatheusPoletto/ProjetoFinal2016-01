@@ -48,7 +48,7 @@ public class EnviarEmail {
 		StringBuilder builder = new StringBuilder();
 	    builder.append("<h4>Mensagem gerada automaticamente - inscrição foi confirmada</h4>");
 	    builder.append("<p>Olá "+atuacao.getVoluntario().getNome()+" é com prazer que informamos que sua inscrição na vaga "+atuacao.getVaga().getNomeVaga()+" foi aceita pela ONG responsável!</p>");
-	    builder.append("<p>Contate a entidade o mais rápido possível usando as informações:</p><br>");
+	    builder.append("<p>Contate a entidade o mais rápido possível usando as informações:</p>");
 	    builder.append("<ul>");
 	    builder.append("<li>Nome da organização: "+atuacao.getVaga().getEntidade().getNomeEntidade() + "</li>");
 	    builder.append("<li>Telefone para contato: "+atuacao.getVaga().getEntidade().getTelefone() + "</li>");

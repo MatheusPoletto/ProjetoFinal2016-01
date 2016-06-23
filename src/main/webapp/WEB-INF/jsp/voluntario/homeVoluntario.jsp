@@ -56,7 +56,7 @@
 													<thead>
 														<th>Vaga Nº</th>
 														<th>Nome</th>
-														<th>Presencial?</th>
+														<th>Presencial</th>
 														<th>Cidade</th>
 														<th>Estado</th>
 														<th>Descrição</th>

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -36,10 +38,9 @@ public class AcessoController {
 
 	@Post("/autenticarUsuario")
 	public void autenticarUsuario(Usuario usuario) {
+		System.out.println(usuario.getSenha());
 			Usuario usuarioBusca = usuarioDAO.buscarUsuario(usuario.getLogin());
 			if (usuarioBusca == null) {
-				/*result.include("mensagem", "<div class=\"alert alert-danger\" role=\"alert\">Usuário não encontrado!</div>");
-				result.redirectTo("/cadastro");*/
 				result.redirectTo(IndexController.class).precisaMensagem("ERRO_LOGIN_INCORRETO");
 			} else {
 				if (usuarioBusca.getSenha().equals(usuario.getSenha())) {
