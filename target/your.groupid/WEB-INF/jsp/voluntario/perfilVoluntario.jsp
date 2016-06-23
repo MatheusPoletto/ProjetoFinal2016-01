@@ -28,7 +28,7 @@
 						<ul class="nav navbar-nav navbar-right">
 
 
-							<li><a href="#"> Deslogar </a></li>
+							<li><a href="<c:url value='/cadastro'/>"> Deslogar </a></li>
 						</ul>
 					</div>
 				</div>
@@ -126,12 +126,12 @@
 										<c:choose>
 											<c:when test="${imagem == 'AAAAAAAAAAAAAAAAAAAAAAAAAAA='}">
    												<a href="#"> <img class="avatar border-gray"
-												src="img/def-user.png" width="150" height="100" alt="..." />
+												src="img/def-user.png" width="100" height="100" alt="..." />
 											</c:when>
 
 											<c:otherwise>
      											<a href="#"> <img class="avatar border-gray"
-												src="data:image/jpeg;base64," width="100"
+												src="data:image/jpeg;base64,${imagem}" width="100"
 												height="100" alt="..." />
 											</c:otherwise>
 										</c:choose>

@@ -14,6 +14,8 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import org.apache.commons.mail.EmailException;
+
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -28,6 +30,7 @@ import br.edu.unoesc.dao.EnderecoDAO;
 import br.edu.unoesc.dao.EntidadeDAO;
 import br.edu.unoesc.dao.UsuarioDAO;
 import br.edu.unoesc.dao.VagaDAO;
+import br.edu.unoesc.email.EnviarEmail;
 import br.edu.unoesc.exception.DAOException;
 import br.edu.unoesc.model.Atuacao;
 import br.edu.unoesc.model.Avatar;
@@ -50,6 +53,8 @@ public class EntidadeController {
 	private Validator validator;
 
 	private Usuario usuarioSessao = new Usuario();
+	
+	private String mandandoEmail = "NAO";
 
 	private Atuacao atuacao = new Atuacao();
 
@@ -79,6 +84,8 @@ public class EntidadeController {
 					atuacaoDao.atuacoesParaConfirmar(usuarioSessao
 							.getEntidades().get(0).getCodigo()));
 			result.include("usuario", usuarioSessao);
+			result.include("mandandoEmail", mandandoEmail);
+			mandandoEmail = "NAO";
 		}
 	}
 
@@ -199,7 +206,7 @@ public class EntidadeController {
 			int month = cal.get(Calendar.MONTH);
 			int day = cal.get(Calendar.DAY_OF_MONTH);*/
 
-			result.include("idadeVoluntario", LocalDate.now().getYear() - atuacao.getVoluntario().getNascimento().getTime().getYear());
+			result.include("idadeVoluntario", LocalDate.now().getYear() - atuacao.getVoluntario().getNascimento().get(Calendar.YEAR));
 			result.include("usuario", usuarioSessao);
 		}
 	}
@@ -245,6 +252,20 @@ public class EntidadeController {
 			AtuacaoDAO atuacaoDao = new AtuacaoDAO();
 			this.atuacao.setStatus("Inscrição confirmada pela entidade");
 			atuacaoDao.salvar(this.atuacao);
+			
+			mandandoEmail = "SIM";
+			new Thread(){
+				public void run(){
+					EnviarEmail enviarEmail = new EnviarEmail();
+					try {
+						enviarEmail.sendEmail(atuacao);
+					} catch (EmailException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}.start();
+			
 			result.redirectTo(this).homeEntidade();
 		}
 	}
