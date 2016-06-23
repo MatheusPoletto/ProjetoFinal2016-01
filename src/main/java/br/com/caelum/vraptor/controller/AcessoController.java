@@ -38,7 +38,6 @@ public class AcessoController {
 
 	@Post("/autenticarUsuario")
 	public void autenticarUsuario(Usuario usuario) {
-		System.out.println(usuario.getSenha());
 			Usuario usuarioBusca = usuarioDAO.buscarUsuario(usuario.getLogin());
 			if (usuarioBusca == null) {
 				result.redirectTo(IndexController.class).precisaMensagem("ERRO_LOGIN_INCORRETO");

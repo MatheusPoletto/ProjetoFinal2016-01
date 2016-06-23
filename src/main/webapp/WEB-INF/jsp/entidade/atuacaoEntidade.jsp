@@ -90,7 +90,8 @@
 											<th>Cidade</th>
 											<th>Estado</th>
 											<th>Presencial</th>
-											<th>Descrição</th>
+											<th>Nome do voluntário</th>
+											<th>E-mail</th>
 										</thead>
 										<tbody>
 											<c:forEach items="${atuacoesConcluidas}" var="atuacao">
@@ -99,7 +100,8 @@
 													<td>${atuacao.vaga.cidade}</td>
 													<td>${atuacao.vaga.estado}</td>
 													<td>${atuacao.vaga.presencial}</td>
-													<td>${atuacao.vaga.descricao}</td>
+													<td>${atuacao.voluntario.nome}</td>
+													<td>${atuacao.voluntario.email}</td>
 												</tr>
 											</c:forEach>
 										</tbody>

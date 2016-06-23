@@ -226,7 +226,17 @@ public class EntidadeController {
 	public void revogarInscricao(Long codigo) throws DAOException {
 		if (temCodigo()) {
 			AtuacaoDAO atuacaoDao = new AtuacaoDAO();
-			this.atuacao = atuacaoDao.buscar(Atuacao.class, codigo);
+			atuacao = atuacaoDao.buscar(Atuacao.class, codigo);
+			
+			atuacao.setStatus("Revogada pela entidade");
+			atuacaoDao.salvar(atuacao);
+			
+			VagaDAO vagaDao = new VagaDAO();
+			Vaga vaga = atuacao.getVaga();
+			vaga.setQuantidadeVaga(vaga.getQuantidadeVaga() + 1);
+			vagaDao.salvar(vaga);
+			
+			/*this.atuacao = atuacaoDao.buscar(Atuacao.class, codigo);
 			System.out.println(atuacao.getVaga());
 			VagaDAO vagaDao = new VagaDAO();
 			Vaga vaga = atuacao.getVaga();
@@ -241,7 +251,7 @@ public class EntidadeController {
 			}
 
 			vagaDao.salvar(vaga);
-
+*/
 			result.redirectTo(this).homeEntidade();
 		}
 	}
