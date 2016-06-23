@@ -5,7 +5,7 @@
 <link href="css/style.css" rel="stylesheet">
 <link href="css/signin.css" rel="stylesheet">
 <link href="css/cadastro.css" rel="stylesheet">
-<title>Eu voluntário</title>
+<title>Cadastro de novo usuário - EuVoluntário</title>
 
 <c:import url="cabecalho.jsp" />
 </head>

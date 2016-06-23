@@ -1,6 +1,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<title>Cadastrar vaga</title>
+<title>Cadastrar vaga - EuVoluntário</title>
+<link rel="icon" type="image/png" href="img/favicon.ico">
 
 <script type="text/javascript">
      	function trocaUrgencia() {
@@ -154,7 +155,7 @@
 									<label class="col-sm-2"> Data de Validade</label>
 									<div class="col-sm-9">
 
-									<input type="text" name="vaga.dataValidade" value="<fmt:formatDate value="${vaga.dataValidade}" dateStyle="medium" />">
+									<input type="text" name="vaga.dataValidade" class="form-control" value="<fmt:formatDate value="${vaga.dataValidade}" dateStyle="medium" />">
 
 
 									</div>

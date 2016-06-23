@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<title>Principal</title>
+<title>Perfil - EuVoluntário</title>
+<link rel="icon" type="image/png" href="img/favicon.ico">
 
 </head>
 
