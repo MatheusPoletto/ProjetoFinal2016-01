@@ -45,28 +45,27 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">Vagas em aberto</h4>
-									<p class="category">Essas são as vagas que você criou e
-										ainda não foram completadas</p>
+									<h4 class="title">Vagas ativas</h4>
+									<p class="category">Limite de voluntários ainda não atingido</p>
 								</div>
 								<div class="content table-responsive table-full-width">
 									<table class="table table-hover table-striped">
 										<thead>
-											<th>Nome</th>
-											<th>ONG</th>
+											<th>Nome da vaga</th>
 											<th>Cidade</th>
 											<th>Estado</th>
 											<th>Presencial</th>
+											<th>Restante</th>
 											<th>Descrição</th>
 										</thead>
 										<tbody>
 											<c:forEach items="${vagaview}" var="vaga">
 												<tr>
 													<td>${vaga.nomeVaga}</td>
-													<td>${entidade.nomeEntidade}</td>
 													<td>${vaga.cidade}</td>
 													<td>${vaga.estado}</td>
 													<td>${vaga.presencial}</td>
+													<td>${vaga.quantidadeVaga}</td>
 													<td>${vaga.descricao}</td>
 												</tr>
 											</c:forEach>
@@ -81,14 +80,13 @@
 						<div class="col-md-12">
 							<div class="card card-plain">
 								<div class="header">
-									<h4 class="title">Atuações confirmadas</h4>
-									<p class="category">Aqui estão as vagas que tiveram
-										voluntário inscritos</p>
+									<h4 class="title">Vagas concluídas</h4>
+									<p class="category">Limite de voluntários necessários atingido</p>
 								</div>
 								<div class="content table-responsive table-full-width">
 									<table class="table table-hover">
 										<thead>
-											<th>Nome</th>
+											<th>Nome da vaga</th>
 											<th>Cidade</th>
 											<th>Estado</th>
 											<th>Presencial</th>
