@@ -28,7 +28,7 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<br>
-							<h2 class="" align="center">Login:</h2>
+							<h2 class="" align="center">Login</h2>
 						</div>
 						<div class="modal-body">
 							<div class="box">

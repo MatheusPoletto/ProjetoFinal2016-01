@@ -55,7 +55,7 @@ public @Data class Entidade implements MinhaEntidade {
 	
 	
 	@OneToMany(mappedBy = "entidade", targetEntity = Vaga.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Vaga> vagas = new ArrayList<>();
+	private List<Vaga> vagas;
 	
 	public void adicionarVaga(Vaga vaga){
 		this.vagas.add(vaga);

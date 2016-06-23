@@ -1,4 +1,4 @@
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <title>Cadastrar vaga</title>
 
@@ -70,7 +70,7 @@
 									<div class="col-sm-9">
 										<input type="number" class="form-control"
 											name="vaga.quantidadePessoa" value="${vaga.quantidadePessoa}"
-											placeholder="Quantidade de vagas disponiveis" required/>
+											placeholder="Quantidade de valuntários que vão ser necessários" required/>
 									</div>
 								</div>
 								<div class="form-group">
@@ -154,8 +154,8 @@
 									<label class="col-sm-2"> Data de Validade</label>
 									<div class="col-sm-9">
 
-										<input type="text" name="vaga.dataValidade"
-											value="${vaga.dataValidade}" class="form-control" required/>
+									<input type="text" name="vaga.dataValidade" value="<fmt:formatDate value="${vaga.dataValidade}" dateStyle="medium" />">
+
 
 									</div>
 								</div>
@@ -164,8 +164,8 @@
 								<div class="form-group">
 
 									<label class="col-sm-2"></label>
-									<button type="submit" class="btn btn-primary btn-info">
-									<span class="glyphicon glyphicon-ok"></span> Cadastrar vaga</button>
+									<button type="submit" class="btn btn-primary">
+									 CADASTRAR VAGA <span class="glyphicon glyphicon-ok"></span></button>
 								</div>
 
 

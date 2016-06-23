@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <link href="css/style.css" rel="stylesheet">
@@ -160,10 +161,7 @@
 								</div>
 								<div class="form-group">
 									<label for="dataVoluntario">Data de nascimento:</label>
-									<input type="text"
-										id="dataVoluntario" name="voluntario.nascimento"
-										value="${voluntario.nascimento}"  class="form-control"
-										required pattern="\d{4}/\d{1,2}/\d{1,2}" placeholder="yyyy/mm/dd"  />
+									<input type="text" name="voluntario.nascimento" value="<fmt:formatDate value="${voluntario.nascimento}" dateStyle="medium" />">
 								</div>
 								<div class="form-group">
 									<label for="emailVoluntario">Email:</label>

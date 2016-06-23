@@ -90,13 +90,12 @@
         </div>
 
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <p class="copyright pull-right">
-                    &copy; 2016 EuVoluntário
-                </p>
-            </div>
-        </footer>
+       <footer class="footer">
+				<div class="container-fluid">
+
+					<p class="copyright pull-right">&copy; 2016 EuVoluntário</p>
+				</div>
+			</footer>
 
     </div>
 </div>

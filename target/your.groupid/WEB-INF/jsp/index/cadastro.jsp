@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <link href="css/style.css" rel="stylesheet">
@@ -139,14 +140,13 @@
 										id="cepEntidade" name="endereco.cep"
 										value="${endereco.cep}" class="form-control" required  />
 								</div>
-								<button type="submit" class="btn btn-primary btn-info">CADASTRAR <span class="glyphicon glyphicon-ok"></span></button>
+								<button type="submit" class="btn btn-primary">CADASTRAR <span class="glyphicon glyphicon-ok"></span></button>
 								<br> <br>
 							</form>
 						</div>
 						<div id="entidade" class="tab-pane fade">
 							</br>
-							<form action="<c:url value='/cadastrarVoluntario'/>"
-								method="post">
+							<form action="<c:url value='/cadastrarVoluntario'/>" method="post">
 								<div class="form-group">
 									<label for="nomeVoluntario">Nome completo:</label>
 									<input type="text"
@@ -161,9 +161,7 @@
 								</div>
 								<div class="form-group">
 									<label for="dataVoluntario">Data de nascimento:</label>
-									<input type="text"
-										id="dataVoluntario" name="voluntario.nascimento"
-										value="${voluntario.nascimento}" class="form-control" required  />
+									<input type="text" name="voluntario.nascimento" value="<fmt:formatDate value="${voluntario.nascimento}" dateStyle="medium" />">
 								</div>
 								<div class="form-group">
 									<label for="emailVoluntario">Email:</label>
@@ -183,7 +181,7 @@
 										id="senhaVoluntario" name="usuario.senha"
 										value="${usuario.senha}" class="form-control" required  />
 								</div>
-								<button type="submit" class="btn btn-primary btn-success">CADASTRAR <span class="glyphicon glyphicon-ok"></span></button>
+								<button type="submit" class="btn btn-primary">CADASTRAR <span class="glyphicon glyphicon-ok"></span></button>
 								<br> <br>
 							</form>
 						</div>

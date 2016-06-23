@@ -151,8 +151,18 @@
 								</div>
 								<div class="content">
 									<div class="author">
-										<a href="#"> <img class="avatar border-gray"
-											src="data:image/jpeg;base64,${imagem}" width="100" height="100" alt="..." />
+										<c:choose>
+											<c:when test="${imagem == 'AAAAAAAAAAAAAAAAAAAAAAAAAAA='}">
+   												<a href="#"> <img class="avatar border-gray"
+												src="img/def-user.png" width="100" height="100" alt="..." />
+											</c:when>
+
+											<c:otherwise>
+     											<a href="#"> <img class="avatar border-gray"
+												src="data:image/jpeg;base64,${imagem}" width="100"
+												height="100" alt="..." />
+											</c:otherwise>
+										</c:choose>
 
 
 											<h4 class="title">${entidade.nomeEntidade}<br />

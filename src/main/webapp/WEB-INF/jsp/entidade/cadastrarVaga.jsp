@@ -1,4 +1,4 @@
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <title>Cadastrar vaga</title>
 
@@ -154,8 +154,8 @@
 									<label class="col-sm-2"> Data de Validade</label>
 									<div class="col-sm-9">
 
-										<input type="text" name="vaga.dataValidade"
-											value="${vaga.dataValidade}" class="form-control" required pattern="\d{4}/\d{1,2}/\d{1,2}" placeholder="yyyy/mm/dd"/>
+									<input type="text" name="vaga.dataValidade" value="<fmt:formatDate value="${vaga.dataValidade}" dateStyle="medium" />">
+
 
 									</div>
 								</div>

@@ -2,6 +2,7 @@ package br.com.caelum.vraptor.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Calendar;
@@ -74,6 +75,7 @@ public class VoluntarioController {
 	public void cadastrarVoluntario(Usuario usuario, Voluntario voluntario){
 			Usuario usuarioExistente = usuarioDAO.buscarUsuario(usuario
 					.getLogin());
+			//System.out.println(voluntario.getNascimento().getTime().getYear());
 			if (usuarioExistente == null) {
 				try {
 					voluntario.setUsuario(usuario);
@@ -132,7 +134,7 @@ public class VoluntarioController {
 		if (temCodigo()) {
 			Atuacao atuacao = new Atuacao("Aguardando confirmação",
 					usuarioSessao.getVoluntarios().get(0), this.vagaInteresse,
-					new Date(Calendar.getInstance().getTime().getTime()));
+					Calendar.getInstance());
 			VagaDAO vagaDao = new VagaDAO();
 			this.vagaInteresse.adicionarAtuacao(atuacao);
 			vagaDao.salvar(this.vagaInteresse);
@@ -159,9 +161,11 @@ public class VoluntarioController {
 	@Path("/perfilVoluntario")
 	public void perfilVoluntario() throws UnsupportedEncodingException {
 		if (temCodigo()) {
+			String fotoNaoDefinida = "SIM";
 			this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
 					usuarioSessao.getCodigo());
 			if (usuarioSessao.getAvatares() == null) {
+				fotoNaoDefinida = "NAO";
 				Avatar avatar = new Avatar(null);
 				AvatarDAO avatarDao = new AvatarDAO();
 				avatar.setUsuario(usuarioSessao);
@@ -183,6 +187,7 @@ public class VoluntarioController {
 			}
 			result.include("imagem", base64DataString);
 			result.include("voluntario", usuarioSessao.getVoluntarios().get(0));
+			result.include("idade", LocalDate.now().getYear() - usuarioSessao.getVoluntarios().get(0).getNascimento().get(Calendar.YEAR));
 			result.include("usuario", usuarioSessao);
 			result.include("erroSenha", erroSenha);
 			this.erroSenha = "NAO";

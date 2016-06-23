@@ -1,6 +1,7 @@
 package br.edu.unoesc.model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -51,9 +52,9 @@ public @Data class Atuacao implements MinhaEntidade {
 	private Vaga vaga;    
 	
 	@Temporal(TemporalType.DATE)
-	private Date data;
+	private Calendar data;
 
-	public Atuacao(String status, Voluntario voluntario, Vaga vaga, Date data) {
+	public Atuacao(String status, Voluntario voluntario, Vaga vaga, Calendar data) {
 		super();
 		this.status = status;
 		this.voluntario = voluntario;

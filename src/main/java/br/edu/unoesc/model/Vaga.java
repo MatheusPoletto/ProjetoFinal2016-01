@@ -1,8 +1,6 @@
 package br.edu.unoesc.model;
 
 import java.util.Calendar;
-import java.util.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,22 +10,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
@@ -52,11 +44,11 @@ public @Data class Vaga implements MinhaEntidade{
 	private String estado;
 	private String cidade;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCadastro = new Date(Calendar.getInstance().getTime().getTime());
+	@Temporal(TemporalType.DATE)
+	private Calendar dataValidade;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataValidade;
+	@Temporal(TemporalType.DATE)
+	private Calendar dataCadastro = Calendar.getInstance();
 	
 	@ManyToOne(optional = false, targetEntity = Entidade.class)
 	private Entidade entidade;
@@ -77,7 +69,7 @@ public @Data class Vaga implements MinhaEntidade{
 
 	public Vaga(String nomeVaga, Integer quantidadePessoa, String descricao,
 			Integer quantidadeVaga, String importancia, String presencial,
-			String estado, String cidade, Date dataValidade, Entidade entidade) {
+			String estado, String cidade, Calendar dataValidade, Entidade entidade) {
 		super();
 		this.nomeVaga = nomeVaga;
 		this.quantidadePessoa = quantidadePessoa;

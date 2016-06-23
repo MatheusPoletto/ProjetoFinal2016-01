@@ -1,4 +1,5 @@
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\Atuacao.java
+C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\TesteEmail.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\TesteVagaAtuacao.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\dao\VagaDAO.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\DaoTeste.java
@@ -8,6 +9,7 @@ C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\Main.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\TesteUsuarioVoluntario.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\dao\EnderecoDAO.java
+C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\email\EnviarEmail.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\dao\AtuacaoDAO.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\Endereco.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\Usuario.java
@@ -21,13 +23,11 @@ C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\com\caelum\vrapt
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\TesteFoto.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\com\caelum\vraptor\controller\IndexController.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\Voluntario.java
-C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\com\caelum\vraptor\controller\VagaController.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\TestesNovoMapeamento.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\exception\DAOException.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\model\MinhaEntidade.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\com\caelum\vraptor\controller\AcessoController.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\dao\HibernateDAO.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\TesteVaga.java
-C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\com\caelum\vraptor\controller\EnderecoController.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\teste\NovoTeste.java
 C:\Users\MatheusOtavio\git\ProjetoFinal2016-01\src\main\java\br\edu\unoesc\dao\VoluntarioDAO.java

@@ -47,9 +47,9 @@ public class TestesNovoMapeamento {
 		EntidadeDAO entidadeDao = new EntidadeDAO();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
 		Calendar calendar = new GregorianCalendar(2016,7-1,28);	
-		Vaga vaga2 = new Vaga("Auxiliar para pintura", 3, "Preciso de alguém com experência no ramo.", 2, "Urgente", "Sim", "SC", "Ponte Serrada", calendar.getTime(), entidadeDao.buscar(Entidade.class, 1l));
+		//Vaga vaga2 = new Vaga("Auxiliar para pintura", 3, "Preciso de alguém com experência no ramo.", 2, "Urgente", "Sim", "SC", "Ponte Serrada", calendar.getTime(), entidadeDao.buscar(Entidade.class, 1l));
 		
-		vagaDao.salvar(vaga2);
+		//vagaDao.salvar(vaga2);
 		
 		
 	}

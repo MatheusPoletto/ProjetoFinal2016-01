@@ -25,7 +25,7 @@
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href=""> Deslogar </a></li>
+							<li><a href="<c:url value='/cadastro'/>"> Deslogar </a></li>
 
 
 						</ul>

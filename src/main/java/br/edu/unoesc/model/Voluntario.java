@@ -1,5 +1,6 @@
 package br.edu.unoesc.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,14 +45,14 @@ public @Data class Voluntario implements MinhaEntidade {
 	private String email;
 
 	@Temporal(TemporalType.DATE)
-	private Date nascimento;
+	private Calendar nascimento;
 
 	@ManyToOne
 	@JoinColumn(name="usuario_codigo")
 	private Usuario usuario;
 
 	public Voluntario(String nome, String celular, String email,
-			Date nascimento) {
+			Calendar nascimento) {
 		super();
 		this.nome = nome;
 		this.celular = celular;

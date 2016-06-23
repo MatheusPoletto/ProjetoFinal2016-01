@@ -120,7 +120,7 @@
 														name="entidade.areaAtuacao"
 														value="${entidade.areaAtuacao}"
 														class="form-control"
-														placeholder="Aqui vai a area de atuação">
+														placeholder="Área de atuação">
 												</div>
 											</div>
 										</div>
@@ -135,8 +135,8 @@
 												</div>
 											</div>
 										</div>
-										<button type="submit" class="btn btn-info btn-fill pull-right">Salvar
-											alterações</button>
+										<button type="submit" class="btn btn-primary pull-right">SALVAR
+											ALTERAÇÕES</button>
 										<div class="clearfix"></div>
 									</form>
 								</div>

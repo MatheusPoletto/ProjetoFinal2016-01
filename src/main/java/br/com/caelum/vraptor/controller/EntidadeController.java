@@ -20,6 +20,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
+import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.edu.unoesc.dao.AtuacaoDAO;
 import br.edu.unoesc.dao.AvatarDAO;
@@ -191,14 +192,14 @@ public class EntidadeController {
 					usuarioSessao.getCodigo());
 			result.include("atuacao", atuacao);
 
-			Date date = atuacao.getVoluntario().getNascimento();
-			Calendar cal = Calendar.getInstance();
+			//Calendar date = atuacao.getVoluntario().getNascimento();
+			/*Calendar cal = Calendar.getInstance();
 			cal.setTime(date);
 			int year = cal.get(Calendar.YEAR);
 			int month = cal.get(Calendar.MONTH);
-			int day = cal.get(Calendar.DAY_OF_MONTH);
+			int day = cal.get(Calendar.DAY_OF_MONTH);*/
 
-			result.include("idadeVoluntario", LocalDate.now().getYear() - year);
+			result.include("idadeVoluntario", LocalDate.now().getYear() - atuacao.getVoluntario().getNascimento().getTime().getYear());
 			result.include("usuario", usuarioSessao);
 		}
 	}
@@ -249,7 +250,7 @@ public class EntidadeController {
 	}
 
 	@Path("/cadastrarVaga")
-	public void cadastrarVaga() {
+	public void cadastrarVaga() throws DAOException{
 		if (temCodigo()) {
 			result.include("usuario", usuarioSessao);
 		}
@@ -258,17 +259,22 @@ public class EntidadeController {
 	@Post("/salvarVaga")
 	public void salvarVaga(Vaga vaga) {
 		if (temCodigo()) {
+			this.usuarioSessao = usuarioDAO.buscar(Usuario.class,
+					usuarioSessao.getCodigo());
 			EntidadeDAO entidadedao = new EntidadeDAO();
-			Entidade entidade = entidadedao.buscar(Entidade.class,
-					usuarioSessao.getEntidades().get(0).getCodigo());
+			Entidade entidade = entidadedao.buscar(Entidade.class, usuarioSessao.getEntidades().get(0).getCodigo());
+			
 			vaga.setEntidade(entidade);
 			entidade.adicionarVaga(vaga);
 			try {
+				VagaDAO vagaDao = new VagaDAO();
+				vagaDao.salvar(vaga);
+				
 				entidadedao.salvar(entidade);
+				result.redirectTo(this).atuacaoEntidade();
 			} catch (DAOException e) {
-				e.printStackTrace();
+				validator.onErrorForwardTo(IndexController.class).index();
 			}
-			result.redirectTo(this).atuacaoEntidade();
 		}
 	}
 

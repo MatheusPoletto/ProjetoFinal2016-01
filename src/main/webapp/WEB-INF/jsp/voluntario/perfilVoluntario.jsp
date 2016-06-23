@@ -28,7 +28,7 @@
 						<ul class="nav navbar-nav navbar-right">
 
 
-							<li><a href="#"> Deslogar </a></li>
+							<li><a href="<c:url value='/cadastro'/>"> Deslogar </a></li>
 						</ul>
 					</div>
 				</div>
@@ -43,12 +43,12 @@
 								<div class="header">
 									<h4 class="title">Editar perfil</h4>
 									<c:if test="${erroSenha == 'SIM'}">
-									</br>
+										</br>
 										<div class="alert alert-warning fade in">
 											<span class="glyphicon glyphicon-no" aria-hidden="true"></span>
 											<a href="#" class="close" data-dismiss="alert"
-												aria-label="close">&times;</a> <strong>Ops!</strong>
-												SENHA e CONFIRMAR SENHA não são iguais. Sua senha não foi alterada.
+												aria-label="close">&times;</a> <strong>Ops!</strong> SENHA e
+											CONFIRMAR SENHA não são iguais. Sua senha não foi alterada.
 										</div>
 									</c:if>
 								</div>
@@ -83,11 +83,9 @@
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Data de nascimento</label> <input type="text"
-														class="form-control"
-														placeholder="Desabilitado, não muda quando nasce"
-														name="voluntario.nascimento"
-														value="${voluntario.nascimento}" disabled />
+													<label>Idade</label> <input type="text"
+														class="form-control" name="idade" value="${idade}"
+														disabled />
 												</div>
 											</div>
 										</div>
@@ -123,13 +121,25 @@
 								</div>
 								<div class="content">
 									<div class="author">
-										<a href="#"> <img class="avatar border-gray"
-											src="data:image/jpeg;base64,${imagem}" width="100"
-											height="100" alt="..." />
 
-											<h4 class="title">
-												${voluntario.nome}<br /> <small>${usuario.login}</small>
-											</h4>
+
+										<c:choose>
+											<c:when test="${imagem == 'AAAAAAAAAAAAAAAAAAAAAAAAAAA='}">
+   												<a href="#"> <img class="avatar border-gray"
+												src="img/def-user.png" width="100" height="100" alt="..." />
+											</c:when>
+
+											<c:otherwise>
+     											<a href="#"> <img class="avatar border-gray"
+												src="data:image/jpeg;base64,${imagem}" width="100"
+												height="100" alt="..." />
+											</c:otherwise>
+										</c:choose>
+										
+									
+										<h4 class="title">
+											${voluntario.nome}<br /> <small>${usuario.login}</small>
+										</h4>
 										</a>
 									</div>
 

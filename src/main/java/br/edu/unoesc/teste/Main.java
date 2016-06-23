@@ -1,6 +1,7 @@
 package br.edu.unoesc.teste;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 import br.edu.unoesc.dao.VoluntarioDAO;
 import br.edu.unoesc.dao.UsuarioDAO;
@@ -23,48 +24,19 @@ public static void main(String[] args) throws DAOException {
 	voluntario.setCelular("99443322");
 	voluntario.setEmail("bru@gmail.com");
 	//voluntario.setUsuario(usuarioPessoa);
-	voluntario.setNascimento(new Date(1996, 06, 8));
-	
-	//usuarioPessoa.adcionarVoluntario(voluntario);
-	
-	Usuario usuarioEntidade = new Usuario();
-	usuarioEntidade.setLogin("lowmo");
-	usuarioEntidade.setSenha("9987");
-	
-	Entidade entidade = new Entidade();
-	entidade.setNomeEntidade("Lowgro Texturas");
-	entidade.setAreaAtuacao("Personalização");
-	entidade.setEmail("fabine@lowgrotexturas.com.br");
-	entidade.setTelefone("34350091");
-	//entidade.setUsuario(usuarioEntidade);
-	
-	//usuarioEntidade.adcionarEntidade(entidade);
-	
-	/*Vaga vaga = new Vaga();
-	vaga.setNomeVaga("Festa de aniversário");
-	vaga.setQuantidadePessoa(1);
-	vaga.setDescricao("Preciso de alguém para ajudar com personalização.");
-	vaga.setQuantidadeVaga(1);
-	vaga.setImportancia("MÉDIA");
-	vaga.setPresencial("Não");
-	vaga.setEstado("SC");
-	vaga.setCidade("Ponte Serrada");
-	vaga.setDataCadastro(new Date(2016, 06, 10));
-	vaga.setDataValidade(new Date(2016, 06, 12));
-	vaga.setEntidade(entidade);
-	entidade.adicionarVaga(vaga);
-	
-	Atuacao atuacao = new Atuacao();
-	atuacao.setStatus("Em andamento");
-	atuacao.setVaga(vaga);
-	atuacao.setVoluntario(voluntario);
-	atuacao.setData(new Date(2016, 06, 11));
-	
-	vaga.adicionarAtuacao(atuacao);*/
+	Calendar cl = Calendar.getInstance();
+	cl.set(2000, 11, 01);
+	//cl.get(Calendar.YEAR);
+	voluntario.setNascimento(cl);
+	voluntario.setUsuario(usuarioPessoa);
 	
 	UsuarioDAO usuarioDao = new UsuarioDAO();
 	usuarioDao.salvar(usuarioPessoa);
-	usuarioDao.salvar(usuarioEntidade);
+	
+	VoluntarioDAO volDao = new VoluntarioDAO();
+	volDao.salvar(voluntario);
+
+	
 	
 	
 

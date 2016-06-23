@@ -62,14 +62,14 @@
 											<th>Descrição</th>
 										</thead>
 										<tbody>
-											<c:forEach items="${vagasInscrito}" var="vaga">
+											<c:forEach items="${vagasInscrito}" var="atuacao">
 												<tr>
-													<td>${vaga.codigo}</td>
-													<td>${vaga.nomeVaga}</td>
-													<td>${vaga.presencial}</td>
-													<td>${vaga.cidade}</td>
-													<td>${vaga.estado}</td>
-													<td>${vaga.descricao}</td>
+													<td>${atuacao.codigo}</td>
+													<td>${atuacao.vaga.nomeVaga}</td>
+													<td>${atuacao.vaga.presencial}</td>
+													<td>${atuacao.vaga.cidade}</td>
+													<td>${atuacao.vaga.estado}</td>
+													<td>${atuacao.vaga.descricao}</td>
 													
 											</c:forEach>
 										</tbody>
@@ -97,14 +97,14 @@
 											<th>Descrição</th>
 										</thead>
 										<tbody>
-											<c:forEach items="${vagasConfirmadas}" var="vaga">
+											<c:forEach items="${atuacoesConcluidas}" var="atuacao">
 												<tr>
-													<td>${vaga.codigo}</td>
-													<td>${vaga.nomeVaga}</td>
-													<td>${vaga.presencial}</td>
-													<td>${vaga.cidade}</td>
-													<td>${vaga.estado}</td>
-													<td>${vaga.descricao}</td>
+													<td>${atuacao.codigo}</td>
+													<td>${atuacao.vaga.nomeVaga}</td>
+													<td>${atuacao.vaga.presencial}</td>
+													<td>${atuacao.vaga.cidade}</td>
+													<td>${atuacao.vaga.estado}</td>
+													<td>${atuacao.vaga.descricao}</td>
 													
 											</c:forEach>
 										</tbody>
