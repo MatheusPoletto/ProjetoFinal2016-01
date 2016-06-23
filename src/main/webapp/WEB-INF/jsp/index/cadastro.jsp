@@ -161,7 +161,7 @@
 								</div>
 								<div class="form-group">
 									<label for="dataVoluntario">Data de nascimento:</label>
-									<input type="text" name="voluntario.nascimento" value="<fmt:formatDate value="${voluntario.nascimento}" dateStyle="medium" />">
+									<input type="text" name="voluntario.nascimento" class="form-control" value="<fmt:formatDate value="${voluntario.nascimento}" dateStyle="medium" />">
 								</div>
 								<div class="form-group">
 									<label for="emailVoluntario">Email:</label>

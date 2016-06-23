@@ -19,7 +19,7 @@
 			</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">
-						<span class="glyphicon glyphicon-user"></span> LogIn</a></li>
+						<span class="glyphicon glyphicon-user"></span> Login</a></li>
 					<li><a data-toggle="modal" href="<c:url value='/cadastro'/>">
 						<span class="glyphicon glyphicon-plus"></span> Cadastrar</a></li>
 				

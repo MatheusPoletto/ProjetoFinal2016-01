@@ -87,7 +87,7 @@
 				<img class="img-circle" src="img/backcircle764.png"
 					alt="Generic placeholder image" width="140" height="140">
 				<h3>e 764 voluntários</h3>
-				<p>Mais de 765 pessoas já se cadastraram como voluntários sendo
+				<p>Mais de 764 pessoas já se cadastraram como voluntários sendo
 					que mais da metade já começou atuar em uma vaga.</p>
 			</div>
 		</div>
