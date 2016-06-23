@@ -81,7 +81,7 @@
 							<div class="card card-plain">
 								<div class="header">
 									<h4 class="title">Vagas concluídas</h4>
-									<p class="category">Limite de voluntários necessários atingido</p>
+									<p class="category">Atuações com voluntários confirmados</p>
 								</div>
 								<div class="content table-responsive table-full-width">
 									<table class="table table-hover">
