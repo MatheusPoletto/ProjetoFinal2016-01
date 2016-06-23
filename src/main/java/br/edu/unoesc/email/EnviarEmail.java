@@ -64,7 +64,7 @@ public class EnviarEmail {
 		// System.out.println("autenticando...");
 		email.setSSL(true);
 		email.setAuthentication("finalquintoperiodo@gmail.com",
-				"ribakinholindo");
+				"ribaklindo");
 		System.out.println("enviando...");
 		email.send();
 		System.out.println("Email enviado!");
